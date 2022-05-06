@@ -2,6 +2,7 @@ package utility;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Item implements Serializable
 {
@@ -103,6 +104,24 @@ public class Item implements Serializable
     return "Item{" + "id=" + id + ", name='" + name + '\'' + ", type='" + type
         + '\'' + ", price=" + price + ", description='" + description + '\''
         + ", extras=" + extras + '}';
+  }
+
+  @Override public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Item item = (Item) o;
+    return id == item.id && Double.compare(item.price, price) == 0
+        && Objects.equals(name, item.name) && Objects.equals(type, item.type)
+        && Objects.equals(description, item.description) && Objects.equals(
+        extras, item.extras);
+  }
+
+  @Override public int hashCode()
+  {
+    return Objects.hash(id, name, type, price, description, extras);
   }
 
   public Item copy()
