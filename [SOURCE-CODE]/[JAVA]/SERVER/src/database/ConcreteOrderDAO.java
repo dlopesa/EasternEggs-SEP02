@@ -106,7 +106,7 @@ public class ConcreteOrderDAO implements OrderDAO
         String comment = orderResultSet.getString("comment");
         DateTime dateTime = new DateTime(
             orderResultSet.getTimestamp("datetime").toLocalDateTime());
-        double price = orderResultSet.getDouble("price");
+        double price = 0;
         String status = orderResultSet.getString("status");
 
         Order order = new Order(comment, dateTime, price, status);

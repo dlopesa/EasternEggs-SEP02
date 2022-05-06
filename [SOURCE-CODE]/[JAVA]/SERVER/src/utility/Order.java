@@ -1,6 +1,7 @@
 package utility;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Order implements Serializable
 {
@@ -88,6 +89,31 @@ public class Order implements Serializable
     return "Order{" + "itemList=" + itemList + ", comment='" + comment + '\''
         + ", dateTime=" + dateTime + ", price=" + price + ", status='" + status
         + '\'' + '}';
+  }
+
+  @Override public boolean equals(Object o)
+  {
+    if (!(o instanceof Order)) {
+      return false;
+    }
+    Order other = (Order)o;
+    return (
+        this.itemList.equals(other.itemList) &&
+            this.status.equals(other.status) &&
+            Double.compare(this.price, other.price) == 0 &&
+            this.dateTime.equals(other.dateTime) &&
+            this.comment.equals(other.comment)
+        );
+  }
+
+  public Order copy() {
+    Order copy = new Order(false);
+    copy.dateTime = this.dateTime;
+    copy.price = this.price;
+    copy.comment = this.comment;
+    copy.itemList = this.itemList;
+    copy.status = this.status;
+    return copy;
   }
 
   public void setDateTime(DateTime dateTime)

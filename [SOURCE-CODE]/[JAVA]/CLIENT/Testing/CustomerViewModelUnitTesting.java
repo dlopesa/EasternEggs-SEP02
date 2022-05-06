@@ -62,21 +62,27 @@ class CustomerViewModelUnitTesting
     assertNotNull(customerViewModel);
   }
 
-  //Zero, Many, Boundary, and Exception are not relevant here as
-  // it is only possible to add one object. Exceptions are checked for in O.
   @Test void addItemToOrder_O()
   {
     assertDoesNotThrow(() -> model.addItemToOrder(item));
   }
 
-  //Zero, Many, Boundary are not relevant because it is only possible to submit one order.
-  // Exceptions are checked for in other methods, Exceptions are not thrown in the One test.
-  @Test void submitOrder_0()
+  @Test void addItemToOrder_Z()
   {
+    assertThrows(Exception.class, () -> model.addItemToOrder(null));
+  }
+
+  @Test void submitOrder_O()
+  {
+    model.addItemToOrder(item);
     assertDoesNotThrow(() -> model.submitOrder());
   }
 
-  //The following methods are testing each getter method in the class CustomerViewModel.
+  @Test void submitOrder_Z()
+  {
+    assertThrows(NullPointerException.class, () -> model.submitOrder());
+  }
+
   @Test void getNameProperty_O()
   {
     assertEquals(name.get(), "Latte Macchiato");

@@ -4,7 +4,9 @@ import jdk.swing.interop.SwingInterOpUtils;
 import org.postgresql.util.OSUtil;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ItemList implements Serializable
 {
@@ -56,6 +58,21 @@ public class ItemList implements Serializable
       copy.add(item);
     }
     return copy;
+  }
+
+  @Override public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    ItemList itemList = (ItemList) o;
+    return items.equals(itemList.items);
+  }
+
+  @Override public int hashCode()
+  {
+    return Objects.hash(items);
   }
 
   @Override public String toString()

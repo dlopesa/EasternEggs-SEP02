@@ -39,10 +39,24 @@ public class CustomerViewModel
 
   public void submitOrder()
   {
+
     Platform.runLater(() -> {
-      model.submitOrder();
+
+      {
+        try
+        {
+          model.submitOrder();
+        }
+
+        catch (NullPointerException e)
+        {
+          error.set("Cannot submit empty order. Please add items.");
+        }
+      }
     });
   }
+
+
 
   public StringProperty getNameProperty()
   {

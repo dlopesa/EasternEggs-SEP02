@@ -17,11 +17,11 @@ public class ModelManager implements Model
   private RemoteClient client;
   private Order order;
 
-  public ModelManager()
-      throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
   }
+
   @Override public void setUserType(String type)
   {
 
@@ -34,21 +34,24 @@ public class ModelManager implements Model
 
   @Override public void addItemToOrder(Item item)
   {
-    if (order==null)
+    if (order == null)
     {
-      order= new Order(false);
+      order = new Order(false);
     }
     System.out.println("I am adding an item: " + item);
     order.addItem(item);
   }
 
-  @Override public void submitOrder()
+  @Override public void submitOrder() throws NullPointerException
   {
     try
     {
-      System.out.println("I am submitting order");
+      System.out.println("I am submitting the order");
+
       client.receiveOrder(order);
+      System.out.println("I have submitted the order");
     }
+
     catch (RemoteException e)
     {
       e.printStackTrace();

@@ -12,7 +12,7 @@ public interface Model
   void setUserType(String type);
   String getUserType();
   void addItemToOrder(Item item);
-  void submitOrder();
+  void submitOrder()throws NullPointerException;
   void addExtraToItem(Extra extra, Item item);
   void removeExtraFromItem(Extra extra, Item item);
   void removeItemFromOrder(Item item);
