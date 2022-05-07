@@ -14,7 +14,7 @@ public class ConcreteOrderDAO implements OrderDAO
   private static ConcreteOrderDAO instance;
   private static Object lock = new Object();
 
-  public ConcreteOrderDAO() throws SQLException
+  private ConcreteOrderDAO() throws SQLException
   {
     DriverManager.registerDriver(new org.postgresql.Driver());
   }

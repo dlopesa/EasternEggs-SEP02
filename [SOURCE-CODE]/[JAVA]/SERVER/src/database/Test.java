@@ -10,7 +10,6 @@ public class Test
 {
   public static void main(String[] args) throws SQLException
   {
-    ConcreteOrderDAO dao = new ConcreteOrderDAO();
     Order order1 = new Order(false);
     Order order2 = new Order(false);
     Order order3 = new Order(false);
@@ -22,8 +21,8 @@ public class Test
     order2.addItem(item1);
     order2.addExtraToItem(item1,caramelsyrup);
 
-    dao.updateStatus(9, "completed");
-    dao.updateComment(9,"yayyy");
+    ConcreteOrderDAO.getInstance().updateStatus(9, "completed");
+    ConcreteOrderDAO.getInstance().updateComment(9,"yayyy");
 
   }
 }
