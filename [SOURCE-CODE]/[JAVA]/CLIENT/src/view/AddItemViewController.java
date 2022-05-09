@@ -16,7 +16,6 @@ public class AddItemViewController extends ViewController
   @FXML private TextField priceField;
   @FXML private TextArea descriptionArea;
   @FXML private Label errorLabel;
-  private StringProperty chosenProperty;
   private AddItemViewModel addItemViewModel;
 
   @Override protected void init()
@@ -30,22 +29,23 @@ public class AddItemViewController extends ViewController
     errorLabel.textProperty()
         .bindBidirectional(addItemViewModel.errorProperty());
     typeChoiceBox.getItems().addAll(addItemViewModel.getTypes());
+    //Putting items inside the choice box
+    typeChoiceBox.valueProperty()
+        .bindBidirectional(addItemViewModel.chosenProperty());
+    //Binding the chosen item with the view model
   }
 
   @FXML private void submitButton()
   {
-    //Another way to do it
-    //typeChoiceBox.valueProperty();
-    chosenProperty = new SimpleStringProperty(typeChoiceBox.getValue());
-    chosenProperty.bindBidirectional(addItemViewModel.chosenProperty());
     addItemViewModel.submit();
-    getViewHandler().openView("DatabaseView.fxml");
+    //getViewHandler().openView("DatabaseView.fxml");
+    //TODO: Delete this statement when database view is existing and in backBTN
     addItemViewModel.clear();
   }
 
   @FXML private void backButton()
   {
-    getViewHandler().openView("DatabaseView.fxml");
+    //getViewHandler().openView("DatabaseView.fxml");
     addItemViewModel.clear();
   }
 }

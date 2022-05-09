@@ -79,7 +79,9 @@ public class AddItemViewModel
   {
     Item item = new Item(name.get(), chosen.get(),
         Double.parseDouble(price.get()), description.get());
-    model.addItemToProductList(item);
+    System.out.println(item);
+    //model.addItemToProductList(item);
+    //TODO: Delete this when relevant
   }
 
 }

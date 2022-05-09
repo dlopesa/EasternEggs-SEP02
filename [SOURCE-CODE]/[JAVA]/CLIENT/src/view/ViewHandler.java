@@ -27,7 +27,7 @@ public class ViewHandler extends ViewCreator
   {
     this.primaryStage=primaryStage;
     this.currentScene= new Scene(new Region());
-    openView("CustomerView.fxml");
+    openView("AddItemView.fxml");
   }
 
   public void openView(String id)
