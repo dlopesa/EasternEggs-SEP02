@@ -29,7 +29,7 @@ public class AddItemViewModel
     error = new SimpleStringProperty();
     description = new SimpleStringProperty();
     chosen = new SimpleStringProperty();
-    types = new ArrayList<>();
+    types = model.getAllTypes();
     clear();
   }
 
@@ -39,10 +39,6 @@ public class AddItemViewModel
     price.set("");
     error.set("");
     description.set("");
-    types.add("coffee");
-    types.add("tea");
-    types.add("snack");
-    types.add("smoothie");
   }
 
   public StringProperty nameProperty()

@@ -16,10 +16,16 @@ public class ModelManager implements Model
 
   private RemoteClient client;
   private Order order;
+  private ArrayList<String> types;
 
   public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
+    types = new ArrayList<>();
+    types.add("coffee");
+    types.add("tea");
+    types.add("snack");
+    types.add("smoothie");
   }
 
   @Override public void setUserType(String type)
@@ -145,5 +151,10 @@ public class ModelManager implements Model
   @Override public void cancelUnpaidOrder(Order order)
   {
 
+  }
+
+  @Override public ArrayList<String> getAllTypes()
+  {
+    return types;
   }
 }
