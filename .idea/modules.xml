@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/[SOURCE-CODE]/[JAVA]/CLIENT/CLIENT.iml" filepath="$PROJECT_DIR$/[SOURCE-CODE]/[JAVA]/CLIENT/CLIENT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EasternEggs-SEP02.iml" filepath="$PROJECT_DIR$/.idea/EasternEggs-SEP02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[SOURCE-CODE]/[JAVA]/SERVER/SERVER.iml" filepath="$PROJECT_DIR$/[SOURCE-CODE]/[JAVA]/SERVER/SERVER.iml" />
+    </modules>
+  </component>
+</project>
