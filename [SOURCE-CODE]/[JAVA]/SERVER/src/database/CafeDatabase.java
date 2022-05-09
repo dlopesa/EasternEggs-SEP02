@@ -12,7 +12,7 @@ public class CafeDatabase implements CafePersistence
 
   private CafeDatabase() {}
 
-  public CafeDatabase getInstance() {
+  public static CafeDatabase getInstance() {
 
     if (instance == null)
     {

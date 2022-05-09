@@ -105,7 +105,7 @@ public class ModelManager implements Model
 
   @Override public void addItemToProductList(Item item)
   {
-
+    client.addItemToProductList(item);
   }
 
   @Override public void removeItemFromProductList(Item item)

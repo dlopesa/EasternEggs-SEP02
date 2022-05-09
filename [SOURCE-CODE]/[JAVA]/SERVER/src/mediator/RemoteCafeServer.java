@@ -1,5 +1,6 @@
 package mediator;
 
+import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
@@ -13,4 +14,5 @@ public interface RemoteCafeServer extends Remote
   void receiveOrder(Order order) throws RemoteException;
   void completeOrder(Order order) throws RemoteException;
   void acceptPayment(Order order) throws RemoteException;
+  void addItemToProductList(Item item);
 }
