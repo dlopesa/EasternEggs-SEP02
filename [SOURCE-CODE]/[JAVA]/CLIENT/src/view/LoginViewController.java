@@ -8,24 +8,22 @@ import viewmodel.LoginViewModel;
 public class LoginViewController extends ViewController
 {
 
-  @FXML private Text password;
-  @FXML private ChoiceBox choiceBox;
-  @FXML private Text userType;
+  @FXML private Text accessKeyField;
   private LoginViewModel loginViewModel;
 
   @Override protected void init()
   {
-    choiceBox.getItems().add("Admin");
-    choiceBox.getItems().add("Barista");
-    choiceBox.getItems().add("Cashier");
-    password.textProperty().bind(loginViewModel.getPasswordProperty());
+
+    accessKeyField.textProperty().bind(loginViewModel.getAccessKeyProperty());
   }
 
   @FXML public void onEnter()
   {
-      userType.textProperty().set(choiceBox.getValue().toString());
-      userType.textProperty().bind(loginViewModel.getUserTypeProperty());
+
+    //if the password is correct :
+
       //MAYBE THESE SHOULD BE IN THE INIT METHOD? OR? Testing will tell.
       loginViewModel.login();
+      getViewHandler().openView("AddItemView.fxml");
   }
 }
