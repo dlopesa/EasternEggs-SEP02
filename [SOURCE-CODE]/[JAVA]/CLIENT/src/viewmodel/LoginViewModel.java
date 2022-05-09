@@ -1,32 +1,31 @@
 package viewmodel;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 
 public class LoginViewModel
 {
-  private StringProperty accessKeyField;
+  private StringProperty password;
+  private StringProperty userType;
   private Model model;
 
   public LoginViewModel(Model model)
   {
     this.model = model;
-    accessKeyField= new SimpleStringProperty();
-
   }
 
   public void login()
   {
 
-    model.setUserType("Admin");
-
   }
 
-  public StringProperty getAccessKeyProperty()
+  public StringProperty getPasswordProperty()
   {
-    return accessKeyField;
+    return password;
   }
 
-
+  public StringProperty getUserTypeProperty()
+  {
+    return userType;
+  }
 }
