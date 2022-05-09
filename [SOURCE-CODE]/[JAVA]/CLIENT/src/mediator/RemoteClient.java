@@ -49,7 +49,7 @@ public class RemoteClient
     server.acceptPayment(order);
   }
 
-  public void addItemToProductList(Item item)
+  public void addItemToProductList(Item item) throws RemoteException
   {
     server.addItemToProductList(item);
   }

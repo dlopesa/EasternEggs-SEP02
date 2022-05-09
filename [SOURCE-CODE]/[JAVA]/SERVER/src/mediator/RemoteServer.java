@@ -80,6 +80,6 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public void addItemToProductList(Item item)
   {
-
+    cafePersistence.addItemToProductList(item);
   }
 }

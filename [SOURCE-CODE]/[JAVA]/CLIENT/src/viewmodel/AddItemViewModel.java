@@ -77,11 +77,29 @@ public class AddItemViewModel
 
   public void submit()
   {
-    Item item = new Item(name.get(), chosen.get(),
-        Double.parseDouble(price.get()), description.get());
-    System.out.println(item);
-    //model.addItemToProductList(item);
-    //TODO: Delete this when relevant
+    try
+    {
+      if (name.get().equals("") || description.get().equals("") || chosen.get()
+          .equals("") || price.get().equals(""))
+      {
+        throw new IllegalArgumentException();
+      }
+      double itemPrice = Double.parseDouble(price.get());
+      Item item = new Item(name.get(), chosen.get(), itemPrice,
+          description.get());
+      System.out.println(item);
+      model.addItemToProductList(item);
+      clear();
+    }
+    catch (NumberFormatException e)
+    {
+      error.set("The price has to be a number with a dot.");
+    }
+    catch (IllegalArgumentException e)
+    {
+      error.set("The fields cannot be empty.");
+    }
+
   }
 
 }

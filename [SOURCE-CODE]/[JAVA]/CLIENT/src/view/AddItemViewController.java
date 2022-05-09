@@ -40,7 +40,6 @@ public class AddItemViewController extends ViewController
     addItemViewModel.submit();
     //getViewHandler().openView("DatabaseView.fxml");
     //TODO: Delete this statement when database view is existing and in backBTN
-    addItemViewModel.clear();
   }
 
   @FXML private void backButton()

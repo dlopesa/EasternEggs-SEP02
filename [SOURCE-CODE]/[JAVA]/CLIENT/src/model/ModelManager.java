@@ -105,7 +105,15 @@ public class ModelManager implements Model
 
   @Override public void addItemToProductList(Item item)
   {
-    client.addItemToProductList(item);
+    try
+    {
+      client.addItemToProductList(item);
+      System.out.println("ModelManager: Item sent to the mediator.");
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeItemFromProductList(Item item)
