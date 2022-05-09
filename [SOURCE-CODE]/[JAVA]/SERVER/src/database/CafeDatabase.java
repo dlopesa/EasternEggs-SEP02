@@ -1,5 +1,6 @@
 package database;
 
+import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
@@ -82,5 +83,10 @@ public class CafeDatabase implements CafePersistence
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void addItemToProductList(Item item)
+  {
+    
   }
 }

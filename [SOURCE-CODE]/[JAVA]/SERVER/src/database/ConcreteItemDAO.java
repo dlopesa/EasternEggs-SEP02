@@ -32,7 +32,9 @@ public class ConcreteItemDAO implements ItemDAO
 
   @Override public void createItem(Item item)
   {
-
+    // when you are doing the Insert into the table, make sure to after Item,
+    // provide the names of the columns you are inserting into so that it will know to auto increment the id.
+    // INSERT INTO item(name,type,price,description)
   }
 
   @Override public void readItemById(int id)
