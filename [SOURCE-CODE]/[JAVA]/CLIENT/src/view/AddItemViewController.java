@@ -38,13 +38,11 @@ public class AddItemViewController extends ViewController
   @FXML private void submitButton()
   {
     addItemViewModel.submit();
-    //getViewHandler().openView("DatabaseView.fxml");
-    //TODO: Delete this statement when database view is existing and in backBTN
   }
 
   @FXML private void backButton()
   {
-    //getViewHandler().openView("DatabaseView.fxml");
+    getViewHandler().openView("DatabaseView.fxml");
     addItemViewModel.clear();
   }
 }

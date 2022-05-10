@@ -4,9 +4,11 @@ import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
+import java.sql.SQLException;
+
 public interface CafePersistence
 {
-  public ItemList getAllItems();
+  public ItemList getAllItems() throws SQLException;
   public ItemList getItemsByType();
   public void receiveOrder(Order order);
   public void completeOrder(int orderId);

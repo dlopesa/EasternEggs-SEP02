@@ -4,13 +4,10 @@ import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
-import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 public class RemoteClient
 {

@@ -1,10 +1,6 @@
 package utility;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import org.postgresql.util.OSUtil;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -14,6 +10,10 @@ public class ItemList implements Serializable
 
   public ItemList() {
     this.items = new ArrayList<>();
+  }
+
+  public void setItems(ArrayList<Item> items) {
+    this.items = items;
   }
 
   public void add(Item item) {

@@ -49,9 +49,9 @@ public class RemoteServer implements RemoteCafeServer
     System.out.println("Server started...");
   }
 
-  @Override public ItemList getAllItems() throws RemoteException
+  @Override public ItemList getAllItems() throws RemoteException, SQLException
   {
-    return null;
+    return cafePersistence.getAllItems();
   }
 
   @Override public ItemList getItemsByType(String type) throws RemoteException

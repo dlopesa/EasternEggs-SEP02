@@ -5,6 +5,7 @@ import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface Model
@@ -17,7 +18,7 @@ public interface Model
   void removeExtraFromItem(Extra extra, Item item);
   void removeItemFromOrder(Item item);
   Order getOrder();
-  ItemList getAllExistingItems();
+  ItemList getAllExistingItems() throws RemoteException;
   void setComment(String comment);
   void cancelOrder();
   void payForOrder(boolean isCash);
