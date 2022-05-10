@@ -2,10 +2,8 @@ package database;
 
 import utility.Item;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class ConcreteItemDAO implements ItemDAO
 {
@@ -36,7 +34,7 @@ public class ConcreteItemDAO implements ItemDAO
   {
     return DriverManager.getConnection(
         "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
-        "postgres", "1234");
+        "postgres", "123456");
     //Kamil's password 1234
     //Laura's password 123456
   }
@@ -77,5 +75,26 @@ public class ConcreteItemDAO implements ItemDAO
   @Override public void deleteItem(int id)
   {
 
+  }
+
+  @Override public ArrayList<Item> getAllItems() throws SQLException
+  {
+    ArrayList<Item> items = new ArrayList<>();
+
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM item");
+      ResultSet itemResultSet = statement.executeQuery();
+      while (itemResultSet.next()) {
+        int id = itemResultSet.getInt("item_id");
+        String name = itemResultSet.getString("name");
+        String type = itemResultSet.getString("type");
+        double price = itemResultSet.getDouble("price");
+        String description = itemResultSet.getString("description");
+        Item newItem = new Item(id,name,type,price,description);
+        items.add(newItem);
+      }
+    }
+    return items;
   }
 }
