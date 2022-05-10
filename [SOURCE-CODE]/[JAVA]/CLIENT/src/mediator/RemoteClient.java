@@ -1,5 +1,6 @@
 package mediator;
 
+import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
@@ -46,6 +47,11 @@ public class RemoteClient
   public void acceptPayment(Order order) throws RemoteException
   {
     server.acceptPayment(order);
+  }
+
+  public void addItemToProductList(Item item) throws RemoteException
+  {
+    server.addItemToProductList(item);
   }
 
 }

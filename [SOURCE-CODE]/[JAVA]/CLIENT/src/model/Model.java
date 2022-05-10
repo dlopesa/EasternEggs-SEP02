@@ -29,5 +29,5 @@ public interface Model
   void acceptOrder(Order order);
   void editOrderComment(Order order);
   void cancelUnpaidOrder(Order order);
-
+  ArrayList<String> getAllTypes();
 }

@@ -29,14 +29,15 @@ public class Item implements Serializable
     this.extras = new ArrayList<>();
   }
 
-  public int getId()
+  public Item(String name, String type, double price,
+      String description)
   {
-    return id;
-  }
-
-  public void setId(int id)
-  {
-    this.id = id;
+    this.id = -1;
+    this.name = name;
+    this.type = type;
+    this.price = price;
+    this.description = description;
+    this.extras = new ArrayList<>();
   }
 
   public Item(int id, String name, String type, double price)
@@ -48,6 +49,18 @@ public class Item implements Serializable
     this.description = "";
     this.extras = new ArrayList<>();
   }
+
+  public int getId()
+  {
+    return id;
+  }
+
+  public void setId(int id)
+  {
+    this.id = id;
+  }
+
+
 
   public void addExtra(Extra extra)
   {

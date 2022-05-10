@@ -16,10 +16,16 @@ public class ModelManager implements Model
 
   private RemoteClient client;
   private Order order;
+  private ArrayList<String> types;
 
   public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
+    types = new ArrayList<>();
+    types.add("coffee");
+    types.add("tea");
+    types.add("snack");
+    types.add("smoothie");
   }
 
   @Override public void setUserType(String type)
@@ -105,7 +111,15 @@ public class ModelManager implements Model
 
   @Override public void addItemToProductList(Item item)
   {
-
+    try
+    {
+      client.addItemToProductList(item);
+      System.out.println("ModelManager: Item sent to the mediator.");
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeItemFromProductList(Item item)
@@ -137,5 +151,10 @@ public class ModelManager implements Model
   @Override public void cancelUnpaidOrder(Order order)
   {
 
+  }
+
+  @Override public ArrayList<String> getAllTypes()
+  {
+    return types;
   }
 }

@@ -1,7 +1,10 @@
 package mediator;
 
+import database.CafeDatabase;
+import database.CafePersistence;
 import database.ConcreteOrderDAO;
 import database.OrderDAO;
+import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
@@ -16,10 +19,12 @@ import java.sql.SQLException;
 public class RemoteServer implements RemoteCafeServer
 
 {
+  private CafePersistence cafePersistence;
 
   public RemoteServer()
       throws RemoteException, MalformedURLException, SQLException
   {
+    cafePersistence = CafeDatabase.getInstance();
     startRegistry();
     startServer();
   }
@@ -56,15 +61,11 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public void receiveOrder(Order order) throws RemoteException
   {
-    try {
-      ConcreteOrderDAO.getInstance().create(order);
-      System.out.println("I have correctly received this:");
-      System.out.println(order);
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-
+    cafePersistence.receiveOrder(order);
+    //Shouldn't we call the CafePersistence instead?
+    //CafeDatabase get instance method is not used
+    System.out.println("I have correctly received this:");
+    System.out.println(order);
   }
 
   @Override public void completeOrder(Order order) throws RemoteException
@@ -75,5 +76,10 @@ public class RemoteServer implements RemoteCafeServer
   @Override public void acceptPayment(Order order) throws RemoteException
   {
 
+  }
+
+  @Override public void addItemToProductList(Item item)
+  {
+    cafePersistence.addItemToProductList(item);
   }
 }
