@@ -37,9 +37,9 @@ public class DatabaseViewController extends ViewController
 
   public void reset()
   {
+    viewModel.reset();
     ObservableList<Item> observableListItem = FXCollections.observableArrayList(
         viewModel.getAllItems());
-
     itemTable.setItems(observableListItem);
   }
 

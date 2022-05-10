@@ -18,6 +18,8 @@ public class DatabaseViewModel
     allItems = new ArrayList<>();
     try {
       allItems = model.getAllExistingItems().getAllItems();
+      //TODO figure out how to bind a list to a tableview i guess D:
+      // but its working!
     }
     catch (Exception e) {
       e.printStackTrace();

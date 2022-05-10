@@ -38,6 +38,7 @@ public class AddItemViewController extends ViewController
   @FXML private void submitButton()
   {
     addItemViewModel.submit();
+    getViewModelFactory().getDatabaseViewModel().reset();
   }
 
   @FXML private void backButton()
