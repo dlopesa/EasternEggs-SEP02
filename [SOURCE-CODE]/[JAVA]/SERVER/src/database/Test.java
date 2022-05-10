@@ -14,15 +14,17 @@ public class Test
     Order order2 = new Order(false);
     Order order3 = new Order(false);
     order1.setComment("aaaaa");
-    Item item1 = new Item(1, "Coffee","coffee",20,":)");
-    Item item2 = new Item(2,"Tea","tea",7,"chilly tea");
-    Extra caramelsyrup = new Extra("caramel syrup");
+    Item item1 = new Item(1, "Coffee", "coffee", 20, ":)");
+    Item item2 = new Item("Tea", "tea", 7, "chilly tea");
 
-    order2.addItem(item1);
-    order2.addExtraToItem(item1,caramelsyrup);
-
-    ConcreteOrderDAO.getInstance().updateStatus(9, "completed");
-    ConcreteOrderDAO.getInstance().updateComment(9,"yayyy");
+    CafeDatabase.getInstance().addItemToProductList(item2);
+    //    Extra caramelsyrup = new Extra("caramel syrup");
+    //
+    //    order2.addItem(item1);
+    //    order2.addExtraToItem(item1,caramelsyrup);
+    //
+    //    ConcreteOrderDAO.getInstance().updateStatus(9, "completed");
+    //    ConcreteOrderDAO.getInstance().updateComment(9,"yayyy");
 
   }
 }

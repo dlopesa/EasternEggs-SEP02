@@ -1,5 +1,6 @@
 package database;
 
+import utility.Item;
 import utility.ItemList;
 import utility.Order;
 
@@ -11,4 +12,5 @@ public interface CafePersistence
   public void completeOrder(int orderId);
   public void acceptPayment(int orderId);
   public void editComment(int orderId, String comment);
+  public void addItemToProductList(Item item);
 }
