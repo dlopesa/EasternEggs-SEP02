@@ -1,31 +1,33 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import viewmodel.LoginViewModel;
 
 public class LoginViewController extends ViewController
 {
 
-  @FXML private Text password;
-  @FXML private ChoiceBox choiceBox;
-  @FXML private Text userType;
+  @FXML private PasswordField passwordField;
   private LoginViewModel loginViewModel;
 
   @Override protected void init()
   {
-    choiceBox.getItems().add("Admin");
-    choiceBox.getItems().add("Barista");
-    choiceBox.getItems().add("Cashier");
-    password.textProperty().bind(loginViewModel.getPasswordProperty());
+    this.loginViewModel=getViewModelFactory().getLoginViewModel();
+   
+    loginViewModel.getAccessKeyProperty().bind(passwordField.textProperty());
+
   }
 
   @FXML public void onEnter()
   {
-      userType.textProperty().set(choiceBox.getValue().toString());
-      userType.textProperty().bind(loginViewModel.getUserTypeProperty());
-      //MAYBE THESE SHOULD BE IN THE INIT METHOD? OR? Testing will tell.
-      loginViewModel.login();
+    getViewHandler().openView("DatabaseView.fxml");
   }
+
+  @FXML public void back()
+  {
+    getViewHandler().openView("StartView.fxml");
+  }
+
+
 }
