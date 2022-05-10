@@ -43,9 +43,9 @@ public class CafeDatabase implements CafePersistence
     return instance;
   }
 
-  @Override public ItemList getAllItems()
+  @Override public ItemList getAllItems() throws SQLException
   {
-    return null; //TODO item dao here
+    return itemDAO.getAllItems();
   }
 
   @Override public ItemList getItemsByType()

@@ -84,9 +84,9 @@ public class ModelManager implements Model
     return order;
   }
 
-  @Override public ItemList getAllExistingItems()
+  @Override public ItemList getAllExistingItems() throws RemoteException
   {
-    return null;
+    return client.getAllItems();
   }
 
   @Override public void setComment(String comment)

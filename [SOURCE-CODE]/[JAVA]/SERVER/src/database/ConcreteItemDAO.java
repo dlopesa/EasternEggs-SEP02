@@ -1,6 +1,7 @@
 package database;
 
 import utility.Item;
+import utility.ItemList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class ConcreteItemDAO implements ItemDAO
 
   }
 
-  @Override public ArrayList<Item> getAllItems() throws SQLException
+  @Override public ItemList getAllItems() throws SQLException
   {
     ArrayList<Item> items = new ArrayList<>();
 
@@ -95,6 +96,8 @@ public class ConcreteItemDAO implements ItemDAO
         items.add(newItem);
       }
     }
-    return items;
+    ItemList returnThis = new ItemList();
+    returnThis.setItems(items);
+    return returnThis;
   }
 }
