@@ -16,15 +16,7 @@ public class DatabaseViewModel
   {
     this.model = model;
     allItems = new ArrayList<>();
-    try {
-      allItems = model.getAllExistingItems().getAllItems();
-      //TODO figure out how to bind a list to a tableview i guess D:
-      // but its working!
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-
+    reset();
     chosenItem = null; //TODO figure out how to bind a selected item in a table to a property in the viewmodel
   }
 
