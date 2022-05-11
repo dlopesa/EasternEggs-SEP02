@@ -2,91 +2,394 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox fx:id="customerView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.CustomerViewController">
     <children>
-        <HBox prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <VBox prefHeight="117.0" prefWidth="0.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" textAlignment="CENTER" wrappingWidth="318.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" textAlignment="CENTER" wrappingWidth="324.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Extras:" textAlignment="CENTER" wrappingWidth="329.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                    </children>
-                </VBox>
-                <VBox prefHeight="117.0" prefWidth="0.0">
-                    <children>
-                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="exactName" textAlignment="CENTER" wrappingWidth="217.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                        <Text fx:id="price" strokeType="OUTSIDE" strokeWidth="0.0" text="exactName" textAlignment="CENTER" wrappingWidth="206.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                        <Text fx:id="extra" strokeType="OUTSIDE" strokeWidth="0.0" text="exactExtra" textAlignment="CENTER" wrappingWidth="217.13671875">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="15.0" top="15.0" />
-                            </VBox.margin>
-                        </Text>
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-        <HBox prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addButton" prefHeight="50.0" prefWidth="150.0" text="Add item">
-                    <HBox.margin>
-                        <Insets left="50.0" top="15.0" />
-                    </HBox.margin>
-                </Button>
-                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitButton" prefHeight="50.0" prefWidth="150.0" text="Submit &amp; Pay">
-                    <HBox.margin>
-                        <Insets left="200.0" top="15.0" />
-                    </HBox.margin>
-                </Button>
-            </children>
-        </HBox>
-        <HBox prefHeight="81.0" prefWidth="597.0">
-            <children>
-                <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="ErrorLabel" wrappingWidth="602.607421875" />
-            </children>
-        </HBox>
+        <TabPane fx:id="tabPane" nodeOrientation="LEFT_TO_RIGHT"
+                 prefHeight="400.0" prefWidth="600.0" stylesheets="@myStyle.css"
+                 tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Coffee">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox prefHeight="345.0" prefWidth="600.0"
+                                      spacing="25.0">
+                                    <children>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="315.0">
+                                            <children>
+                                                <ScrollPane prefHeight="333.0"
+                                                            prefWidth="304.0">
+                                                    <content>
+                                                        <TableView
+                                                                fx:id="itemTableCoffee"
+                                                                prefHeight="332.0"
+                                                                prefWidth="310.0">
+                                                            <columns>
+                                                                <TableColumn
+                                                                        prefWidth="75.0"
+                                                                        text="ID"/>
+                                                                <TableColumn
+                                                                        prefWidth="75.0"
+                                                                        text="Name"/>
+                                                                <TableColumn
+                                                                        prefWidth="75.0"
+                                                                        text="Type"/>
+                                                                <TableColumn
+                                                                        prefWidth="75.0"
+                                                                        text="Price"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="208.0" spacing="50.0">
+                                            <children>
+                                                <Button contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#addToOrderButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#checkoutButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Checkout">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button alignment="CENTER"
+                                                        contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#quitButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Quit">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="35.0" top="50.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="40.0" top="10.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Tea">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox prefHeight="345.0" prefWidth="600.0"
+                                      spacing="25.0">
+                                    <children>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="315.0">
+                                            <children>
+                                                <ScrollPane prefHeight="333.0"
+                                                            prefWidth="304.0">
+                                                    <content>
+                                                        <TableView
+                                                                fx:id="itemTableTea"
+                                                                prefHeight="332.0"
+                                                                prefWidth="310.0">
+                                                            <columns>
+                                                                <TableColumn
+                                                                        fx:id="idCol1"
+                                                                        prefWidth="75.0"
+                                                                        text="ID"/>
+                                                                <TableColumn
+                                                                        fx:id="nameCol1"
+                                                                        prefWidth="75.0"
+                                                                        text="Name"/>
+                                                                <TableColumn
+                                                                        fx:id="typeCol1"
+                                                                        prefWidth="75.0"
+                                                                        text="Type"/>
+                                                                <TableColumn
+                                                                        fx:id="priceCol1"
+                                                                        prefWidth="75.0"
+                                                                        text="Price"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="208.0" spacing="50.0">
+                                            <children>
+                                                <Button contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#addToOrderButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#checkoutButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Checkout">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button alignment="CENTER"
+                                                        contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#quitButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Quit">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="35.0" top="50.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="40.0" top="10.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Snack">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox prefHeight="345.0" prefWidth="600.0"
+                                      spacing="25.0">
+                                    <children>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="315.0">
+                                            <children>
+                                                <ScrollPane prefHeight="333.0"
+                                                            prefWidth="304.0">
+                                                    <content>
+                                                        <TableView
+                                                                fx:id="itemTableSnack"
+                                                                prefHeight="332.0"
+                                                                prefWidth="310.0">
+                                                            <columns>
+                                                                <TableColumn
+                                                                        fx:id="idCol2"
+                                                                        prefWidth="75.0"
+                                                                        text="ID"/>
+                                                                <TableColumn
+                                                                        fx:id="nameCol2"
+                                                                        prefWidth="75.0"
+                                                                        text="Name"/>
+                                                                <TableColumn
+                                                                        fx:id="typeCol2"
+                                                                        prefWidth="75.0"
+                                                                        text="Type"/>
+                                                                <TableColumn
+                                                                        fx:id="priceCol2"
+                                                                        prefWidth="75.0"
+                                                                        text="Price"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="208.0" spacing="50.0">
+                                            <children>
+                                                <Button contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#addToOrderButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#checkoutButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Checkout">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button alignment="CENTER"
+                                                        contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#quitButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Quit">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="35.0" top="50.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="40.0" top="10.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Smoothie">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox prefHeight="345.0" prefWidth="600.0"
+                                      spacing="25.0">
+                                    <children>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="315.0">
+                                            <children>
+                                                <ScrollPane prefHeight="333.0"
+                                                            prefWidth="304.0">
+                                                    <content>
+                                                        <TableView
+                                                                fx:id="itemTableSmoothie"
+                                                                prefHeight="332.0"
+                                                                prefWidth="310.0">
+                                                            <columns>
+                                                                <TableColumn
+                                                                        fx:id="idCol3"
+                                                                        prefWidth="75.0"
+                                                                        text="ID"/>
+                                                                <TableColumn
+                                                                        fx:id="nameCol3"
+                                                                        prefWidth="75.0"
+                                                                        text="Name"/>
+                                                                <TableColumn
+                                                                        fx:id="typeCol3"
+                                                                        prefWidth="75.0"
+                                                                        text="Type"/>
+                                                                <TableColumn
+                                                                        fx:id="priceCol3"
+                                                                        prefWidth="75.0"
+                                                                        text="Price"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="334.0"
+                                              prefWidth="208.0" spacing="50.0">
+                                            <children>
+                                                <Button contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#addToOrderButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#checkoutButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Checkout">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button alignment="CENTER"
+                                                        contentDisplay="CENTER"
+                                                        mnemonicParsing="false"
+                                                        onAction="#quitButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="130.0"
+                                                        text="Quit">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="35.0" top="50.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="40.0" top="10.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </TabPane>
+        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER"
+               prefHeight="17.0" prefWidth="623.0" textFill="RED">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
     </children>
 </VBox>

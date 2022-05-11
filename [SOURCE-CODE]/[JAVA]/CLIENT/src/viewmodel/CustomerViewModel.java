@@ -7,65 +7,50 @@ import model.Model;
 import utility.Extra;
 import utility.Item;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 public class CustomerViewModel
 {
   private Model model;
-  private StringProperty name;
-  private StringProperty price;
   private StringProperty error;
-  private StringProperty extra;
+  private ArrayList<Item> allItems;
 
   public CustomerViewModel(Model model)
   {
     this.model = model;
-    name = new SimpleStringProperty();
-    price = new SimpleStringProperty();
-    error = new SimpleStringProperty();
-    extra = new SimpleStringProperty();
-    name.set("Latte Machination");
-    price.set("10.00");
-    error.set("");
-    extra.set("caramel, chocolate");
+    error = new SimpleStringProperty("");
+    try
+    {
+      allItems = model.getAllExistingItems().getAllItems();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  public void addItemToOrder()
+  public void reset()
   {
-    Platform.runLater(() -> {
-      double tempPrice = Double.parseDouble(price.get());
-      Item holder = new Item(6, name.get(), "coffee", tempPrice);
-      model.addItemToOrder(holder);
-    });
+
   }
 
-  public void submitOrder()
+  public void addToOrder(Item item)
   {
+    model.addItemToOrder(item);
+  }
 
-    Platform.runLater(() -> {
-
+  public ArrayList<Item> getItemsByType(String type)
+  {
+    ArrayList<Item> items = new ArrayList<>();
+    for(int i=0; i<allItems.size(); i++)
+    {
+      if(type.equals(allItems.get(i).getType()))
       {
-        try
-        {
-          model.submitOrder();
-        }
-
-        catch (NullPointerException e)
-        {
-          error.set("Cannot submit empty order. Please add items.");
-        }
+        items.add(allItems.get(i));
       }
-    });
-  }
-
-
-
-  public StringProperty getNameProperty()
-  {
-    return name;
-  }
-
-  public StringProperty getPriceProperty()
-  {
-    return price;
+    }
+    return items;
   }
 
   public StringProperty getErrorProperty()
@@ -73,8 +58,4 @@ public class CustomerViewModel
     return error;
   }
 
-  public StringProperty getExtraProperty()
-  {
-    return extra;
-  }
 }
