@@ -26,6 +26,7 @@ public class ModelManager implements Model
     types.add("tea");
     types.add("snack");
     types.add("smoothie");
+    order=new Order(false);
   }
 
   @Override public void setUserType(String type)
@@ -40,10 +41,6 @@ public class ModelManager implements Model
 
   @Override public void addItemToOrder(Item item)
   {
-    if (order == null)
-    {
-      order = new Order(false);
-    }
     System.out.println("I am adding an item: " + item);
     order.addItem(item);
   }
@@ -76,7 +73,7 @@ public class ModelManager implements Model
 
   @Override public void removeItemFromOrder(Item item)
   {
-
+    order.removeItem(item);
   }
 
   @Override public Order getOrder()

@@ -37,5 +37,13 @@ public class CheckoutViewModel
     return error;
   }
 
+  public void removeFromOrder(Item item)
+  {
+    System.out.println("VM: getting this: "+ item);
+    model.removeItemFromOrder(item);
+    //This should fire an event inside model or here
+    //To be caught by viewController and reset the table.
+  }
+
 
 }
