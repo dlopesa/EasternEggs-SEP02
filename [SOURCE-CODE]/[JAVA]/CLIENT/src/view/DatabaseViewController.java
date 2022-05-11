@@ -45,7 +45,7 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void removeItemPressed()
   {
-    //Todo future use case
+
   }
 
   @FXML public void editItemPressed()
