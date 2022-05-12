@@ -100,6 +100,7 @@ public class CustomerViewController extends ViewController
 
   @FXML private void quitButton()
   {
+    customerViewModel.quit();
     getViewHandler().openView("StartView.fxml");
   }
 }

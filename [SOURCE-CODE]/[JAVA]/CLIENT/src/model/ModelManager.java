@@ -99,7 +99,9 @@ public class ModelManager implements Model
 
   @Override public void cancelOrder()
   {
-
+    order = new Order(false);
+    order.addListener(this);
+    property.firePropertyChange("cancel", order.getPrice(), null);
   }
 
   @Override public void payForOrder(boolean isCash)

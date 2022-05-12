@@ -65,6 +65,7 @@ public class CheckoutViewController extends ViewController
 
   @FXML private void quitButton()
   {
+    checkoutViewModel.quit();
     getViewHandler().openView("StartView.fxml");
   }
 

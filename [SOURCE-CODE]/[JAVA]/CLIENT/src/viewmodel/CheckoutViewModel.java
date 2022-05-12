@@ -63,6 +63,11 @@ public class CheckoutViewModel
     model.removeItemFromOrder(item.getItem());
   }
 
+  public void quit()
+  {
+    model.cancelOrder();
+  }
+
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {

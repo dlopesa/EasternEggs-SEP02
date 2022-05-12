@@ -63,4 +63,10 @@ public class CustomerViewModel
     return error;
   }
 
+
+  public void quit()
+  {
+    model.cancelOrder();
+  }
+
 }
