@@ -67,4 +67,8 @@ public class CheckoutViewController extends ViewController
   {
     getViewHandler().openView("StartView.fxml");
   }
+
+  @FXML private void addCommentButton()
+  {
+  }
 }

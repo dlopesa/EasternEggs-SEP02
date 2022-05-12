@@ -58,22 +58,27 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeFromOrderButton" prefHeight="0.0" prefWidth="130.0" text="Remove item">
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeFromOrderButton" prefHeight="0.0" prefWidth="150.0" text="Remove item">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#payButton" prefHeight="0.0" prefWidth="130.0" text="Pay">
+                        <Button mnemonicParsing="false" onAction="#payButton" prefHeight="0.0" prefWidth="150.0" text="Pay">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backButton" prefHeight="0.0" prefWidth="130.0" text="Back">
+                  <Button layoutX="65.0" layoutY="146.0" mnemonicParsing="false" onAction="#addCommentButton" prefHeight="0.0" prefWidth="150.0" text="Add Comment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backButton" prefHeight="0.0" prefWidth="150.0" text="Back">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="260.0" mnemonicParsing="false" onAction="#quitButton" prefHeight="0.0" prefWidth="130.0" text="Quit">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="260.0" mnemonicParsing="false" onAction="#quitButton" prefHeight="0.0" prefWidth="150.0" text="Quit">
                      <font>
                         <Font size="18.0" />
                      </font>
