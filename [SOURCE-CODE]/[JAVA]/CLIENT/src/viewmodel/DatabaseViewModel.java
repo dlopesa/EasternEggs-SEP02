@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class DatabaseViewModel
 {
   private ArrayList<Item> allItems;
-  private Item chosenItem;
   private Model model;
 
   public DatabaseViewModel(Model model)
@@ -17,7 +16,7 @@ public class DatabaseViewModel
     this.model = model;
     allItems = new ArrayList<>();
     reset();
-    chosenItem = null; //TODO figure out how to bind a selected item in a table to a property in the viewmodel
+
   }
 
   public void reset()
@@ -37,8 +36,8 @@ public class DatabaseViewModel
     return allItems;
   }
 
-  public void removeItem()
+  public void removeItem(Item item)
   {
-    model.removeItemFromProductList(chosenItem);
+    model.removeItemFromProductList(item);
   }
 }

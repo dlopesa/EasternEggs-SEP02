@@ -124,7 +124,15 @@ public class ModelManager implements Model
 
   @Override public void removeItemFromProductList(Item item)
   {
-
+    try
+    {
+      client.removeItemFromProductList(item);
+      System.out.println("ModelManager: Item removed.");
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public ArrayList<Order> getAllPendingOrders()

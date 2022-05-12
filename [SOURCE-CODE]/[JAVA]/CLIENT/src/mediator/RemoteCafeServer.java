@@ -16,4 +16,5 @@ public interface RemoteCafeServer extends Remote
   void receiveUnpaidOrder(Order order) throws RemoteException;
   void acceptPayment(Order order) throws RemoteException;
   void addItemToProductList(Item item) throws RemoteException;
+  void removeItemFromProductList(Item item) throws RemoteException;
 }

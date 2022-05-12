@@ -82,4 +82,9 @@ public class RemoteServer implements RemoteCafeServer
   {
     cafePersistence.addItemToProductList(item);
   }
+
+  @Override public void removeItemFromProductList(Item item) throws RemoteException
+  {
+
+  }
 }
