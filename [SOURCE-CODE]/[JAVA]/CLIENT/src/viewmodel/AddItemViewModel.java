@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.StringConverter;
 import model.Model;
+import property.ItemProperty;
 import utility.Item;
 
 import java.util.ArrayList;
@@ -81,10 +82,9 @@ public class AddItemViewModel
         throw new IllegalArgumentException();
       }
       double itemPrice = Double.parseDouble(price.get());
-      Item item = new Item(name.get(), chosen.get(), itemPrice,
-          description.get());
-      System.out.println(item);
-      model.addItemToProductList(item);
+      ItemProperty item = new ItemProperty(new Item(name.get(), chosen.get(), itemPrice,
+          description.get()));
+      model.addItemToProductList(item.getItem());
       clear();
     }
     catch (NumberFormatException e)
