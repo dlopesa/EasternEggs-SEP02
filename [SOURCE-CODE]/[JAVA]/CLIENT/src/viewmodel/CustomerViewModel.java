@@ -14,10 +14,12 @@ public class CustomerViewModel
   private Model model;
   private StringProperty error;
   private ArrayList<ItemProperty> items;
+  private DescriptionViewModel descriptionViewModel;
 
-  public CustomerViewModel(Model model)
+  public CustomerViewModel(Model model, DescriptionViewModel descriptionViewModel)
   {
     this.model = model;
+    this.descriptionViewModel=descriptionViewModel;
     error = new SimpleStringProperty("");
     items = new ArrayList<>();
     reset();
@@ -68,5 +70,11 @@ public class CustomerViewModel
   {
     model.cancelOrder();
   }
+
+  public void seeDescription(ItemProperty item)
+  {
+    descriptionViewModel.setItemProperty(item);
+  }
+
 
 }

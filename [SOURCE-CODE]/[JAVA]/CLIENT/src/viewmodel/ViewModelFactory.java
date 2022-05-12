@@ -11,15 +11,22 @@ public class ViewModelFactory
   private AddItemViewModel addItemViewModel;
   private DatabaseViewModel databaseViewModel;
   private CheckoutViewModel checkoutViewModel;
+  private DescriptionViewModel descriptionViewModel;
+
+  public DescriptionViewModel getDescriptionViewModel()
+  {
+    return descriptionViewModel;
+  }
 
   public ViewModelFactory(Model model)
   {
-    this.customerViewModel = new CustomerViewModel(model);
     this.startViewModel = new StartViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
     this.addItemViewModel = new AddItemViewModel(model);
     this.databaseViewModel = new DatabaseViewModel(model);
     this.checkoutViewModel = new CheckoutViewModel(model);
+    this.descriptionViewModel=new DescriptionViewModel(model);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
   }
 
   public CustomerViewModel getCustomerViewModel()

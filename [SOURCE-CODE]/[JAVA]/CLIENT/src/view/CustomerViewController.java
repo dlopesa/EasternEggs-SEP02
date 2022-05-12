@@ -90,7 +90,29 @@ public class CustomerViewController extends ViewController
 
   @FXML private void descriptionButton()
   {
-
+    int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
+    ItemProperty item = null;
+    switch (indexOfTab)
+    {
+      case 0:
+        item = (ItemProperty) itemTableCoffee.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 1:
+        item = (ItemProperty) itemTableTea.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 2:
+        item = (ItemProperty) itemTableSnack.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 3:
+        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
+            .getSelectedItem();
+        break;
+    }
+    customerViewModel.seeDescription(item);
+    getViewHandler().openView("DescriptionView.fxml");
   }
 
   @FXML private void checkoutButton()
