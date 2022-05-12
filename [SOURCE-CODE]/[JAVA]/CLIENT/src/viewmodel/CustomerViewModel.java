@@ -3,54 +3,59 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Model;
-import utility.Extra;
-import utility.Item;
-
-import java.rmi.RemoteException;
+import property.ItemProperty;
 import java.util.ArrayList;
 
 public class CustomerViewModel
 {
   private Model model;
   private StringProperty error;
-  private ArrayList<Item> allItems;
+  private ArrayList<ItemProperty> items;
 
   public CustomerViewModel(Model model)
   {
     this.model = model;
     error = new SimpleStringProperty("");
+    items = new ArrayList<>();
+    reset();
+  }
+
+  public void reset()
+  {
+    items.clear();
     try
     {
-      allItems = model.getAllExistingItems().getAllItems();
+      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
+      {
+        items.add(new ItemProperty(model.getAllExistingItems().getAllItems()
+            .get(i)));
+      }
     }
-    catch (RemoteException e)
+    catch(Exception e)
     {
       e.printStackTrace();
     }
   }
 
-  public void reset()
+  public void addToOrder(ItemProperty item)
   {
-
+    model.addItemToOrder(item.getItem());
   }
 
-  public void addToOrder(Item item)
+  public ObservableList<ItemProperty> getItemsByType(String type)
   {
-    model.addItemToOrder(item);
-  }
-
-  public ArrayList<Item> getItemsByType(String type)
-  {
-    ArrayList<Item> items = new ArrayList<>();
-    for(int i=0; i<allItems.size(); i++)
+    ObservableList<ItemProperty> itemsTypeList = FXCollections.observableArrayList();
+    for(int i=0; i<items.size(); i++)
     {
-      if(type.equals(allItems.get(i).getType()))
+      if(type.equals(items.get(i).typeProperty().get()))
       {
-        items.add(allItems.get(i));
+        itemsTypeList.add(items.get(i));
       }
     }
-    return items;
+    return itemsTypeList;
   }
 
   public StringProperty getErrorProperty()

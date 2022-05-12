@@ -75,7 +75,6 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   {
     itemList.remove(item);
     price -= item.getPrice();
-    System.out.println("I am removing + " + getPrice());
     property.firePropertyChange("remove", getPrice(), null);
   }
 

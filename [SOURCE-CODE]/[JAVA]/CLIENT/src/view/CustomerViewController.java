@@ -1,5 +1,8 @@
 package view;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,8 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import utility.Item;
+import property.ItemProperty;
 import viewmodel.CustomerViewModel;
 
 public class CustomerViewController extends ViewController
@@ -49,36 +51,38 @@ public class CustomerViewController extends ViewController
     TableColumn typeColTemp = (TableColumn) table.getColumns().get(2);
     TableColumn priceColTemp = (TableColumn) table.getColumns().get(3);
     idColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Integer>("id"));
+        new PropertyValueFactory<ItemProperty, IntegerProperty>("id"));
     nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("name"));
+        new PropertyValueFactory<ItemProperty, StringProperty>("name"));
     typeColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("type"));
+        new PropertyValueFactory<ItemProperty, StringProperty>("type"));
     priceColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
+        new PropertyValueFactory<ItemProperty, DoubleProperty>("price"));
 
-    ObservableList<Item> observableListItem = FXCollections.observableArrayList(
-        customerViewModel.getItemsByType(type));
-    table.setItems(observableListItem);
+    table.setItems(customerViewModel.getItemsByType(type));
   }
 
   @FXML private void addToOrderButton()
   {
     int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
-    Item item = null;
+    ItemProperty item = null;
     switch (indexOfTab)
     {
       case 0:
-        item = (Item) itemTableCoffee.getSelectionModel().getSelectedItem();
+        item = (ItemProperty) itemTableCoffee.getSelectionModel()
+            .getSelectedItem();
         break;
       case 1:
-        item = (Item) itemTableTea.getSelectionModel().getSelectedItem();
+        item = (ItemProperty) itemTableTea.getSelectionModel()
+            .getSelectedItem();
         break;
       case 2:
-        item = (Item) itemTableSnack.getSelectionModel().getSelectedItem();
+        item = (ItemProperty) itemTableSnack.getSelectionModel()
+            .getSelectedItem();
         break;
       case 3:
-        item = (Item) itemTableSmoothie.getSelectionModel().getSelectedItem();
+        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
+            .getSelectedItem();
         break;
     }
     customerViewModel.addToOrder(item);
