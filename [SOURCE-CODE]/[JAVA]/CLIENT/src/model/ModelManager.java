@@ -5,7 +5,11 @@ import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -17,8 +21,10 @@ public class ModelManager implements Model
   private RemoteClient client;
   private Order order;
   private ArrayList<String> types;
+  private PropertyChangeSupport property;
 
-  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager()
+      throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
     types = new ArrayList<>();
@@ -26,7 +32,9 @@ public class ModelManager implements Model
     types.add("tea");
     types.add("snack");
     types.add("smoothie");
-    order=new Order(false);
+    order = new Order(false);
+    property = new PropertyChangeSupport(this);
+    order.addListener(this);
   }
 
   @Override public void setUserType(String type)
@@ -41,7 +49,6 @@ public class ModelManager implements Model
 
   @Override public void addItemToOrder(Item item)
   {
-    System.out.println("I am adding an item: " + item);
     order.addItem(item);
   }
 
@@ -50,7 +57,6 @@ public class ModelManager implements Model
     try
     {
       System.out.println("I am submitting the order");
-
       client.receiveOrder(order);
       System.out.println("I have submitted the order");
     }
@@ -73,6 +79,7 @@ public class ModelManager implements Model
 
   @Override public void removeItemFromOrder(Item item)
   {
+    //look for the item with those values and then delete it
     order.removeItem(item);
   }
 
@@ -153,5 +160,21 @@ public class ModelManager implements Model
   @Override public ArrayList<String> getAllTypes()
   {
     return types;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
+        evt.getNewValue());
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

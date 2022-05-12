@@ -128,8 +128,7 @@ public class Item implements Serializable
     Item item = (Item) o;
     return id == item.id && Double.compare(item.price, price) == 0
         && Objects.equals(name, item.name) && Objects.equals(type, item.type)
-        && Objects.equals(description, item.description) && Objects.equals(
-        extras, item.extras);
+        && Objects.equals(description, item.description);
   }
 
   @Override public int hashCode()
