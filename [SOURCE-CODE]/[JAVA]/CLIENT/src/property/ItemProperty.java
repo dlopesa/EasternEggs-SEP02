@@ -20,6 +20,16 @@ public class ItemProperty
     description = new SimpleStringProperty(item.getDescription());
   }
 
+  public ItemProperty(IntegerProperty id, StringProperty name,
+      StringProperty type, DoubleProperty price, StringProperty description)
+  {
+    this.id = id;
+    this.name = name;
+    this.type = type;
+    this.price = price;
+    this.description = description;
+  }
+
   public IntegerProperty idProperty()
   {
     return id;
