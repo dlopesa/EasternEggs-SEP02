@@ -35,19 +35,19 @@ public class CustomerViewController extends ViewController
   public void reset()
   {
     customerViewModel.reset();
-    coffeeTable();
-    teaTable();
-    snackTable();
-    smoothieTable();
+    setTable(itemTableCoffee, "coffee");
+    setTable(itemTableSnack, "snack");
+    setTable(itemTableTea, "tea");
+    setTable(itemTableSmoothie, "smoothie");
   }
 
-  private void coffeeTable()
+  private void setTable(TableView table, String type)
   {
-    TableColumn idColTemp = (TableColumn) itemTableCoffee.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) itemTableCoffee.getColumns().get(1);
-    TableColumn typeColTemp = (TableColumn) itemTableCoffee.getColumns().get(2);
-    TableColumn priceColTemp = (TableColumn) itemTableCoffee.getColumns()
-        .get(3);
+
+    TableColumn idColTemp = (TableColumn) table.getColumns().get(0);
+    TableColumn nameColTemp = (TableColumn) table.getColumns().get(1);
+    TableColumn typeColTemp = (TableColumn) table.getColumns().get(2);
+    TableColumn priceColTemp = (TableColumn) table.getColumns().get(3);
     idColTemp.setCellValueFactory(
         new PropertyValueFactory<Item, Integer>("id"));
     nameColTemp.setCellValueFactory(
@@ -58,71 +58,8 @@ public class CustomerViewController extends ViewController
         new PropertyValueFactory<Item, Double>("price"));
 
     ObservableList<Item> observableListItem = FXCollections.observableArrayList(
-        customerViewModel.getItemsByType("coffee"));
-    itemTableCoffee.setItems(observableListItem);
-  }
-
-  private void teaTable()
-  {
-    TableColumn idColTemp = (TableColumn) itemTableTea.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) itemTableTea.getColumns().get(1);
-    TableColumn typeColTemp = (TableColumn) itemTableTea.getColumns().get(2);
-    TableColumn priceColTemp = (TableColumn) itemTableTea.getColumns().get(3);
-    idColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Integer>("id"));
-    nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("name"));
-    typeColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("type"));
-    priceColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
-
-    ObservableList<Item> observableListItem = FXCollections.observableArrayList(
-        customerViewModel.getItemsByType("tea"));
-    itemTableTea.setItems(observableListItem);
-  }
-
-  private void snackTable()
-  {
-    TableColumn idColTemp = (TableColumn) itemTableSnack.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) itemTableSnack.getColumns().get(1);
-    TableColumn typeColTemp = (TableColumn) itemTableSnack.getColumns().get(2);
-    TableColumn priceColTemp = (TableColumn) itemTableSnack.getColumns().get(3);
-    idColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Integer>("id"));
-    nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("name"));
-    typeColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("type"));
-    priceColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
-
-    ObservableList<Item> observableListItem = FXCollections.observableArrayList(
-        customerViewModel.getItemsByType("snack"));
-    itemTableSnack.setItems(observableListItem);
-  }
-
-  private void smoothieTable()
-  {
-    TableColumn idColTemp = (TableColumn) itemTableSmoothie.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) itemTableSmoothie.getColumns()
-        .get(1);
-    TableColumn typeColTemp = (TableColumn) itemTableSmoothie.getColumns()
-        .get(2);
-    TableColumn priceColTemp = (TableColumn) itemTableSmoothie.getColumns()
-        .get(3);
-    idColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Integer>("id"));
-    nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("name"));
-    typeColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("type"));
-    priceColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
-
-    ObservableList<Item> observableListItem = FXCollections.observableArrayList(
-        customerViewModel.getItemsByType("smoothie"));
-    itemTableSmoothie.setItems(observableListItem);
+        customerViewModel.getItemsByType(type));
+    table.setItems(observableListItem);
   }
 
   @FXML private void addToOrderButton()

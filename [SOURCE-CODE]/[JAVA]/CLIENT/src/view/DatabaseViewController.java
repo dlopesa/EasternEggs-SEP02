@@ -21,26 +21,12 @@ public class DatabaseViewController extends ViewController
   @Override protected void init()
   {
     viewModel = getViewModelFactory().getDatabaseViewModel();
-
-    TableColumn idColTemp = (TableColumn) itemTable.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) itemTable.getColumns().get(1);
-    TableColumn typeColTemp = (TableColumn) itemTable.getColumns().get(2);
-    TableColumn priceColTemp = (TableColumn) itemTable.getColumns().get(3);
-    idColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Integer>("id"));
-    nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("name"));
-    typeColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, String>("type"));
-    priceColTemp.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
-    /*
+    
     idCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("id"));
     nameCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
     typeCol.setCellValueFactory(new PropertyValueFactory<Item, String>("type"));
     priceCol.setCellValueFactory(
         new PropertyValueFactory<Item, Double>("price"));
-     */
 
     ObservableList<Item> observableListItem = FXCollections.observableArrayList(
         viewModel.getAllItems());
