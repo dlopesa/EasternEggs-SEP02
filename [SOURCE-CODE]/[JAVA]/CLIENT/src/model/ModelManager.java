@@ -79,7 +79,6 @@ public class ModelManager implements Model
 
   @Override public void removeItemFromOrder(Item item)
   {
-    //look for the item with those values and then delete it
     order.removeItem(item);
   }
 

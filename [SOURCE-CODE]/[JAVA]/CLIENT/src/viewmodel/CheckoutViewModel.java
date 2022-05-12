@@ -7,26 +7,22 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
-import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 public class CheckoutViewModel
-    implements PropertyChangeListener, UnnamedPropertyChangeSubject
+    implements PropertyChangeListener
 {
   private Model model;
   private StringProperty totalPrice;
   private StringProperty error;
-  private PropertyChangeSupport property;
   private ObservableList<ItemProperty> items;
 
   public CheckoutViewModel(Model model)
   {
     this.model = model;
     model.addListener(this);
-    property = new PropertyChangeSupport(this);
     totalPrice = new SimpleStringProperty();
     double tempPrice = model.getOrder().getPrice();
     totalPrice.set(String.valueOf(tempPrice));
@@ -64,10 +60,7 @@ public class CheckoutViewModel
 
   public void removeFromOrder(ItemProperty item)
   {
-    System.out.println("VM: getting this: " + item);
     model.removeItemFromOrder(item.getItem());
-    //This should fire an event inside model or here
-    //To be caught by viewController and reset the table.
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -75,20 +68,9 @@ public class CheckoutViewModel
     Platform.runLater(() -> {
       populatingItemsFromOrder();
       double tempPrice = (double) evt.getOldValue();
-      System.out.println(tempPrice);
       totalPrice.set(String.valueOf(tempPrice));
-      property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
-          evt.getNewValue());
     });
   }
 
-  @Override public void addListener(PropertyChangeListener listener)
-  {
-    property.addPropertyChangeListener(listener);
-  }
 
-  @Override public void removeListener(PropertyChangeListener listener)
-  {
-    property.removePropertyChangeListener(listener);
-  }
 }
