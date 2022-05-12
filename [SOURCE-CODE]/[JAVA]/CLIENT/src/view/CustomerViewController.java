@@ -84,6 +84,11 @@ public class CustomerViewController extends ViewController
     customerViewModel.addToOrder(item);
   }
 
+  @FXML private void descriptionButton()
+  {
+
+  }
+
   @FXML private void checkoutButton()
   {
     getViewHandler().openView("CheckoutView.fxml");

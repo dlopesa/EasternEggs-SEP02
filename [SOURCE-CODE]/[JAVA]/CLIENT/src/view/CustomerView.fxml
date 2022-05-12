@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0"
       xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="view.CustomerViewController">
     <children>
@@ -64,16 +64,27 @@
                                                         mnemonicParsing="false"
                                                         onAction="#addToOrderButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Add to order">
                                                     <font>
                                                         <Font size="18.0"/>
                                                     </font>
                                                 </Button>
                                                 <Button mnemonicParsing="false"
+                                                        onAction="#descriptionButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="150.0"
+                                                        text="See description">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button layoutX="45.0"
+                                                        layoutY="149.0"
+                                                        mnemonicParsing="false"
                                                         onAction="#checkoutButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Checkout">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -84,7 +95,7 @@
                                                         mnemonicParsing="false"
                                                         onAction="#quitButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Quit">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -95,7 +106,7 @@
                                                 <Insets/>
                                             </HBox.margin>
                                             <padding>
-                                                <Insets left="35.0" top="50.0"/>
+                                                <Insets left="35.0" top="10.0"/>
                                             </padding>
                                         </VBox>
                                     </children>
@@ -154,8 +165,17 @@
                                                         mnemonicParsing="false"
                                                         onAction="#addToOrderButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#descriptionButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="150.0"
+                                                        text="See description">
                                                     <font>
                                                         <Font size="18.0"/>
                                                     </font>
@@ -163,7 +183,7 @@
                                                 <Button mnemonicParsing="false"
                                                         onAction="#checkoutButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Checkout">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -174,18 +194,21 @@
                                                         mnemonicParsing="false"
                                                         onAction="#quitButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Quit">
                                                     <font>
                                                         <Font size="18.0"/>
                                                     </font>
+                                                    <VBox.margin>
+                                                        <Insets/>
+                                                    </VBox.margin>
                                                 </Button>
                                             </children>
                                             <HBox.margin>
                                                 <Insets/>
                                             </HBox.margin>
                                             <padding>
-                                                <Insets left="35.0" top="50.0"/>
+                                                <Insets left="35.0" top="10.0"/>
                                             </padding>
                                         </VBox>
                                     </children>
@@ -244,8 +267,17 @@
                                                         mnemonicParsing="false"
                                                         onAction="#addToOrderButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#descriptionButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="150.0"
+                                                        text="See description">
                                                     <font>
                                                         <Font size="18.0"/>
                                                     </font>
@@ -253,7 +285,7 @@
                                                 <Button mnemonicParsing="false"
                                                         onAction="#checkoutButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Checkout">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -264,7 +296,7 @@
                                                         mnemonicParsing="false"
                                                         onAction="#quitButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Quit">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -275,7 +307,7 @@
                                                 <Insets/>
                                             </HBox.margin>
                                             <padding>
-                                                <Insets left="35.0" top="50.0"/>
+                                                <Insets left="35.0" top="10.0"/>
                                             </padding>
                                         </VBox>
                                     </children>
@@ -334,8 +366,17 @@
                                                         mnemonicParsing="false"
                                                         onAction="#addToOrderButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Add to order">
+                                                    <font>
+                                                        <Font size="18.0"/>
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false"
+                                                        onAction="#descriptionButton"
+                                                        prefHeight="0.0"
+                                                        prefWidth="150.0"
+                                                        text="See description">
                                                     <font>
                                                         <Font size="18.0"/>
                                                     </font>
@@ -343,7 +384,7 @@
                                                 <Button mnemonicParsing="false"
                                                         onAction="#checkoutButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Checkout">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -354,7 +395,7 @@
                                                         mnemonicParsing="false"
                                                         onAction="#quitButton"
                                                         prefHeight="0.0"
-                                                        prefWidth="130.0"
+                                                        prefWidth="150.0"
                                                         text="Quit">
                                                     <font>
                                                         <Font size="18.0"/>
@@ -365,7 +406,7 @@
                                                 <Insets/>
                                             </HBox.margin>
                                             <padding>
-                                                <Insets left="35.0" top="50.0"/>
+                                                <Insets left="35.0" top="10.0"/>
                                             </padding>
                                         </VBox>
                                     </children>
