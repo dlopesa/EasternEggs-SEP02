@@ -3,69 +3,61 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Model;
-import utility.Extra;
-import utility.Item;
+import property.ItemProperty;
+import java.util.ArrayList;
 
 public class CustomerViewModel
 {
   private Model model;
-  private StringProperty name;
-  private StringProperty price;
   private StringProperty error;
-  private StringProperty extra;
+  private ArrayList<ItemProperty> items;
+  private DescriptionViewModel descriptionViewModel;
 
-  public CustomerViewModel(Model model)
+  public CustomerViewModel(Model model, DescriptionViewModel descriptionViewModel)
   {
     this.model = model;
-    name = new SimpleStringProperty();
-    price = new SimpleStringProperty();
-    error = new SimpleStringProperty();
-    extra = new SimpleStringProperty();
-    name.set("Latte Machination");
-    price.set("10.00");
-    error.set("");
-    extra.set("caramel, chocolate");
+    this.descriptionViewModel=descriptionViewModel;
+    error = new SimpleStringProperty("");
+    items = new ArrayList<>();
+    reset();
   }
 
-  public void addItemToOrder()
+  public void reset()
   {
-    Platform.runLater(() -> {
-      double tempPrice = Double.parseDouble(price.get());
-      Item holder = new Item(6, name.get(), "coffee", tempPrice);
-      model.addItemToOrder(holder);
-    });
-  }
-
-  public void submitOrder()
-  {
-
-    Platform.runLater(() -> {
-
+    items.clear();
+    try
+    {
+      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
       {
-        try
-        {
-          model.submitOrder();
-        }
-
-        catch (NullPointerException e)
-        {
-          error.set("Cannot submit empty order. Please add items.");
-        }
+        items.add(new ItemProperty(model.getAllExistingItems().getAllItems()
+            .get(i)));
       }
-    });
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
   }
 
-
-
-  public StringProperty getNameProperty()
+  public void addToOrder(ItemProperty item)
   {
-    return name;
+    model.addItemToOrder(item.getItem());
   }
 
-  public StringProperty getPriceProperty()
+  public ObservableList<ItemProperty> getItemsByType(String type)
   {
-    return price;
+    ObservableList<ItemProperty> itemsTypeList = FXCollections.observableArrayList();
+    for(int i=0; i<items.size(); i++)
+    {
+      if(type.equals(items.get(i).typeProperty().get()))
+      {
+        itemsTypeList.add(items.get(i));
+      }
+    }
+    return itemsTypeList;
   }
 
   public StringProperty getErrorProperty()
@@ -73,8 +65,16 @@ public class CustomerViewModel
     return error;
   }
 
-  public StringProperty getExtraProperty()
+
+  public void quit()
   {
-    return extra;
+    model.cancelOrder();
   }
+
+  public void seeDescription(ItemProperty item)
+  {
+    descriptionViewModel.setItemProperty(item);
+  }
+
+
 }

@@ -1,12 +1,12 @@
 package viewmodel;
 
 import com.sun.javafx.collections.ImmutableObservableList;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.StringConverter;
 import model.Model;
+import property.ItemProperty;
 import utility.Item;
 
 import java.util.ArrayList;
@@ -81,10 +81,10 @@ public class AddItemViewModel
         throw new IllegalArgumentException();
       }
       double itemPrice = Double.parseDouble(price.get());
-      Item item = new Item(name.get(), chosen.get(), itemPrice,
-          description.get());
-      System.out.println(item);
-      model.addItemToProductList(item);
+      DoubleProperty priceProperty = new SimpleDoubleProperty(itemPrice);
+      ItemProperty item = new ItemProperty(new SimpleIntegerProperty(-1), name,
+          chosen, priceProperty, description);
+      model.addItemToProductList(item.getItem());
       clear();
     }
     catch (NumberFormatException e)

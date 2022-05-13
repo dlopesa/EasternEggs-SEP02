@@ -4,12 +4,15 @@ import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface Model
+public interface Model extends PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   void setUserType(String type);
   String getUserType();

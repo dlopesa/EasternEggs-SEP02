@@ -1,33 +1,128 @@
 package view;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import property.ItemProperty;
 import viewmodel.CustomerViewModel;
 
 public class CustomerViewController extends ViewController
 {
-  @FXML private Text name;
-  @FXML private Text price;
-  @FXML private Text extra;
-  @FXML private Text error;
+  @FXML private TableView itemTableCoffee;
+  @FXML private TableView itemTableTea;
+  @FXML private TableView itemTableSnack;
+  @FXML private TableView itemTableSmoothie;
+  @FXML private Label errorLabel;
+  @FXML private TabPane tabPane;
   private CustomerViewModel customerViewModel;
 
   @Override protected void init()
   {
     this.customerViewModel = getViewModelFactory().getCustomerViewModel();
-    name.textProperty().bind(customerViewModel.getNameProperty());
-    price.textProperty().bind((customerViewModel.getPriceProperty()));
-    extra.textProperty().bind(customerViewModel.getExtraProperty());
-    error.textProperty().bind(customerViewModel.getErrorProperty());
+    tabPane.setTabMinWidth(130);
+    tabPane.setTabMinHeight(22);
+    //Alignment of tabs
+    errorLabel.textProperty().bind(customerViewModel.getErrorProperty());
+    reset();
   }
 
-  @FXML private void submitButton()
+  public void reset()
   {
-    customerViewModel.submitOrder();
+    customerViewModel.reset();
+    setTable(itemTableCoffee, "coffee");
+    setTable(itemTableSnack, "snack");
+    setTable(itemTableTea, "tea");
+    setTable(itemTableSmoothie, "smoothie");
   }
 
-  @FXML private void addButton()
+  private void setTable(TableView table, String type)
   {
-    customerViewModel.addItemToOrder();
+
+    TableColumn idColTemp = (TableColumn) table.getColumns().get(0);
+    TableColumn nameColTemp = (TableColumn) table.getColumns().get(1);
+    TableColumn typeColTemp = (TableColumn) table.getColumns().get(2);
+    TableColumn priceColTemp = (TableColumn) table.getColumns().get(3);
+    idColTemp.setCellValueFactory(
+        new PropertyValueFactory<ItemProperty, IntegerProperty>("id"));
+    nameColTemp.setCellValueFactory(
+        new PropertyValueFactory<ItemProperty, StringProperty>("name"));
+    typeColTemp.setCellValueFactory(
+        new PropertyValueFactory<ItemProperty, StringProperty>("type"));
+    priceColTemp.setCellValueFactory(
+        new PropertyValueFactory<ItemProperty, DoubleProperty>("price"));
+
+    table.setItems(customerViewModel.getItemsByType(type));
+  }
+
+  @FXML private void addToOrderButton()
+  {
+    int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
+    ItemProperty item = null;
+    switch (indexOfTab)
+    {
+      case 0:
+        item = (ItemProperty) itemTableCoffee.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 1:
+        item = (ItemProperty) itemTableTea.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 2:
+        item = (ItemProperty) itemTableSnack.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 3:
+        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
+            .getSelectedItem();
+        break;
+    }
+    customerViewModel.addToOrder(item);
+  }
+
+  @FXML private void descriptionButton()
+  {
+    int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
+    ItemProperty item = null;
+    switch (indexOfTab)
+    {
+      case 0:
+        item = (ItemProperty) itemTableCoffee.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 1:
+        item = (ItemProperty) itemTableTea.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 2:
+        item = (ItemProperty) itemTableSnack.getSelectionModel()
+            .getSelectedItem();
+        break;
+      case 3:
+        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
+            .getSelectedItem();
+        break;
+    }
+    customerViewModel.seeDescription(item);
+    getViewHandler().openView("DescriptionView.fxml");
+  }
+
+  @FXML private void checkoutButton()
+  {
+    getViewHandler().openView("CheckoutView.fxml");
+  }
+
+  @FXML private void quitButton()
+  {
+    customerViewModel.quit();
+    getViewHandler().openView("StartView.fxml");
   }
 }

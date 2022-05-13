@@ -1,10 +1,6 @@
 package utility;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import org.postgresql.util.OSUtil;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -25,7 +21,14 @@ public class ItemList implements Serializable
   }
 
   public void remove(Item item) {
-    items.remove(item);
+    if(contains(item))
+    {
+      items.remove(item);
+    }
+    else
+    {
+      throw new IllegalStateException("NOT REMOVED");
+    }
   }
 
   public void addExtraToItem(Item item, Extra extra) {
@@ -43,7 +46,7 @@ public class ItemList implements Serializable
   }
 
   public ArrayList<Item> getAllItems() {
-    return new ArrayList<>(items);
+    return items;
   }
 
   public ArrayList<Item> getItemsByType(String type) {
@@ -82,5 +85,10 @@ public class ItemList implements Serializable
   @Override public String toString()
   {
     return "ItemList{" + "items=" + items + '}';
+  }
+
+  public boolean contains(Item item)
+  {
+    return items.contains(item);
   }
 }
