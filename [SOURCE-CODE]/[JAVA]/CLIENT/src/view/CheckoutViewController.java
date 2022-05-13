@@ -55,6 +55,8 @@ public class CheckoutViewController extends ViewController
 
   @FXML private void payButton()
   {
+    checkoutViewModel.submit();
+    getViewHandler().openView("StartView.fxml");
     //getViewHandler().openView(pay);
   }
 

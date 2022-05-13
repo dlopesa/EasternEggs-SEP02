@@ -59,6 +59,8 @@ public class ModelManager implements Model
       System.out.println("I am submitting the order");
       client.receiveOrder(order);
       System.out.println("I have submitted the order");
+      cancelOrder();
+      System.out.println("I have cleared the order");
     }
 
     catch (RemoteException e)
