@@ -5,6 +5,7 @@ import utility.ItemList;
 import utility.Order;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CafeDatabase implements CafePersistence
 {
@@ -111,5 +112,19 @@ public class CafeDatabase implements CafePersistence
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public ArrayList<Order> getOrdersByStatus(String status)
+  {
+
+    try
+    {
+      return orderDAO.getOrdersByStatus(status);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

@@ -6,6 +6,7 @@ import utility.ItemList;
 import utility.Order;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface Model
@@ -18,7 +19,7 @@ public interface Model
   void removeExtraFromItem(Extra extra, Item item);
   void removeItemFromOrder(Item item);
   Order getOrder();
-  ItemList getAllExistingItems() throws RemoteException;
+  ItemList getAllExistingItems() throws RemoteException, SQLException;
   void setComment(String comment);
   void cancelOrder();
   void payForOrder(boolean isCash);
@@ -26,7 +27,7 @@ public interface Model
   void addItemToProductList(Item item);
   void removeItemFromProductList(Item item);
   ArrayList<Order> getAllPendingOrders();
-  void completeOrder(Order order);
+  void completeOrder(Order order) throws RemoteException;
   void acceptOrder(Order order);
   void editOrderComment(Order order);
   void cancelUnpaidOrder(Order order);

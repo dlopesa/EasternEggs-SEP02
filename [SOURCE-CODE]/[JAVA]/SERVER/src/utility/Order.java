@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class Order implements Serializable
 {
+  private int id; // NEW INSTANCE VARIABLE. ONLY USEFUL FOR WHEN THE ORDER COMES
+  // FROM THE DATABASE.
   private ItemList itemList;
   private String comment;
   private DateTime dateTime;
@@ -12,6 +14,7 @@ public class Order implements Serializable
   private String status;
 
   public Order(boolean paidWithCash) {
+    id = -1;
     itemList = new ItemList();
     comment = "";
     dateTime = new DateTime();
@@ -24,12 +27,29 @@ public class Order implements Serializable
     }
   }
 
+  public Order(int id, ItemList itemList, String comment, DateTime dateTime,
+      double price, String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
+  // FROM THE DATABASE.
+  {
+    this.id = id;
+    this.itemList = itemList;
+    this.comment = comment;
+    this.dateTime = dateTime;
+    this.price = price;
+    this.status = status;
+  }
+
   public Order(String comment, DateTime dateTime, double price, String status) {
+    this.id = -1;
     this.itemList = new ItemList();
     this.comment = comment;
     this.dateTime = dateTime;
     this.price = price;
     this.status = status;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getStatus()
@@ -91,7 +111,8 @@ public class Order implements Serializable
         + '\'' + '}';
   }
 
-  @Override public boolean equals(Object o)
+  @Override public boolean equals(Object o) //EQUALS METHOD DOES NOT COMPARE IDS
+  // INTENTIONALLY. I GUESS.
   {
     if (!(o instanceof Order)) {
       return false;
@@ -103,17 +124,22 @@ public class Order implements Serializable
             Double.compare(this.price, other.price) == 0 &&
             this.dateTime.equals(other.dateTime) &&
             this.comment.equals(other.comment)
-        );
+    );
   }
 
   public Order copy() {
     Order copy = new Order(false);
+    copy.id = this.id;
     copy.dateTime = this.dateTime;
     copy.price = this.price;
     copy.comment = this.comment;
     copy.itemList = this.itemList;
     copy.status = this.status;
     return copy;
+  }
+
+  public String getTime() {
+    return dateTime.getTime();
   }
 
   public void setDateTime(DateTime dateTime)

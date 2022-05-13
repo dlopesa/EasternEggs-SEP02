@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RemoteClient
 {
@@ -22,7 +24,7 @@ public class RemoteClient
     //This will be needed when we will be doing the RMI Observer
   }
 
-  public ItemList getAllItems() throws RemoteException
+  public ItemList getAllItems() throws RemoteException, SQLException
   {
     return server.getAllItems();
   }
@@ -49,6 +51,11 @@ public class RemoteClient
   public void addItemToProductList(Item item) throws RemoteException
   {
     server.addItemToProductList(item);
+  }
+
+  public ArrayList<Order> getAllPendingOrders() throws RemoteException
+  {
+    return server.getAllPendingOrders();
   }
 
 }

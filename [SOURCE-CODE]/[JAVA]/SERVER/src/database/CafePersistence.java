@@ -5,6 +5,7 @@ import utility.ItemList;
 import utility.Order;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface CafePersistence
 {
@@ -15,4 +16,5 @@ public interface CafePersistence
   public void acceptPayment(int orderId);
   public void editComment(int orderId, String comment);
   public void addItemToProductList(Item item);
+  public ArrayList<Order> getOrdersByStatus(String status);
 }

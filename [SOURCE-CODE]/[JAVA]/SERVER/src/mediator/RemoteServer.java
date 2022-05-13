@@ -15,6 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RemoteServer implements RemoteCafeServer
 
@@ -54,7 +55,7 @@ public class RemoteServer implements RemoteCafeServer
     return cafePersistence.getAllItems();
   }
 
-  @Override public ItemList getItemsByType(String type) throws RemoteException
+  @Override public ItemList getItemsByType(String type) throws RemoteException, SQLException
   {
     return null;
   }
@@ -70,6 +71,11 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public void completeOrder(Order order) throws RemoteException
   {
+    cafePersistence.completeOrder(order.getId());
+  }
+
+  @Override public void receiveUnpaidOrder(Order order) throws RemoteException
+  {
 
   }
 
@@ -81,5 +87,10 @@ public class RemoteServer implements RemoteCafeServer
   @Override public void addItemToProductList(Item item)
   {
     cafePersistence.addItemToProductList(item);
+  }
+
+  @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
+  {
+    return cafePersistence.getOrdersByStatus("pending");
   }
 }

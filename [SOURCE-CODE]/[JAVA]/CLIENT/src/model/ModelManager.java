@@ -9,6 +9,7 @@ import utility.Order;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ModelManager implements Model
@@ -18,7 +19,8 @@ public class ModelManager implements Model
   private Order order;
   private ArrayList<String> types;
 
-  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager()
+      throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
     types = new ArrayList<>();
@@ -84,7 +86,8 @@ public class ModelManager implements Model
     return order;
   }
 
-  @Override public ItemList getAllExistingItems() throws RemoteException
+  @Override public ItemList getAllExistingItems() throws RemoteException,
+      SQLException
   {
     return client.getAllItems();
   }
@@ -129,13 +132,21 @@ public class ModelManager implements Model
 
   @Override public ArrayList<Order> getAllPendingOrders()
   {
-    // TODO: 04/05/2022 UPDATE THE RETURN TYPE IN THE CLASS DIAGRAM
+    try
+    {
+      return client.getAllPendingOrders();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
     return null;
+
   }
 
-  @Override public void completeOrder(Order order)
+  @Override public void completeOrder(Order order) throws RemoteException
   {
-
+    client.completeOrder(order);
   }
 
   @Override public void acceptOrder(Order order)
