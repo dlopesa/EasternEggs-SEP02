@@ -55,7 +55,8 @@ public class RemoteServer implements RemoteCafeServer
     return cafePersistence.getAllItems();
   }
 
-  @Override public ItemList getItemsByType(String type) throws RemoteException, SQLException
+  @Override public ItemList getItemsByType(String type)
+      throws RemoteException, SQLException
   {
     return null;
   }
@@ -92,7 +93,10 @@ public class RemoteServer implements RemoteCafeServer
   @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return cafePersistence.getOrdersByStatus("pending");
-  @Override public void removeItemFromProductList(Item item) throws RemoteException, SQLException
+  }
+
+  @Override public void removeItemFromProductList(Item item)
+      throws RemoteException, SQLException
   {
     cafePersistence.removeItemFromProductList(item);
   }

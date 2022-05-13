@@ -1,11 +1,15 @@
 package view;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import property.ItemProperty;
 import utility.Item;
 import viewmodel.DatabaseViewModel;
 
@@ -21,11 +25,11 @@ public class DatabaseViewController extends ViewController
   @Override protected void init()
   {
     viewModel = getViewModelFactory().getDatabaseViewModel();
-    idCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("id"));
-    nameCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
-    typeCol.setCellValueFactory(new PropertyValueFactory<Item, String>("type"));
+    idCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, IntegerProperty>("id"));
+    nameCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, StringProperty>("name"));
+    typeCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, StringProperty>("type"));
     priceCol.setCellValueFactory(
-        new PropertyValueFactory<Item, Double>("price"));
+        new PropertyValueFactory<ItemProperty, DoubleProperty>("price"));
 
     reset();
 
@@ -39,7 +43,7 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void removeItemPressed()
   {
-    Item item = (Item) itemTable.getSelectionModel().getSelectedItem(); //VIOLAZIONE - use ItemPRoperty
+    ItemProperty item = (ItemProperty) itemTable.getSelectionModel().getSelectedItem(); //VIOLAZIONE - use ItemPRoperty
     viewModel.removeItem(item);
 
     reset();

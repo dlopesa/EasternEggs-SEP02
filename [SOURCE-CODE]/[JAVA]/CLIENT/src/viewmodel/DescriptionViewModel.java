@@ -63,7 +63,7 @@ public class DescriptionViewModel
   public void setItemProperty(ItemProperty item)
   {
     name.set(item.nameProperty().get());
-    chosen.set(item.typeProperty().get());
+    chosen = (item.typeProperty());
     price.set(String.valueOf(item.priceProperty().get()));
     description.set(item.descriptionProperty().get());
   }

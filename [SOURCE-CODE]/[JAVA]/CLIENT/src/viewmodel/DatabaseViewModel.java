@@ -47,8 +47,8 @@ public class DatabaseViewModel
     return observableList;
   }
 
-  public void removeItem(Item item)
+  public void removeItem(ItemProperty item)
   {
-    model.removeItemFromProductList(item);
+    model.removeItemFromProductList(item.getItem());
   }
 }

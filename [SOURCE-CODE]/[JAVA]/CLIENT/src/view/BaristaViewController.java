@@ -29,9 +29,14 @@ public class BaristaViewController extends ViewController
     priceCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("price"));
     statusCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("status"));
 
-    orderTableView.setItems(viewModel.getOrders());
+    reset();
 
     selectionModel = orderTableView.getSelectionModel();
+  }
+
+  public void reset() {
+    viewModel.reset();
+    orderTableView.setItems(viewModel.getOrders());
   }
 
   @FXML private void seeDetailsPressed() {

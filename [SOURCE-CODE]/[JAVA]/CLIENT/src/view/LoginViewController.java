@@ -13,21 +13,25 @@ public class LoginViewController extends ViewController
 
   @Override protected void init()
   {
-    this.loginViewModel=getViewModelFactory().getLoginViewModel();
-   
+    this.loginViewModel = getViewModelFactory().getLoginViewModel();
+
     loginViewModel.getAccessKeyProperty().bind(passwordField.textProperty());
 
   }
 
-  @FXML public void onEnter()
+  @FXML private void onEnter()
   {
     getViewHandler().openView("DatabaseView.fxml");
   }
 
-  @FXML public void back()
+  @FXML private void back()
   {
     getViewHandler().openView("StartView.fxml");
   }
 
+  @FXML private void barista()
+  {
+    getViewHandler().openView("BaristaView.fxml");
+  }
 
 }
