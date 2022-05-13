@@ -1,9 +1,6 @@
 package database;
 
-import utility.DateTime;
-import utility.Extra;
-import utility.Item;
-import utility.Order;
+import utility.*;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -109,7 +106,7 @@ public class ConcreteOrderDAO implements OrderDAO
         double price = 0;
         String status = orderResultSet.getString("status");
 
-        Order order = new Order(comment, dateTime, price, status);
+        Order order = new Order(id, new ItemList(), comment, dateTime, price, status);
 
         PreparedStatement findItemsInOrder = connection.prepareStatement(
             "SELECT * FROM iteminorder WHERE order_id = ?");
@@ -208,5 +205,26 @@ public class ConcreteOrderDAO implements OrderDAO
       deleteStatement.setInt(1,orderId);
       deleteStatement.executeUpdate();
     }
+  }
+
+  @Override public ArrayList<Order> getOrdersByStatus(String status)
+      throws SQLException
+  {
+    ArrayList<Order> returnOrders = new ArrayList<>();
+    ArrayList<Integer> returnOrdersIds = new ArrayList<>();
+    try (Connection connection = getConnection()) {
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM order_ WHERE status = ?");
+      statement.setString(1,status);
+      ResultSet orderResultSet = statement.executeQuery();
+      while (orderResultSet.next()) {
+        int id = orderResultSet.getInt("order_id");
+        returnOrdersIds.add(id);
+      }
+
+      for (int i : returnOrdersIds) {
+        returnOrders.add(readById(i));
+      }
+    }
+    return returnOrders;
   }
 }

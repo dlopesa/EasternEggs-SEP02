@@ -4,6 +4,7 @@ import model.Model;
 import utility.Item;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DatabaseViewModel
@@ -25,7 +26,7 @@ public class DatabaseViewModel
     {
       allItems = model.getAllExistingItems().getAllItems();
     }
-    catch (RemoteException e)
+    catch (RemoteException | SQLException e)
     {
       e.printStackTrace();
     }

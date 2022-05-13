@@ -10,6 +10,7 @@ public class ViewModelFactory
   private LoginViewModel loginViewModel;
   private AddItemViewModel addItemViewModel;
   private DatabaseViewModel databaseViewModel;
+  private BaristaViewModel baristaViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -18,6 +19,7 @@ public class ViewModelFactory
     this.loginViewModel = new LoginViewModel(model);
     this.addItemViewModel = new AddItemViewModel(model);
     this.databaseViewModel = new DatabaseViewModel(model);
+    this.baristaViewModel = new BaristaViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -43,5 +45,10 @@ public class ViewModelFactory
   public DatabaseViewModel getDatabaseViewModel()
   {
     return databaseViewModel;
+  }
+
+  public BaristaViewModel getBaristaViewModel()
+  {
+    return baristaViewModel;
   }
 }

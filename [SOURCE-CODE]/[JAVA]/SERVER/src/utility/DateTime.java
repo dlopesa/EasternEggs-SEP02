@@ -53,6 +53,12 @@ public class DateTime implements Serializable
     );
   }
 
+  public String getTime() {
+    DateTimeFormatter dtf;
+    dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+    return time.format(dtf);
+  }
+
   @Override public int hashCode()
   {
     return Objects.hash(time);
