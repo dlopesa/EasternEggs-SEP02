@@ -1,9 +1,13 @@
 package utility;
 
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Order implements Serializable
+public class Order implements Serializable, UnnamedPropertyChangeSubject
 {
   private int id; // NEW INSTANCE VARIABLE. ONLY USEFUL FOR WHEN THE ORDER COMES
                   // FROM THE DATABASE.
@@ -12,8 +16,10 @@ public class Order implements Serializable
   private DateTime dateTime;
   private double price;
   private String status;
+  private PropertyChangeSupport property;
 
   public Order(boolean paidWithCash) {
+    property = new PropertyChangeSupport(this);
     id = -1;
     itemList = new ItemList();
     comment = "";
@@ -31,6 +37,7 @@ public class Order implements Serializable
       double price, String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
                                     // FROM THE DATABASE.
   {
+    property = new PropertyChangeSupport(this);
     this.id = id;
     this.itemList = itemList;
     this.comment = comment;
@@ -40,12 +47,14 @@ public class Order implements Serializable
   }
 
   public Order(String comment, DateTime dateTime, double price, String status) {
+    property = new PropertyChangeSupport(this);
     this.id = -1;
     this.itemList = new ItemList();
     this.comment = comment;
     this.dateTime = dateTime;
     this.price = price;
     this.status = status;
+
   }
 
   public int getId() {
@@ -73,11 +82,13 @@ public class Order implements Serializable
   public void addItem(Item item) {
     itemList.add(item);
     price+=item.getPrice();
+    property.firePropertyChange("add", getPrice(), null);
   }
 
   public void removeItem(Item item) {
     itemList.remove(item);
     price-=item.getPrice();
+    property.firePropertyChange("remove", getPrice(), null);
   }
 
   public void addExtraToItem(Item item, Extra extra) {
@@ -145,5 +156,15 @@ public class Order implements Serializable
   public void setDateTime(DateTime dateTime)
   {
     this.dateTime = dateTime;
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

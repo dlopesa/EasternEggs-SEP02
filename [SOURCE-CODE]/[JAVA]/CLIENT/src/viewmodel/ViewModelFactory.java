@@ -11,15 +11,19 @@ public class ViewModelFactory
   private AddItemViewModel addItemViewModel;
   private DatabaseViewModel databaseViewModel;
   private BaristaViewModel baristaViewModel;
+  private CheckoutViewModel checkoutViewModel;
+  private DescriptionViewModel descriptionViewModel;
 
   public ViewModelFactory(Model model)
   {
-    this.customerViewModel = new CustomerViewModel(model);
     this.startViewModel = new StartViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
     this.addItemViewModel = new AddItemViewModel(model);
     this.databaseViewModel = new DatabaseViewModel(model);
     this.baristaViewModel = new BaristaViewModel(model);
+    this.checkoutViewModel = new CheckoutViewModel(model);
+    this.descriptionViewModel = new DescriptionViewModel(model);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -50,5 +54,15 @@ public class ViewModelFactory
   public BaristaViewModel getBaristaViewModel()
   {
     return baristaViewModel;
+  }
+
+  public DescriptionViewModel getDescriptionViewModel()
+  {
+    return descriptionViewModel;
+  }
+
+  public CheckoutViewModel getCheckoutViewModel()
+  {
+    return checkoutViewModel;
   }
 }

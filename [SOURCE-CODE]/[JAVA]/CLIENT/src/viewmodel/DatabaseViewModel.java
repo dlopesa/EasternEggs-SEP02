@@ -1,16 +1,17 @@
 package viewmodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Model;
+import property.ItemProperty;
 import utility.Item;
 
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DatabaseViewModel
 {
-  private ArrayList<Item> allItems;
-  private Item chosenItem;
+  private ArrayList<ItemProperty> allItems;
   private Model model;
 
   public DatabaseViewModel(Model model)
@@ -18,22 +19,31 @@ public class DatabaseViewModel
     this.model = model;
     allItems = new ArrayList<>();
     reset();
-    chosenItem = null; //TODO figure out how to bind a selected item in a table to a property in the viewmodel
   }
 
-  public void reset() {
+  public void reset()
+  {
+    allItems.clear();
     try
     {
-      allItems = model.getAllExistingItems().getAllItems();
+      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
+      {
+        allItems.add(new ItemProperty(model.getAllExistingItems().getAllItems().get(i)));
+      }
     }
-    catch (RemoteException | SQLException e)
+    catch(Exception e)
     {
       e.printStackTrace();
     }
   }
 
-  public ArrayList<Item> getAllItems()
+  public ObservableList<ItemProperty> getAllItems()
   {
-    return allItems;
+    ObservableList<ItemProperty> observableList = FXCollections.observableArrayList();
+    for (int i = 0; i < allItems.size(); i++)
+    {
+      observableList.add(allItems.get(i));
+    }
+    return observableList;
   }
 }

@@ -24,7 +24,8 @@ public class OrderDetailViewController extends ViewController
   @FXML private TextArea commentArea;
   BaristaViewModel viewModel;
 
-  public OrderDetailViewController() {
+  public OrderDetailViewController()
+  {
 
   }
 
@@ -40,20 +41,19 @@ public class OrderDetailViewController extends ViewController
     reset();
   }
 
-  public void reset() {
-    ObservableList<ItemProperty> observableListItem = FXCollections.observableArrayList(
-        viewModel.getSelectedOrder().getItemList());
-
-    itemsTable.setItems(observableListItem);
+  public void reset()
+  {
+    itemsTable.setItems(viewModel.getSelectedOrder().getItemList());
     commentArea.setText(viewModel.getSelectedOrder().commentProperty().get());
-
   }
 
-  @FXML void backPressed() {
+  @FXML void backPressed()
+  {
     getViewHandler().openView("BaristaView.fxml");
   }
 
-  @FXML void completePressed() {
+  @FXML void completePressed()
+  {
     viewModel.completeOrder(viewModel.getSelectedOrder().getOrder());
     backPressed();
   }
