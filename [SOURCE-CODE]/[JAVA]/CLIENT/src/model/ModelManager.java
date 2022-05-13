@@ -123,7 +123,6 @@ public class ModelManager implements Model
     try
     {
       client.addItemToProductList(item);
-      System.out.println("ModelManager: Item sent to the mediator.");
     }
     catch (RemoteException e)
     {
@@ -133,7 +132,15 @@ public class ModelManager implements Model
 
   @Override public void removeItemFromProductList(Item item)
   {
+    try
+    {
+      client.removeItemFromProductList(item);
 
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public ArrayList<Order> getAllPendingOrders()

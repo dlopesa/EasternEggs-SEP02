@@ -65,7 +65,7 @@ public class RemoteServer implements RemoteCafeServer
     cafePersistence.receiveOrder(order);
     //Shouldn't we call the CafePersistence instead?
     //CafeDatabase get instance method is not used
-    System.out.println("I have correctly received this:");
+
     System.out.println(order);
   }
 
@@ -92,5 +92,8 @@ public class RemoteServer implements RemoteCafeServer
   @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return cafePersistence.getOrdersByStatus("pending");
+  @Override public void removeItemFromProductList(Item item) throws RemoteException, SQLException
+  {
+    cafePersistence.removeItemFromProductList(item);
   }
 }

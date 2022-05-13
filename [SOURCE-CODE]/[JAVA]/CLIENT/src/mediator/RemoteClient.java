@@ -15,11 +15,9 @@ public class RemoteClient
 {
   private RemoteCafeServer server;
 
-  public RemoteClient()
-      throws MalformedURLException, NotBoundException, RemoteException
+  public RemoteClient() throws MalformedURLException, NotBoundException, RemoteException
   {
-    server = (RemoteCafeServer)
-        Naming.lookup("rmi://localhost:1099/Cafe");
+    server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1099/Cafe");
     //UnicastRemoteObject.exportObject(this,0);
     //This will be needed when we will be doing the RMI Observer
   }
@@ -28,6 +26,7 @@ public class RemoteClient
   {
     return server.getAllItems();
   }
+
   public void receiveOrder(Order order) throws RemoteException
   {
     server.receiveOrder(order);
@@ -58,4 +57,8 @@ public class RemoteClient
     return server.getAllPendingOrders();
   }
 
+  public void removeItemFromProductList(Item item) throws RemoteException
+  {
+    server.removeItemFromProductList(item);
+  }
 }

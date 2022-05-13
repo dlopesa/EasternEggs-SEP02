@@ -39,7 +39,10 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void removeItemPressed()
   {
-    //Todo future use case
+    Item item = (Item) itemTable.getSelectionModel().getSelectedItem(); //VIOLAZIONE - use ItemPRoperty
+    viewModel.removeItem(item);
+
+    reset();
   }
 
   @FXML public void editItemPressed()

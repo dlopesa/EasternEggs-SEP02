@@ -17,4 +17,5 @@ public interface CafePersistence
   public void editComment(int orderId, String comment);
   public void addItemToProductList(Item item);
   public ArrayList<Order> getOrdersByStatus(String status);
+  public void removeItemFromProductList(Item item) throws SQLException;
 }

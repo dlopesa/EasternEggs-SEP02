@@ -19,4 +19,5 @@ public interface RemoteCafeServer extends Remote
   void acceptPayment(Order order) throws RemoteException;
   void addItemToProductList(Item item) throws RemoteException;
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
+  void removeItemFromProductList(Item item) throws RemoteException;
 }
