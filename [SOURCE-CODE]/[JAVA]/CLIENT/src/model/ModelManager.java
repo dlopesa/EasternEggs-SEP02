@@ -114,7 +114,6 @@ public class ModelManager implements Model
     try
     {
       client.addItemToProductList(item);
-      System.out.println("ModelManager: Item sent to the mediator.");
     }
     catch (RemoteException e)
     {
@@ -127,7 +126,7 @@ public class ModelManager implements Model
     try
     {
       client.removeItemFromProductList(item);
-      System.out.println("ModelManager: Item removed.");
+
     }
     catch (RemoteException e)
     {

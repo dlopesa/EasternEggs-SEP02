@@ -26,6 +26,7 @@ public class ItemList implements Serializable
 
   public void remove(Item item) {
     items.remove(item);
+    System.out.println("beep");
   }
 
   public void addExtraToItem(Item item, Extra extra) {

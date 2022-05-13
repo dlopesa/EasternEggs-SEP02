@@ -33,9 +33,7 @@ public class ConcreteItemDAO implements ItemDAO
 
   private Connection getConnection() throws SQLException
   {
-    return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
-        "postgres", "robertbarta");
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "robertbarta");
     //Kamil's password 1234
     //Laura's password 123456
   }
@@ -52,8 +50,7 @@ public class ConcreteItemDAO implements ItemDAO
 
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO item(name,type,price,description) VALUES(?,?,?,?);");
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO item(name,type,price,description) VALUES(?,?,?,?);");
       statement.setString(1, name);
       statement.setString(2, type);
       statement.setDouble(3, price);
@@ -73,9 +70,15 @@ public class ConcreteItemDAO implements ItemDAO
 
   }
 
-  @Override public void deleteItem(int id)
+  @Override public void deleteItem(Item item) throws SQLException
   {
 
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM item WHERE item_id = ?");
+      deleteStatement.setInt(1, item.getId());
+      deleteStatement.executeUpdate();
+    }
   }
 
   @Override public ItemList getAllItems() throws SQLException
@@ -86,13 +89,14 @@ public class ConcreteItemDAO implements ItemDAO
     {
       PreparedStatement statement = connection.prepareStatement("SELECT * FROM item");
       ResultSet itemResultSet = statement.executeQuery();
-      while (itemResultSet.next()) {
+      while (itemResultSet.next())
+      {
         int id = itemResultSet.getInt("item_id");
         String name = itemResultSet.getString("name");
         String type = itemResultSet.getString("type");
         double price = itemResultSet.getDouble("price");
         String description = itemResultSet.getString("description");
-        Item newItem = new Item(id,name,type,price,description);
+        Item newItem = new Item(id, name, type, price, description);
         items.add(newItem);
       }
     }

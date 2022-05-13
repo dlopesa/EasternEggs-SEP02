@@ -112,4 +112,9 @@ public class CafeDatabase implements CafePersistence
       e.printStackTrace();
     }
   }
+
+  @Override public void removeItemFromProductList(Item item) throws SQLException
+  {
+    itemDAO.deleteItem(item);
+  }
 }

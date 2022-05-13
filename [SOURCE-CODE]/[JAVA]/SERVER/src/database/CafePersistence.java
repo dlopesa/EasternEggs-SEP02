@@ -15,4 +15,5 @@ public interface CafePersistence
   public void acceptPayment(int orderId);
   public void editComment(int orderId, String comment);
   public void addItemToProductList(Item item);
+  public void removeItemFromProductList(Item item) throws SQLException;
 }
