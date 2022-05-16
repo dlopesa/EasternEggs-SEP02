@@ -64,31 +64,18 @@ public class CustomerViewController extends ViewController
 
   @FXML private void addToOrderButton()
   {
-    int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
-    ItemProperty item = null;
-    switch (indexOfTab)
-    {
-      case 0:
-        item = (ItemProperty) itemTableCoffee.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 1:
-        item = (ItemProperty) itemTableTea.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 2:
-        item = (ItemProperty) itemTableSnack.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 3:
-        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
-            .getSelectedItem();
-        break;
-    }
+    ItemProperty item = getItemProperty();
     customerViewModel.addToOrder(item);
   }
 
   @FXML private void descriptionButton()
+  {
+    ItemProperty item = getItemProperty();
+    customerViewModel.seeDescription(item);
+    getViewHandler().openView("DescriptionView.fxml");
+  }
+
+  private ItemProperty getItemProperty()
   {
     int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
     ItemProperty item = null;
@@ -111,8 +98,7 @@ public class CustomerViewController extends ViewController
             .getSelectedItem();
         break;
     }
-    customerViewModel.seeDescription(item);
-    getViewHandler().openView("DescriptionView.fxml");
+    return item;
   }
 
   @FXML private void checkoutButton()
