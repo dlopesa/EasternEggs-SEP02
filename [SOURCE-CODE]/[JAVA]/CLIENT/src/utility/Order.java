@@ -89,6 +89,9 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     itemList.remove(item);
     price-=item.getPrice();
     property.firePropertyChange("remove", getPrice(), null);
+    System.out.println("Utility/Order: Gets the item to remove: " + item.toString());
+    System.out.println("Utility/Order: Removed the item from the item list and updates the order's final price");
+
   }
 
   public void addExtraToItem(Item item, Extra extra) {

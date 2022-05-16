@@ -59,6 +59,7 @@ public class CafeDatabase implements CafePersistence
     try
     {
       orderDAO.create(order);
+      System.out.println("DB: Information received, requesting to create row");
     }
     catch (Exception e)
     {

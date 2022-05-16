@@ -9,9 +9,9 @@ CREATE TABLE order_
 (
     order_id serial PRIMARY KEY,
     comment  varchar(300),
-    datetime timestamp NOT NULL,
-    price    float     NOT NULL,
-    status   status    NOT NULL
+    datetime timestamp   NOT NULL,
+    price    float  NOT NULL,
+    status   status NOT NULL
 );
 
 CREATE TABLE item
@@ -25,10 +25,12 @@ CREATE TABLE item
 
 CREATE TABLE itemInOrder
 (
-    item_in_order_id serial PRIMARY KEY,
-    order_id integer REFERENCES order_ (order_id) ON DELETE CASCADE,
+    order_id integer REFERENCES order_ (order_id),
     item_id  integer REFERENCES item (item_id)
 );
+
+ALTER TABLE itemInOrder
+    ADD CONSTRAINT itemInOrderPPK PRIMARY KEY (order_id, item_id);
 
 CREATE TABLE extra
 (
@@ -38,22 +40,22 @@ CREATE TABLE extra
 CREATE TABLE extraInItemInOrder
 (
     extra_id varchar(50) REFERENCES extra (name),
-    item_in_order_id integer REFERENCES itemInOrder(item_in_order_id),
-    item_id  integer REFERENCES item(item_id),
-    order_id integer REFERENCES order_(order_id)
+    item_id  integer,
+    order_id integer
 );
 
 ALTER TABLE extraInItemInOrder
-    ADD CONSTRAINT extra_item_order_ppk PRIMARY KEY (extra_id, item_in_order_id);
+    ADD CONSTRAINT extra_item_order_ppk PRIMARY KEY (extra_id, item_id, order_id),
+    ADD CONSTRAINT itemInOrderFK FOREIGN KEY (order_id, item_id) REFERENCES itemInOrder (order_id, item_id);
 
-CREATE TABLE extraAvailableForType
+CREATE TABLE extrasAvailableForItem
 (
-    extra_id varchar(50) REFERENCES extra (name),
-    type     type
+    item_id  integer REFERENCES item (item_id),
+    extra_id varchar(50) REFERENCES extra (name)
 );
 
-ALTER TABLE extraAvailableForType
-    ADD CONSTRAINT extraType PRIMARY KEY (extra_id, type);
+ALTER TABLE extrasAvailableForItem
+    ADD CONSTRAINT extraItem PRIMARY KEY (item_id, extra_id);
 
 CREATE TABLE accessKey
 (
@@ -66,9 +68,11 @@ CREATE TABLE permissionForKey
     permission varchar(50) NOT NULL
 );
 
-INSERT INTO item (name, type, price, description)
-VALUES ('Coffee', 'coffee', 20, ':)'),
-       ('Tea', 'tea', 7, 'lovely herbal tea');
-INSERT INTO extra (name)
-VALUES ('caramel syrup'),
-       ('honey');
+
+
+
+--- dummy inserts
+
+INSERT INTO item (name, type, price, description) VALUES ('Coffee', 'coffee',20, ':)' );
+
+INSERT INTO extra VALUES ('caramel syrup');

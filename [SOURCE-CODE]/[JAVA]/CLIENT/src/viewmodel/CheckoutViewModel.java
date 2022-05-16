@@ -61,6 +61,7 @@ public class CheckoutViewModel
   public void removeFromOrder(ItemProperty item)
   {
     model.removeItemFromOrder(item.getItem());
+    System.out.println("View: Remove item was pressed the the item's information was passed to the model");
   }
 
   public void quit()
@@ -71,6 +72,7 @@ public class CheckoutViewModel
   public void submit()
   {
     model.submitOrder();
+    System.out.println("View: Sobmit order is pressed");
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

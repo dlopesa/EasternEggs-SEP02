@@ -57,11 +57,13 @@ public class ModelManager implements Model
   {
     try
     {
-      System.out.println("I am submitting the order");
+      //System.out.println("I am submitting the order");
       client.receiveOrder(order);
-      System.out.println("I have submitted the order");
+      System.out.println("Model: sending the order to client");
+      //System.out.println("");
       cancelOrder();
-      System.out.println("I have cleared the order");
+      System.out.println("Model: cleared the order");
+      //System.out.println("I have cleared the order");
     }
 
     catch (RemoteException e)
@@ -83,6 +85,7 @@ public class ModelManager implements Model
   @Override public void removeItemFromOrder(Item item)
   {
     order.removeItem(item);
+    System.out.println("Model: Gets the item and requests the utility to remove it");
   }
 
   @Override public Order getOrder()

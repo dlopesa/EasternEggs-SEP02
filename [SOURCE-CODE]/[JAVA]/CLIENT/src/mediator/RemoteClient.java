@@ -29,6 +29,7 @@ public class RemoteClient
 
   public void receiveOrder(Order order) throws RemoteException
   {
+    System.out.println("Client: Send the order to the server");
     server.receiveOrder(order);
   }
 

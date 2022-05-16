@@ -77,13 +77,14 @@ public class ConcreteOrderDAO implements OrderDAO
           extrainiteminorderStatement.executeUpdate();
         }
       }
+      System.out.println("DB: Order added to the database");
 
     }
   }
 
   private Connection getConnection() throws SQLException
   {
-    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "root");
   }
 
   @Override public Order readById(int id) throws SQLException

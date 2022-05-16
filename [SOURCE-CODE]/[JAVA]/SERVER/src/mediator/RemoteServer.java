@@ -63,7 +63,9 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public void receiveOrder(Order order) throws RemoteException
   {
+    System.out.println("Server: Received the order");
     cafePersistence.receiveOrder(order);
+    System.out.println("Server: Sent the order to database");
     //Shouldn't we call the CafePersistence instead?
     //CafeDatabase get instance method is not used
 
