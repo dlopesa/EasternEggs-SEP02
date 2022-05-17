@@ -68,8 +68,6 @@ public class RemoteServer implements RemoteCafeServer
   @Override public void receiveOrder(Order order) throws RemoteException
   {
     cafePersistence.receiveOrder(order);
-    //Shouldn't we call the CafePersistence instead?
-    //CafeDatabase get instance method is not use.
     property.firePropertyChange("pending", null, null);
   }
 

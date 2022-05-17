@@ -90,7 +90,6 @@ public class RemoteClient implements RemoteListener<String, String>,
   @Override public void propertyChange(ObserverEvent<String, String> event)
       throws RemoteException
   {
-    System.out.println("Client: I have received the event from server correctly.");
     property.firePropertyChange("change", event.getValue1(), event.getValue2());
   }
 }
