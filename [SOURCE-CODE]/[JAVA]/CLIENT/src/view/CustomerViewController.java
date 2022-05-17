@@ -12,14 +12,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ItemProperty;
+import utility.Item;
 import viewmodel.CustomerViewModel;
 
 public class CustomerViewController extends ViewController
 {
-  @FXML private TableView itemTableCoffee;
-  @FXML private TableView itemTableTea;
-  @FXML private TableView itemTableSnack;
-  @FXML private TableView itemTableSmoothie;
+  @FXML private TableView<ItemProperty> itemTableCoffee;
+  @FXML private TableView<ItemProperty> itemTableTea;
+  @FXML private TableView<ItemProperty> itemTableSnack;
+  @FXML private TableView<ItemProperty> itemTableSmoothie;
   @FXML private Label errorLabel;
   @FXML private TabPane tabPane;
   private CustomerViewModel customerViewModel;

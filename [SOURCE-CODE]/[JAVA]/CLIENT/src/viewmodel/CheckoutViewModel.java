@@ -76,9 +76,12 @@ public class CheckoutViewModel
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {
-      populatingItemsFromOrder();
-      double tempPrice = (double) evt.getOldValue();
-      totalPrice.set(String.valueOf(tempPrice));
+      if(!evt.getPropertyName().equals("change"))
+      {
+        populatingItemsFromOrder();
+        double tempPrice = (double) evt.getOldValue();
+        totalPrice.set(String.valueOf(tempPrice));
+      }
     });
   }
 

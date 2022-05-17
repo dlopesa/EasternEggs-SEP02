@@ -3,23 +3,32 @@ package mediator;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.event.ObserverEvent;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
+import utility.observer.listener.RemoteListener;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RemoteClient
+public class RemoteClient implements RemoteListener<String, String>,
+    UnnamedPropertyChangeSubject
 {
   private RemoteCafeServer server;
+  private PropertyChangeSupport property;
 
   public RemoteClient() throws MalformedURLException, NotBoundException, RemoteException
   {
     server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1099/Cafe");
-    //UnicastRemoteObject.exportObject(this,0);
-    //This will be needed when we will be doing the RMI Observer
+    UnicastRemoteObject.exportObject(this,0);
+    server.addListener(this);
+    property = new PropertyChangeSupport(this);
   }
 
   public ItemList getAllItems() throws RemoteException, SQLException
@@ -57,8 +66,31 @@ public class RemoteClient
     return server.getAllPendingOrders();
   }
 
-  public void removeItemFromProductList(Item item) throws RemoteException
+  public ArrayList<Order> getAllCompletedOrders() throws RemoteException
+  {
+    return server.getAllCompletedOrders();
+  }
+
+  public void removeItemFromProductList(Item item)
+      throws RemoteException, SQLException
   {
     server.removeItemFromProductList(item);
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
+
+  @Override public void propertyChange(ObserverEvent<String, String> event)
+      throws RemoteException
+  {
+    System.out.println("Client: I have received the event from server correctly.");
+    property.firePropertyChange("change", event.getValue1(), event.getValue2());
   }
 }

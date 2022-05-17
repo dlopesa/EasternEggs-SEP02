@@ -3,13 +3,14 @@ package mediator;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.subject.RemoteSubject;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface RemoteCafeServer extends Remote
+public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
 {
   ItemList getAllItems() throws RemoteException, SQLException;
   ItemList getItemsByType(String type) throws RemoteException, SQLException;
@@ -19,5 +20,6 @@ public interface RemoteCafeServer extends Remote
   void acceptPayment(Order order) throws RemoteException;
   void addItemToProductList(Item item) throws RemoteException;
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
-  void removeItemFromProductList(Item item) throws RemoteException;
+  ArrayList<Order> getAllCompletedOrders() throws RemoteException;
+  void removeItemFromProductList(Item item) throws RemoteException, SQLException;
 }

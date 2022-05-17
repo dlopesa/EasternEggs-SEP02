@@ -16,7 +16,7 @@ import java.beans.PropertyChangeListener;
 
 public class CheckoutViewController extends ViewController
 {
-  @FXML private TableView itemTable;
+  @FXML private TableView<ItemProperty> itemTable;
   @FXML private Label totalPriceLabel;
   @FXML private Label errorLabel;
   private CheckoutViewModel checkoutViewModel;

@@ -30,6 +30,7 @@ public interface Model extends PropertyChangeListener,
   void addItemToProductList(Item item);
   void removeItemFromProductList(Item item);
   ArrayList<Order> getAllPendingOrders();
+  ArrayList<Order> getAllCompletedOrders();
   void completeOrder(Order order) throws RemoteException;
   void acceptOrder(Order order);
   void editOrderComment(Order order);
