@@ -3,6 +3,7 @@ package mediator;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.listener.GeneralListener;
 import utility.observer.subject.RemoteSubject;
 
 import java.rmi.Remote;
@@ -22,4 +23,8 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
   ArrayList<Order> getAllCompletedOrders() throws RemoteException;
   void removeItemFromProductList(Item item) throws RemoteException, SQLException;
+  boolean addListener(GeneralListener<String, String> listener,
+      String... propertyNames) throws RemoteException;
+  boolean removeListener(GeneralListener<String, String> listener,
+      String... propertyNames) throws RemoteException;
 }
