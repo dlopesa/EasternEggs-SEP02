@@ -31,6 +31,5 @@ public interface Model extends PropertyChangeListener,
   void acceptOrder(Order order);
   void editOrderComment(Order order);
   void cancelUnpaidOrder(Order order);
-  ExtraList getAllExistingExtras() throws RemoteException, SQLException;
   ArrayList<String> getAllTypes();
 }
