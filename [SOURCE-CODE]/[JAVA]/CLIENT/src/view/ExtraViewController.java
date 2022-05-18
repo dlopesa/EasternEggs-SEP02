@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,11 +13,7 @@ import java.util.ArrayList;
 public class ExtraViewController extends ViewController
 {
   @FXML Label itemName;
-  @FXML private TableView extraTableCoffee;
-  @FXML private TableView extraTableTea;
-  @FXML private TableView extraTableSnack;
-  @FXML private TableView extraTableSmoothie;
-  @FXML private TabPane tabPane;
+  @FXML private TableView extraTable;
   private ExtraViewModel extraViewModel;
 
   @Override protected void init()
@@ -24,8 +21,6 @@ public class ExtraViewController extends ViewController
 
     this.extraViewModel = getViewModelFactory().getExtraViewModel();
     itemName.textProperty().bind(extraViewModel.getNameProperty());
-    tabPane.setTabMinWidth(130);
-    tabPane.setTabMinHeight(22);
     reset();
   }
 
@@ -38,9 +33,9 @@ public class ExtraViewController extends ViewController
   private void setTable(TableView table, String type)
   {
     TableColumn nameColTemp= (TableColumn) table.getColumns().get(0);
-    TableColumn yesNoTemp= (TableColumn) table.getColumns().get(1);
+    TableColumn selectTemp= (TableColumn) table.getColumns().get(1);
     nameColTemp.setCellValueFactory(new PropertyValueFactory<ExtraProperty, StringProperty>("Extra"));
-
+    selectTemp.setCellValueFactory(new PropertyValueFactory<CheckBox, BooleanProperty>(""));
     table.setItems(extraViewModel.getExtrasByType(type));
   }
 

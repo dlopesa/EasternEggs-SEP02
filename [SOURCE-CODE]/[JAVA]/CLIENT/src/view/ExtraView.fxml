@@ -32,7 +32,7 @@
                   <TableView fx:id="extraTable" prefHeight="157.0" prefWidth="152.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Extra" />
-                        <TableColumn prefWidth="75.0" text="Yes/No" />
+                        <TableColumn prefWidth="75.0" text="Select" />
                     </columns>
                   </TableView>
                </children>
