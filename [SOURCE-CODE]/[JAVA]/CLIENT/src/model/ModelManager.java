@@ -5,7 +5,6 @@ import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
-import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -60,7 +59,7 @@ public class ModelManager implements Model
       System.out.println("I am submitting the order");
       client.receiveOrder(order);
       System.out.println("I have submitted the order");
-      cancelOrder();
+      quitAndCancelOrder();
       System.out.println("I have cleared the order");
     }
 
@@ -101,13 +100,12 @@ public class ModelManager implements Model
 
   }
 
-  @Override public void cancelOrder()
+  @Override public void quitAndCancelOrder()
   {
     order = new Order(false);
     order.addListener(this);
     property.firePropertyChange("cancel", order.getPrice(), null);
   }
-
   @Override public void payForOrder(boolean isCash)
   {
 
@@ -157,24 +155,59 @@ public class ModelManager implements Model
 
   }
 
+  @Override public ArrayList<Order> getAllUnpaidOrders()
+  {
+    try
+    {
+      return client.getAllUnpaidOrders();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+
+  }
+
   @Override public void completeOrder(Order order) throws RemoteException
   {
     client.completeOrder(order);
   }
 
-  @Override public void acceptOrder(Order order)
+  @Override public void acceptPayment(Order order)
   {
-
+    try
+    {
+      client.acceptPayment(order);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  @Override public void editOrderComment(Order order)
+  @Override public void editOrderComment(Order order, String comment)
   {
-
+    try
+    {
+      client.editCommentInOrder(order,comment);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void cancelUnpaidOrder(Order order)
   {
-
+    try
+    {
+      client.cancelOrder(order);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public ArrayList<String> getAllTypes()

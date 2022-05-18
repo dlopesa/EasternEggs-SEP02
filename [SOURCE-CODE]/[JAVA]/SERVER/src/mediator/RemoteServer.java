@@ -75,14 +75,25 @@ public class RemoteServer implements RemoteCafeServer
     cafePersistence.completeOrder(order.getId());
   }
 
+  @Override public void cancelOrder(Order order) throws RemoteException
+  {
+    cafePersistence.cancelOrder(order.getId());
+  }
+
+  @Override public void editCommentInOrder(Order order, String comment)
+      throws RemoteException
+  {
+    cafePersistence.editComment(order.getId(),comment);
+  }
+
   @Override public void receiveUnpaidOrder(Order order) throws RemoteException
   {
-
+    cafePersistence.receiveOrder(order);
   }
 
   @Override public void acceptPayment(Order order) throws RemoteException
   {
-
+    cafePersistence.acceptPayment(order.getId());
   }
 
   @Override public void addItemToProductList(Item item)
@@ -93,6 +104,11 @@ public class RemoteServer implements RemoteCafeServer
   @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return cafePersistence.getOrdersByStatus("pending");
+  }
+
+  @Override public ArrayList<Order> getAllUnpaidOrders() throws RemoteException
+  {
+    return cafePersistence.getOrdersByStatus("unpaid");
   }
 
   @Override public void removeItemFromProductList(Item item)

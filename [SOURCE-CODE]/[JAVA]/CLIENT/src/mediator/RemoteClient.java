@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RemoteClient
+public class RemoteClient implements RemoteCafeServer
 {
   private RemoteCafeServer server;
 
@@ -27,6 +27,12 @@ public class RemoteClient
     return server.getAllItems();
   }
 
+  @Override public ItemList getItemsByType(String type)
+      throws RemoteException, SQLException
+  {
+    return server.getItemsByType(type);
+  }
+
   public void receiveOrder(Order order) throws RemoteException
   {
     server.receiveOrder(order);
@@ -35,6 +41,17 @@ public class RemoteClient
   public void completeOrder(Order order) throws RemoteException
   {
     server.completeOrder(order);
+  }
+
+  @Override public void cancelOrder(Order order) throws RemoteException
+  {
+    server.cancelOrder(order);
+  }
+
+  @Override public void editCommentInOrder(Order order, String comment)
+      throws RemoteException
+  {
+    server.editCommentInOrder(order,comment);
   }
 
   public void receiveUnpaidOrder(Order order) throws RemoteException
@@ -52,9 +69,14 @@ public class RemoteClient
     server.addItemToProductList(item);
   }
 
-  public ArrayList<Order> getAllPendingOrders() throws RemoteException
+  @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return server.getAllPendingOrders();
+  }
+
+  @Override public ArrayList<Order> getAllUnpaidOrders() throws RemoteException
+  {
+    return server.getAllUnpaidOrders();
   }
 
   public void removeItemFromProductList(Item item) throws RemoteException

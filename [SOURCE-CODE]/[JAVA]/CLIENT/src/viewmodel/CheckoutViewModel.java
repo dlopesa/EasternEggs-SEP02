@@ -65,7 +65,7 @@ public class CheckoutViewModel
 
   public void quit()
   {
-    model.cancelOrder();
+    model.quitAndCancelOrder();
   }
 
   public void submit()

@@ -49,9 +49,10 @@ public class CafeDatabase implements CafePersistence
     return itemDAO.getAllItems();
   }
 
-  @Override public ItemList getItemsByType()
+  @Override public ItemList getItemsByType(String type)
   {
-    return null; //TODO item dao here
+    //TODO item dao here. a new method in the dao needs to be made
+    return null;
   }
 
   @Override public void receiveOrder(Order order)
@@ -83,6 +84,18 @@ public class CafeDatabase implements CafePersistence
     try
     {
       orderDAO.updateStatus(orderId, "pending");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void cancelOrder(int orderId)
+  {
+    try
+    {
+      orderDAO.delete(orderId);
     }
     catch (SQLException e)
     {

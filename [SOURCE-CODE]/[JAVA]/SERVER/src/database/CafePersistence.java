@@ -10,10 +10,11 @@ import java.util.ArrayList;
 public interface CafePersistence
 {
   public ItemList getAllItems() throws SQLException;
-  public ItemList getItemsByType();
+  public ItemList getItemsByType(String type);
   public void receiveOrder(Order order);
   public void completeOrder(int orderId);
   public void acceptPayment(int orderId);
+  public void cancelOrder(int orderId);
   public void editComment(int orderId, String comment);
   public void addItemToProductList(Item item);
   public ArrayList<Order> getOrdersByStatus(String status);

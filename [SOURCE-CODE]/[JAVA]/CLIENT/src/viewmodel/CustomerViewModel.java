@@ -1,6 +1,5 @@
 package viewmodel;
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -68,7 +67,7 @@ public class CustomerViewModel
 
   public void quit()
   {
-    model.cancelOrder();
+    model.quitAndCancelOrder();
   }
 
   public void seeDescription(ItemProperty item)

@@ -12,6 +12,7 @@ import property.ItemProperty;
 import utility.Item;
 import utility.Order;
 import viewmodel.BaristaViewModel;
+import viewmodel.OrderDetailViewModel;
 
 public class OrderDetailViewController extends ViewController
 {
@@ -22,16 +23,15 @@ public class OrderDetailViewController extends ViewController
   @FXML private TableColumn typeCol;
   @FXML private TableColumn priceCol;
   @FXML private TextArea commentArea;
-  BaristaViewModel viewModel;
+  OrderDetailViewModel viewModel;
 
   public OrderDetailViewController()
   {
-
   }
 
   @Override protected void init()
   {
-    this.viewModel = getViewModelFactory().getBaristaViewModel();
+    this.viewModel = getViewModelFactory().getOrderDetailViewModel();
 
     idCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("id"));
     nameCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));

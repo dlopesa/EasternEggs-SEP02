@@ -1,7 +1,4 @@
 package viewmodel;
-
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
@@ -14,13 +11,13 @@ public class BaristaViewModel
 {
   private Model model;
   private ObservableList<OrderProperty> orders;
-  private OrderProperty selectedOrder;
+  private BaristaHandler handler;
 
-  public BaristaViewModel(Model model)
+  public BaristaViewModel(Model model, BaristaHandler handler)
   {
     this.model = model;
+    this.handler = handler;
     reset();
-    this.selectedOrder = null;
   }
 
   public void reset()
@@ -37,26 +34,13 @@ public class BaristaViewModel
     return orders;
   }
 
-  public void completeOrder(Order order)
+  public void setSelectedOrder(OrderProperty order)
   {
-
-    try
-    {
-      model.completeOrder(order);
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
-
-    reset();
+    handler.setSelectedOrder(order);
   }
 
-  public void setSelectedOrder(OrderProperty order) {
-    this.selectedOrder = order;
-  }
-
-  public OrderProperty getSelectedOrder() {
-    return selectedOrder;
+  public OrderProperty getSelectedOrder()
+  {
+    return handler.getSelectedOrder();
   }
 }

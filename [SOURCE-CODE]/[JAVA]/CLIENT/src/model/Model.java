@@ -24,15 +24,16 @@ public interface Model extends PropertyChangeListener,
   Order getOrder();
   ItemList getAllExistingItems() throws RemoteException, SQLException;
   void setComment(String comment);
-  void cancelOrder();
+  void quitAndCancelOrder();
   void payForOrder(boolean isCash);
   void setIsTakeAway(boolean isTakeAway);
   void addItemToProductList(Item item);
   void removeItemFromProductList(Item item);
   ArrayList<Order> getAllPendingOrders();
+  ArrayList<Order> getAllUnpaidOrders();
   void completeOrder(Order order) throws RemoteException;
-  void acceptOrder(Order order);
-  void editOrderComment(Order order);
+  void acceptPayment(Order order);
+  void editOrderComment(Order order, String comment);
   void cancelUnpaidOrder(Order order);
   ArrayList<String> getAllTypes();
 }
