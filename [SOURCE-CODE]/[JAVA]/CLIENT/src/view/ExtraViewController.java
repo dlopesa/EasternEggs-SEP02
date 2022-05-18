@@ -1,11 +1,11 @@
 package view;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ExtraProperty;
-import property.ItemProperty;
 import viewmodel.ExtraViewModel;
 
 import java.util.ArrayList;
@@ -13,8 +13,7 @@ import java.util.ArrayList;
 public class ExtraViewController extends ViewController
 {
   @FXML Label itemName;
-  @FXML private TableView availableExtras;
-  @FXML private TableView addedExtras;
+  @FXML private TableView extraTable;
   private ExtraViewModel extraViewModel;
 
   @Override protected void init()
@@ -28,39 +27,20 @@ public class ExtraViewController extends ViewController
   public void reset()
   {
     extraViewModel.reset();
-    setTable();
+
   }
 
-  private void setTable()
+  private void setTable(TableView table, String type)
   {
-    TableColumn nameColTemp = (TableColumn) availableExtras.getColumns().get(0);
-    nameColTemp.setCellValueFactory(
-        new PropertyValueFactory<ExtraProperty, StringProperty>("name"));
-    availableExtras.setItems(extraViewModel.getAvailableExtras());
-    TableColumn addedExtrasColumn = (TableColumn) addedExtras.getColumns().get(0);
-    addedExtrasColumn.setCellValueFactory(
-        new PropertyValueFactory<ExtraProperty, StringProperty>("name"));
-    addedExtras.setItems(extraViewModel.getAddedExtras());
-
+    TableColumn nameColTemp= (TableColumn) table.getColumns().get(0);
+    TableColumn selectTemp= (TableColumn) table.getColumns().get(1);
+    nameColTemp.setCellValueFactory(new PropertyValueFactory<ExtraProperty, StringProperty>("Extra"));
+    selectTemp.setCellValueFactory(new PropertyValueFactory<CheckBox, BooleanProperty>(""));
+    table.setItems(extraViewModel.getExtrasByType(type));
   }
 
   @FXML private void onDone()
   {
-    extraViewModel.addItemToOrder();
     getViewHandler().openView("CustomerView.fxml");
-  }
-
-  @FXML private void onAdd()
-  {
-
-    ExtraProperty extra = (ExtraProperty) availableExtras.getSelectionModel().getSelectedItem();
-    extraViewModel.addExtraToItem(extra);
-
-  }
-
-  @FXML private void onRemove()
-  {
-    ExtraProperty extra = (ExtraProperty) addedExtras.getSelectionModel().getSelectedItem();
-    extraViewModel.removeExtraFromItem(extra);
   }
 }
