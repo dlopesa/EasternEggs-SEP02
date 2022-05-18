@@ -49,13 +49,7 @@ public class BaristaViewModel
       e.printStackTrace();
     }
 
-    for (int i = 0; i < orders.size(); i++) {
-      if (order.equals(orders.get(i).getOrder())) {
-        orders.remove(i);
-      }
-    }
-
-    System.out.println(orders);
+    reset();
   }
 
   public void setSelectedOrder(OrderProperty order) {
