@@ -62,7 +62,7 @@ public class CustomerViewController extends ViewController
     table.setItems(customerViewModel.getItemsByType(type));
   }
 
-  @FXML private void addToOrderButton()
+  private ItemProperty getItemProperty()
   {
     int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
     ItemProperty item = null;
@@ -85,32 +85,18 @@ public class CustomerViewController extends ViewController
             .getSelectedItem();
         break;
     }
+    return item;
+  }
+
+  @FXML private void addToOrderButton()
+  {
+    ItemProperty item = getItemProperty();
     customerViewModel.addToOrder(item);
   }
 
   @FXML private void descriptionButton()
   {
-    int indexOfTab = tabPane.getSelectionModel().getSelectedIndex();
-    ItemProperty item = null;
-    switch (indexOfTab)
-    {
-      case 0:
-        item = (ItemProperty) itemTableCoffee.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 1:
-        item = (ItemProperty) itemTableTea.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 2:
-        item = (ItemProperty) itemTableSnack.getSelectionModel()
-            .getSelectedItem();
-        break;
-      case 3:
-        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
-            .getSelectedItem();
-        break;
-    }
+    ItemProperty item = getItemProperty();
     customerViewModel.seeDescription(item);
     getViewHandler().openView("DescriptionView.fxml");
   }
