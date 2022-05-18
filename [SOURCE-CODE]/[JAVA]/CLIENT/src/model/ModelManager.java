@@ -93,10 +93,7 @@ public class ModelManager implements Model
     return client.getAllItems();
   }
 
-  @Override public ExtraList getAllExistingExtras() throws RemoteException, SQLException
-  {
-    return client.getAllExtras();
-  }
+
 
   @Override public void setComment(String comment)
   {
