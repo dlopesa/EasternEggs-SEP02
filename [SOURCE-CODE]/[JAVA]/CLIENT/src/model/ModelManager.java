@@ -1,10 +1,7 @@
 package model;
 
 import mediator.RemoteClient;
-import utility.Extra;
-import utility.Item;
-import utility.ItemList;
-import utility.Order;
+import utility.*;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
@@ -96,6 +93,11 @@ public class ModelManager implements Model
     return client.getAllItems();
   }
 
+  @Override public ExtraList getAllExistingExtras() throws RemoteException, SQLException
+  {
+    return client.getAllExtras();
+  }
+
   @Override public void setComment(String comment)
   {
 
@@ -176,6 +178,7 @@ public class ModelManager implements Model
   {
 
   }
+
 
   @Override public ArrayList<String> getAllTypes()
   {

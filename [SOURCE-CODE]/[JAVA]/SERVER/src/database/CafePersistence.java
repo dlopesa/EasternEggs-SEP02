@@ -1,5 +1,6 @@
 package database;
 
+import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -18,4 +19,5 @@ public interface CafePersistence
   public void addItemToProductList(Item item);
   public ArrayList<Order> getOrdersByStatus(String status);
   public void removeItemFromProductList(Item item) throws SQLException;
+  public ArrayList<Extra> getAllExtrasByType(String type) throws SQLException;
 }

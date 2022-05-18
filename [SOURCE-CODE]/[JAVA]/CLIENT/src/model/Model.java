@@ -1,9 +1,6 @@
 package model;
 
-import utility.Extra;
-import utility.Item;
-import utility.ItemList;
-import utility.Order;
+import utility.*;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
@@ -34,5 +31,6 @@ public interface Model extends PropertyChangeListener,
   void acceptOrder(Order order);
   void editOrderComment(Order order);
   void cancelUnpaidOrder(Order order);
+  ExtraList getAllExistingExtras() throws RemoteException, SQLException;
   ArrayList<String> getAllTypes();
 }
