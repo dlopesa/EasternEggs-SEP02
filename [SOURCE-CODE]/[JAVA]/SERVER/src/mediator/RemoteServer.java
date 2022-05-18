@@ -4,6 +4,7 @@ import database.CafeDatabase;
 import database.CafePersistence;
 import database.ConcreteOrderDAO;
 import database.OrderDAO;
+import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -99,5 +100,11 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException, SQLException
   {
     cafePersistence.removeItemFromProductList(item);
+  }
+
+  @Override public ArrayList<Extra> getAllExtrasByType(String type)
+      throws RemoteException, SQLException
+  {
+    return cafePersistence.getAllExtrasByType(type);
   }
 }

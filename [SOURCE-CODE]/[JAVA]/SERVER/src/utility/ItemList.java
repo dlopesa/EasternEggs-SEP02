@@ -17,7 +17,7 @@ public class ItemList implements Serializable
   }
 
   public void add(Item item) {
-    items.add(item.copy());
+    items.add(item);
   }
 
   public void remove(Item item) {
