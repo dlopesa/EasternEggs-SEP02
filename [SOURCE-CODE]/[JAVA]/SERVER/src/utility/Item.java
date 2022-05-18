@@ -18,8 +18,7 @@ public class Item implements Serializable
     return extras;
   }
 
-  public Item(int id, String name, String type, double price,
-      String description)
+  public Item(int id, String name, String type, double price, String description)
   {
     this.id = id;
     this.name = name;
@@ -29,8 +28,7 @@ public class Item implements Serializable
     this.extras = new ArrayList<>();
   }
 
-  public Item(String name, String type, double price,
-      String description)
+  public Item(String name, String type, double price, String description)
   {
     this.id = -1;
     this.name = name;
@@ -50,6 +48,8 @@ public class Item implements Serializable
     this.extras = new ArrayList<>();
   }
 
+
+
   public int getId()
   {
     return id;
@@ -59,8 +59,6 @@ public class Item implements Serializable
   {
     this.id = id;
   }
-
-
 
   public void addExtra(Extra extra)
   {
@@ -114,9 +112,8 @@ public class Item implements Serializable
 
   @Override public String toString()
   {
-    return "Item{" + "id=" + id + ", name='" + name + '\'' + ", type='" + type
-        + '\'' + ", price=" + price + ", description='" + description + '\''
-        + ", extras=" + extras + '}';
+    return "Item{" + "id=" + id + ", name='" + name + '\'' + ", type='" + type + '\'' + ", price="
+        + price + ", description='" + description + '\'' + ", extras=" + extras + '}';
   }
 
   @Override public boolean equals(Object o)
@@ -126,9 +123,9 @@ public class Item implements Serializable
     if (o == null || getClass() != o.getClass())
       return false;
     Item item = (Item) o;
-    return id == item.id && Double.compare(item.price, price) == 0
-        && Objects.equals(name, item.name) && Objects.equals(type, item.type)
-        && Objects.equals(description, item.description);
+    return id == item.id && Double.compare(item.price, price) == 0 && Objects.equals(name,
+        item.name) && Objects.equals(type, item.type) && Objects.equals(description,
+        item.description);
   }
 
   @Override public int hashCode()
@@ -136,8 +133,4 @@ public class Item implements Serializable
     return Objects.hash(id, name, type, price, description, extras);
   }
 
-  public Item copy()
-  {
-    return new Item(id, name, type, price, description);
-  }
 }

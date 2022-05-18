@@ -54,6 +54,8 @@ public class ModelManager implements Model
   {
     try
     {
+      System.out.println(order.getItemList() +"THIS IS TJHE ITEM LISSET");
+      System.out.println(order);
       System.out.println("I am submitting the order");
       client.receiveOrder(order);
       System.out.println("I have submitted the order");
@@ -69,12 +71,13 @@ public class ModelManager implements Model
 
   @Override public void addExtraToItem(Extra extra, Item item)
   {
-
+    item.addExtra(extra);
+    System.out.println("Model maanaad a: " + item);
   }
 
   @Override public void removeExtraFromItem(Extra extra, Item item)
   {
-
+    item.removeExtra(extra);
   }
 
   @Override public void removeItemFromOrder(Item item)
@@ -180,6 +183,20 @@ public class ModelManager implements Model
   @Override public ArrayList<String> getAllTypes()
   {
     return types;
+  }
+
+  @Override public ArrayList<Extra> getAllExtrasByType(String type)
+  {
+
+    try
+    {
+      return client.getAllExtrasByType(type);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

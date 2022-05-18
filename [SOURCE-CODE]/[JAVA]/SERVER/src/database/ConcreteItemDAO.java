@@ -35,9 +35,10 @@ public class ConcreteItemDAO implements ItemDAO
   {
     return DriverManager.getConnection(
         "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
-        "postgres", "123456");
+        "postgres", "robertbarta");
     //Kamil's password 1234
     //Laura's password 123456
+    //Robert's password robertbarta
   }
 
   @Override public void createItem(Item item) throws SQLException

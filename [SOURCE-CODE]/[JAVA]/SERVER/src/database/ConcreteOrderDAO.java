@@ -62,18 +62,27 @@ public class ConcreteOrderDAO implements OrderDAO
       {
         int itemId = item.getId();
         ArrayList<Extra> extras = item.getExtras();
-        PreparedStatement itemInOrderStatement = connection.prepareStatement("INSERT INTO iteminorder(order_id, item_id) VALUES (?,?)");
+        PreparedStatement itemInOrderStatement = connection.prepareStatement(
+            "INSERT INTO iteminorder(order_id, item_id) VALUES (?,?)");
         itemInOrderStatement.setInt(1, orderId);
         itemInOrderStatement.setInt(2, itemId);
         itemInOrderStatement.executeUpdate();
+        ResultSet itemInOrderPK = itemInOrderStatement.getGeneratedKeys();
+        int iteminorderID =0;
+        if (itemInOrderPK.next())
+        {
+          System.out.println(itemInOrderPK.getInt(1));
+          iteminorderID = itemInOrderPK.getInt(1);
+        }
         for (Extra extra : extras)
         {
           System.out.println("entered statement.");
           PreparedStatement extrainiteminorderStatement = connection.prepareStatement(
-              "INSERT INTO extrainiteminorder(extra_id, item_id, order_id) VALUES (?,?,?)");
+              "INSERT INTO extrainiteminorder(extra_id,item_in_order_id, item_id, order_id) VALUES (?,?,?,?)");
           extrainiteminorderStatement.setString(1, extra.getName());
-          extrainiteminorderStatement.setInt(2, itemId);
-          extrainiteminorderStatement.setInt(3, orderId);
+          extrainiteminorderStatement.setInt(2, iteminorderID);
+          extrainiteminorderStatement.setInt(3, itemId);
+          extrainiteminorderStatement.setInt(4, orderId);
           extrainiteminorderStatement.executeUpdate();
         }
       }
@@ -83,7 +92,7 @@ public class ConcreteOrderDAO implements OrderDAO
 
   private Connection getConnection() throws SQLException
   {
-    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "robertbarta");
   }
 
   @Override public Order readById(int id) throws SQLException

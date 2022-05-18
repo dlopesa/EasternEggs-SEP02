@@ -1,8 +1,12 @@
 package database;
 
+import utility.Extra;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface ExtraDAO
 {
-  public void getExtrasByType(String type) throws SQLException;
+  ArrayList<Extra> getExtrasByType(String type) throws SQLException;
+
 }

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import model.Model;
 import property.ExtraProperty;
 import property.ItemProperty;
+import utility.Item;
 
 import java.util.ArrayList;
 
@@ -15,17 +16,20 @@ public class ExtraViewModel
   private Model model;
 
   private ItemProperty currentItem;
-  private ArrayList<ExtraProperty> extras;
+  private ObservableList<ExtraProperty> availableExtras;
+  private ObservableList<ExtraProperty> addedExtras;
 
   public ExtraViewModel(Model model)
   {
     this.model = model;
-    extras = new ArrayList<>();
+    availableExtras = FXCollections.observableArrayList();
+    addedExtras = FXCollections.observableArrayList();
+
   }
 
   public void reset()
   {
-    // TODO: 18/05/2022  
+    setList(availableExtras, currentItem.typeProperty().get());
   }
 
   public void setItem(ItemProperty item)
@@ -43,17 +47,46 @@ public class ExtraViewModel
     return currentItem.typeProperty();
   }
 
-  public ObservableList<ExtraProperty> getExtrasByType(String type)
+  public void setList(ObservableList<ExtraProperty> extraList, String type)
   {
+    extraList.clear();
 
-    ObservableList<ExtraProperty> extrasTypeList = FXCollections.observableArrayList();
-    for (int i = 0; i < extras.size(); i++)
+    for (int i = 0; i < model.getAllExtrasByType(type).size(); i++)
     {
-      if (type.equals(extras.get(i).typeProperty().get()))
+      extraList.add(new ExtraProperty(model.getAllExtrasByType(type).get(i)));
+    }
+  }
+
+  public ObservableList<ExtraProperty> getAvailableExtras()
+  {
+    return availableExtras;
+  }
+
+  public ObservableList<ExtraProperty> getAddedExtras()
+  {
+    return addedExtras;
+  }
+
+  public void addExtraToItem(ExtraProperty extra)
+  {
+    addedExtras.add(extra);
+  }
+
+  public void removeExtraFromItem(ExtraProperty extra)
+  {
+    addedExtras.remove(extra);
+  }
+
+  public void addItemToOrder()
+  {
+    if (addedExtras.size() > 0)
+    {
+      for (int i = 0; i < addedExtras.size(); i++)
       {
-        extrasTypeList.add(extras.get(i));
+        model.addExtraToItem(addedExtras.get(i).getExtra(), currentItem.getItem());
       }
     }
-    return extrasTypeList;
+    System.out.println(currentItem.getItem());
+    model.addItemToOrder(currentItem.getItem());
   }
 }

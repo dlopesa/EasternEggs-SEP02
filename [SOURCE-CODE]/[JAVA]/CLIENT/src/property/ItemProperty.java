@@ -1,7 +1,10 @@
 package property;
 
 import javafx.beans.property.*;
+import utility.Extra;
 import utility.Item;
+
+import java.util.ArrayList;
 
 public class ItemProperty
 {
@@ -10,9 +13,11 @@ public class ItemProperty
   private StringProperty type;
   private DoubleProperty price;
   private StringProperty description;
+  private Item item;
 
   public ItemProperty(Item item)
   {
+    this.item=item;
     id = new SimpleIntegerProperty(item.getId());
     name = new SimpleStringProperty(item.getName());
     type = new SimpleStringProperty(item.getType());
@@ -20,14 +25,16 @@ public class ItemProperty
     description = new SimpleStringProperty(item.getDescription());
   }
 
-  public ItemProperty(IntegerProperty id, StringProperty name,
-      StringProperty type, DoubleProperty price, StringProperty description)
+  public ItemProperty(IntegerProperty id, StringProperty name, StringProperty type,
+      DoubleProperty price, StringProperty description)
   {
     this.id = id;
     this.name = name;
     this.type = type;
     this.price = price;
     this.description = description;
+    this.item=new Item(id.get(), name.get(), type.get(), price.get(),
+        description.get());
   }
 
   public IntegerProperty idProperty()
@@ -57,8 +64,7 @@ public class ItemProperty
 
   public Item getItem()
   {
-    return new Item(id.get(), name.get(), type.get(), price.get(),
-        description.get());
+    return item;
   }
 
 }
