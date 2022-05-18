@@ -59,19 +59,14 @@ ALTER TABLE extrasAvailableForItem
 
 CREATE TABLE accessKey
 (
-    accessKey varchar(50) PRIMARY KEY
+    accessKey varchar(50) PRIMARY KEY,
+    permission char NOT NULL
 );
-
-CREATE TABLE permissionForKey
-(
-    accessKey  varchar(50) REFERENCES accessKey (accessKey),
-    permission varchar(50) NOT NULL
-);
-
-
 
 
 --- dummy inserts
+
+INSERT INTO accessKey (accessKey, permission) VALUES ('123','B');
 
 INSERT INTO item (name, type, price, description) VALUES ('Coffee', 'coffee',20, ':)' );
 
