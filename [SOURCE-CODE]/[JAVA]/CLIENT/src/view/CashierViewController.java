@@ -64,7 +64,6 @@ public class CashierViewController extends ViewController
         break;
 
     }
-
   }
 
   @FXML private void markAsPaidPressed() {

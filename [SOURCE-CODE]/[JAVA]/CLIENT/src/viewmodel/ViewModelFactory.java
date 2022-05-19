@@ -35,7 +35,6 @@ public class ViewModelFactory
     this.cashierHandler = new CashierHandler();
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
     this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);
-
   }
 
   public CustomerViewModel getCustomerViewModel()
