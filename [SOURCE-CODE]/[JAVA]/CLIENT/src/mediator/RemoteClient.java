@@ -18,16 +18,17 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RemoteClient implements RemoteListener<String, String>,
-    UnnamedPropertyChangeSubject
+public class RemoteClient
+    implements RemoteListener<String, String>, UnnamedPropertyChangeSubject
 {
   private RemoteCafeServer server;
   private PropertyChangeSupport property;
 
-  public RemoteClient() throws MalformedURLException, NotBoundException, RemoteException
+  public RemoteClient()
+      throws MalformedURLException, NotBoundException, RemoteException
   {
     server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1099/Cafe");
-    UnicastRemoteObject.exportObject(this,0);
+    UnicastRemoteObject.exportObject(this, 0);
     server.addListener(this);
     property = new PropertyChangeSupport(this);
   }
@@ -37,7 +38,7 @@ public class RemoteClient implements RemoteListener<String, String>,
     return server.getAllItems();
   }
 
-  @Override public ItemList getItemsByType(String type)
+  public ItemList getItemsByType(String type)
       throws RemoteException, SQLException
   {
     return server.getItemsByType(type);
@@ -53,15 +54,15 @@ public class RemoteClient implements RemoteListener<String, String>,
     server.completeOrder(order);
   }
 
-  @Override public void cancelOrder(Order order) throws RemoteException
+  public void cancelOrder(Order order) throws RemoteException
   {
     server.cancelOrder(order);
   }
 
-  @Override public void editCommentInOrder(Order order, String comment)
+  public void editCommentInOrder(Order order, String comment)
       throws RemoteException
   {
-    server.editCommentInOrder(order,comment);
+    server.editCommentInOrder(order, comment);
   }
 
   public void receiveUnpaidOrder(Order order) throws RemoteException
@@ -79,17 +80,16 @@ public class RemoteClient implements RemoteListener<String, String>,
     server.addItemToProductList(item);
   }
 
-  @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
+  public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return server.getAllPendingOrders();
   }
 
-  @Override public ArrayList<Order> getAllUnpaidOrders() throws RemoteException
+  public ArrayList<Order> getAllUnpaidOrders() throws RemoteException
   {
     return server.getAllUnpaidOrders();
   }
 
-  public void removeItemFromProductList(Item item) throws RemoteException
   public ArrayList<Order> getAllCompletedOrders() throws RemoteException
   {
     return server.getAllCompletedOrders();
@@ -103,7 +103,9 @@ public class RemoteClient implements RemoteListener<String, String>,
 
   public ArrayList<Extra> getAllExtrasByType(String type) throws RemoteException
   {
-   return server.getAllExtrasByType(type);
+    return server.getAllExtrasByType(type);
+  }
+
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);

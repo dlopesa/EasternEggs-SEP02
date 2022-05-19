@@ -23,7 +23,8 @@ public class ModelManager implements Model
   private ArrayList<String> types;
   private PropertyChangeSupport property;
 
-  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager()
+      throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
     client.addListener(this);
@@ -91,7 +92,8 @@ public class ModelManager implements Model
     return order;
   }
 
-  @Override public ItemList getAllExistingItems() throws RemoteException, SQLException
+  @Override public ItemList getAllExistingItems()
+      throws RemoteException, SQLException
   {
     return client.getAllItems();
   }
@@ -107,6 +109,7 @@ public class ModelManager implements Model
     order.addListener(this);
     property.firePropertyChange("cancel", order.getPrice(), null);
   }
+
   @Override public void payForOrder(boolean isCash)
   {
 
@@ -167,7 +170,7 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
     return new ArrayList<>();
-
+  }
 
   public ArrayList<Order> getAllCompletedOrders()
   {
@@ -203,7 +206,7 @@ public class ModelManager implements Model
   {
     try
     {
-      client.editCommentInOrder(order,comment);
+      client.editCommentInOrder(order, comment);
     }
     catch (RemoteException e)
     {
@@ -244,7 +247,8 @@ public class ModelManager implements Model
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
+    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
+        evt.getNewValue());
   }
 
   @Override public void addListener(PropertyChangeListener listener)

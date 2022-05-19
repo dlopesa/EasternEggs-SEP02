@@ -37,7 +37,8 @@ public class ViewModelFactory
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
     this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);
     this.extraViewModel = new ExtraViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel, extraViewModel);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel,
+        extraViewModel);
     this.displayViewModel = new DisplayViewModel(model);
   }
 
@@ -109,6 +110,8 @@ public class ViewModelFactory
   public ExtraViewModel getExtraViewModel()
   {
     return extraViewModel;
+  }
+
   public DisplayViewModel getDisplayViewModel()
   {
     return displayViewModel;

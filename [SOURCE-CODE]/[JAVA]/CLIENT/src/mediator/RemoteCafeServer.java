@@ -28,7 +28,6 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
   void removeItemFromProductList(Item item) throws RemoteException;
   ArrayList<Extra> getAllExtrasByType(String type) throws RemoteException;
   ArrayList<Order> getAllCompletedOrders() throws RemoteException;
-  void removeItemFromProductList(Item item) throws RemoteException, SQLException;
   boolean addListener(GeneralListener<String, String> listener,
       String... propertyNames) throws RemoteException;
   boolean removeListener(GeneralListener<String, String> listener,

@@ -25,11 +25,11 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
   void addItemToProductList(Item item) throws RemoteException;
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
   ArrayList<Order> getAllUnpaidOrders() throws RemoteException;
-  void removeItemFromProductList(Item item) throws RemoteException,
-      SQLException;
-  ArrayList<Extra> getAllExtrasByType(String type) throws RemoteException, SQLException;
+  void removeItemFromProductList(Item item)
+      throws RemoteException, SQLException;
+  ArrayList<Extra> getAllExtrasByType(String type)
+      throws RemoteException, SQLException;
   ArrayList<Order> getAllCompletedOrders() throws RemoteException;
-  void removeItemFromProductList(Item item) throws RemoteException, SQLException;
   boolean addListener(GeneralListener<String, String> listener,
       String... propertyNames) throws RemoteException;
   boolean removeListener(GeneralListener<String, String> listener,

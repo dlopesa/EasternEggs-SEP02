@@ -68,8 +68,9 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public int receiveOrder(Order order) throws RemoteException
   {
-    cafePersistence.receiveOrder(order);
+    int id = cafePersistence.receiveOrder(order);
     property.firePropertyChange("pending", null, null);
+    return id;
   }
 
   @Override public void completeOrder(Order order) throws RemoteException
@@ -128,6 +129,7 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException, SQLException
   {
     return cafePersistence.getAllExtrasByType(type);
+  }
   @Override public boolean addListener(GeneralListener<String, String> listener,
       String... propertyNames) throws RemoteException
   {
