@@ -87,5 +87,7 @@ public class ExtraViewModel
     }
     System.out.println(currentItem.getItem());
     model.addItemToOrder(currentItem.getItem());
+    addedExtras.clear();
+    availableExtras.clear();
   }
 }

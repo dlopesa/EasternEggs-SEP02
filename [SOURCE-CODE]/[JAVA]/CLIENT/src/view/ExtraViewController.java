@@ -41,7 +41,6 @@ public class ExtraViewController extends ViewController
     addedExtrasColumn.setCellValueFactory(
         new PropertyValueFactory<ExtraProperty, StringProperty>("name"));
     addedExtras.setItems(extraViewModel.getAddedExtras());
-
   }
 
   @FXML private void onDone()
