@@ -1,5 +1,6 @@
 package mediator;
 
+import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -23,4 +24,5 @@ public interface RemoteCafeServer extends Remote
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
   ArrayList<Order> getAllUnpaidOrders() throws RemoteException;
   void removeItemFromProductList(Item item) throws RemoteException;
+  ArrayList<Extra> getAllExtrasByType(String type) throws RemoteException;
 }

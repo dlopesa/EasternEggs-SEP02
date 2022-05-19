@@ -1,5 +1,6 @@
 package mediator;
 
+import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -82,5 +83,10 @@ public class RemoteClient implements RemoteCafeServer
   public void removeItemFromProductList(Item item) throws RemoteException
   {
     server.removeItemFromProductList(item);
+  }
+
+  public ArrayList<Extra> getAllExtrasByType(String type) throws RemoteException
+  {
+   return server.getAllExtrasByType(type);
   }
 }

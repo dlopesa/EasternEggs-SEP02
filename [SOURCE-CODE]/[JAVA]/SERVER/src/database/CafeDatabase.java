@@ -1,5 +1,6 @@
 package database;
 
+import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -13,6 +14,7 @@ public class CafeDatabase implements CafePersistence
   private static Object lock = new Object();
   private OrderDAO orderDAO;
   private ItemDAO itemDAO;
+  private ExtraDAO extraDAO;
 
   private CafeDatabase()
   {
@@ -20,6 +22,7 @@ public class CafeDatabase implements CafePersistence
     {
       orderDAO = ConcreteOrderDAO.getInstance();
       itemDAO = ConcreteItemDAO.getInstance();
+      extraDAO= ConcreteExtraDAO.getInstance();
     }
     catch (SQLException e)
     {
@@ -145,4 +148,9 @@ public class CafeDatabase implements CafePersistence
     SQLException {
     itemDAO.deleteItem(item);
   }
+
+  @Override public ArrayList<Extra> getAllExtrasByType(String type) throws SQLException
+  {
+    return extraDAO.getExtrasByType(type);
   }
+}

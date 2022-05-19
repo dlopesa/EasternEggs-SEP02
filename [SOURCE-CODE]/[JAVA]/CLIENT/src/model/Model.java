@@ -36,4 +36,5 @@ public interface Model extends PropertyChangeListener,
   void editOrderComment(Order order, String comment);
   void cancelUnpaidOrder(Order order);
   ArrayList<String> getAllTypes();
+  ArrayList<Extra> getAllExtrasByType(String type);
 }

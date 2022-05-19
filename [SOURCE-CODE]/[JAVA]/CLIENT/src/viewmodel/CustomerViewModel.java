@@ -14,10 +14,12 @@ public class CustomerViewModel
   private StringProperty error;
   private ArrayList<ItemProperty> items;
   private DescriptionViewModel descriptionViewModel;
+  private ExtraViewModel extraViewModel;
 
-  public CustomerViewModel(Model model, DescriptionViewModel descriptionViewModel)
+  public CustomerViewModel(Model model, DescriptionViewModel descriptionViewModel, ExtraViewModel extraViewModel)
   {
     this.model = model;
+    this.extraViewModel=extraViewModel;
     this.descriptionViewModel=descriptionViewModel;
     error = new SimpleStringProperty("");
     items = new ArrayList<>();
@@ -75,5 +77,8 @@ public class CustomerViewModel
     descriptionViewModel.setItemProperty(item);
   }
 
-
+  public void setItemForExtras(ItemProperty item)
+  {
+    extraViewModel.setItem(item);
+  }
 }

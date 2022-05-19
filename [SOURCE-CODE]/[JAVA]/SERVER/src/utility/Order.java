@@ -5,12 +5,11 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Order implements Serializable, UnnamedPropertyChangeSubject
 {
   private int id; // NEW INSTANCE VARIABLE. ONLY USEFUL FOR WHEN THE ORDER COMES
-  // FROM THE DATABASE.
+                  // FROM THE DATABASE.
   private ItemList itemList;
   private String comment;
   private DateTime dateTime;
@@ -35,7 +34,7 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
 
   public Order(int id, ItemList itemList, String comment, DateTime dateTime,
       double price, String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
-  // FROM THE DATABASE.
+                                    // FROM THE DATABASE.
   {
     property = new PropertyChangeSupport(this);
     this.id = id;
@@ -123,7 +122,7 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   }
 
   @Override public boolean equals(Object o) //EQUALS METHOD DOES NOT COMPARE IDS
-  // INTENTIONALLY. I GUESS.
+                                            // INTENTIONALLY. I GUESS.
   {
     if (!(o instanceof Order)) {
       return false;

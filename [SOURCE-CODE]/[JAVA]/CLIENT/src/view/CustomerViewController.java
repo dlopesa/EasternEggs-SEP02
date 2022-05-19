@@ -6,13 +6,12 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ItemProperty;
 import viewmodel.CustomerViewModel;
+
+import java.util.Optional;
 
 public class CustomerViewController extends ViewController
 {
@@ -88,10 +87,33 @@ public class CustomerViewController extends ViewController
     return item;
   }
 
+  private boolean confirmation(String name)
+  {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Addition of extras");
+    alert.setHeaderText("Would you like to add any extras to your "+name+" ?");
+    Optional<ButtonType> result = alert.showAndWait();
+
+    return (result.isPresent()) && (result.get() == ButtonType.OK);
+  }
+
   @FXML private void addToOrderButton()
   {
+
     ItemProperty item = getItemProperty();
-    customerViewModel.addToOrder(item);
+    if (confirmation(item.getItem().getName()))
+    {
+      customerViewModel.setItemForExtras(item);
+      getViewHandler().openView("ExtraView.fxml");
+    }
+    else
+    {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Adding item...");
+      alert.setHeaderText(item.getItem().getName() + " is added to your order.");
+      alert.show();
+      customerViewModel.addToOrder(item);
+    }
   }
 
   @FXML private void descriptionButton()
