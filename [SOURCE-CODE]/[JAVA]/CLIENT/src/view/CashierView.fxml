@@ -13,7 +13,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CashierViewController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="403.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="403.0" prefWidth="600.0" stylesheets="@myStyle.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Unpaid">
                <content>

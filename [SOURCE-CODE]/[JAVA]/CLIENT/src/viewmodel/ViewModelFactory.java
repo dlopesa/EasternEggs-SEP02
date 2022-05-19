@@ -32,7 +32,6 @@ public class ViewModelFactory
     this.orderDetailViewModel = new OrderDetailViewModel(model, baristaHandler);
     this.checkoutViewModel = new CheckoutViewModel(model);
     this.descriptionViewModel = new DescriptionViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
     this.cashierHandler = new CashierHandler();
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
     this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);

@@ -58,7 +58,7 @@ public class ModelManager implements Model
     {
       tempId = client.receiveOrder(order);
 
-      cancelOrder();
+      quitAndCancelOrder();
 
     }
 
