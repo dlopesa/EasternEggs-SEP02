@@ -62,13 +62,13 @@ public class RemoteServer implements RemoteCafeServer
     return null;
   }
 
-  @Override public void receiveOrder(Order order) throws RemoteException
+  @Override public int receiveOrder(Order order) throws RemoteException
   {
-    cafePersistence.receiveOrder(order);
+    System.out.println(order);
+    return cafePersistence.receiveOrder(order);
     //Shouldn't we call the CafePersistence instead?
     //CafeDatabase get instance method is not used
 
-    System.out.println(order);
   }
 
   @Override public void completeOrder(Order order) throws RemoteException

@@ -31,13 +31,14 @@ public class ConcreteOrderDAO implements OrderDAO
     return instance;
   }
 
-  @Override public void create(Order order) throws SQLException
+  @Override public int create(Order order) throws SQLException
   {
     String comment = order.getComment();
     LocalDateTime dateTime = order.getDateTime().getLocalDateTime();
     double price = order.getPrice();
     String status = order.getStatus();
     ArrayList<Item> items = order.getItemList().getAllItems();
+    int id = 5555;
 
     try (Connection connection = getConnection())
     {
@@ -54,6 +55,7 @@ public class ConcreteOrderDAO implements OrderDAO
       if (keys.next())
       {
         orderId = keys.getInt(1);
+        id = orderId;
       }
       else
       {
@@ -90,13 +92,13 @@ public class ConcreteOrderDAO implements OrderDAO
       }
 
     }
+    return id;
   }
 
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
-        "postgres", "1234");
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
   }
 
   @Override public Order readById(int id) throws SQLException
@@ -228,8 +230,7 @@ public class ConcreteOrderDAO implements OrderDAO
     }
   }
 
-  @Override public ArrayList<Order> getOrdersByStatus(String status)
-      throws SQLException
+  @Override public ArrayList<Order> getOrdersByStatus(String status) throws SQLException
   {
     ArrayList<Order> returnOrders = new ArrayList<>();
     ArrayList<Integer> returnOrdersIds = new ArrayList<>();

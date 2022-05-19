@@ -34,9 +34,9 @@ public class RemoteClient implements RemoteCafeServer
     return server.getItemsByType(type);
   }
 
-  public void receiveOrder(Order order) throws RemoteException
+  public int receiveOrder(Order order) throws RemoteException
   {
-    server.receiveOrder(order);
+    return server.receiveOrder(order);
   }
 
   public void completeOrder(Order order) throws RemoteException

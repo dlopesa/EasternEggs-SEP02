@@ -23,8 +23,7 @@ public class ModelManager implements Model
   private ArrayList<String> types;
   private PropertyChangeSupport property;
 
-  public ModelManager()
-      throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
     types = new ArrayList<>();
@@ -52,23 +51,22 @@ public class ModelManager implements Model
     order.addItem(item);
   }
 
-  @Override public void submitOrder() throws NullPointerException
+  @Override public int submitOrder() throws NullPointerException
   {
+    int tempId = -20;
     try
     {
-      System.out.println(order.getItemList() +"THIS IS TJHE ITEM LISSET");
-      System.out.println(order);
-      System.out.println("I am submitting the order");
-      client.receiveOrder(order);
-      System.out.println("I have submitted the order");
-      quitAndCancelOrder();
-      System.out.println("I have cleared the order");
+      tempId = client.receiveOrder(order);
+
+      cancelOrder();
+
     }
 
     catch (RemoteException e)
     {
       e.printStackTrace();
     }
+    return tempId;
   }
 
   @Override public void addExtraToItem(Extra extra, Item item)
@@ -92,8 +90,7 @@ public class ModelManager implements Model
     return order;
   }
 
-  @Override public ItemList getAllExistingItems() throws RemoteException,
-      SQLException
+  @Override public ItemList getAllExistingItems() throws RemoteException, SQLException
   {
     return client.getAllItems();
   }
@@ -234,8 +231,7 @@ public class ModelManager implements Model
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
-        evt.getNewValue());
+    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
   }
 
   @Override public void addListener(PropertyChangeListener listener)

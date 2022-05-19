@@ -3,16 +3,15 @@ package view;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.*;
 import property.ItemProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import viewmodel.CheckoutViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Optional;
 
 public class CheckoutViewController extends ViewController
 {
@@ -46,6 +45,22 @@ public class CheckoutViewController extends ViewController
     itemTable.setItems(checkoutViewModel.getItemsInOrder());
   }
 
+  private void orderNumberMessageNonCash(int id)
+  {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Order "+id);
+      alert.setHeaderText("Your order is being prepared: Order Number #"+ id);
+      alert.showAndWait();
+  }
+
+  private void orderNumberMessageCash(int id)
+  {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Order #"+id);
+    alert.setHeaderText("Please go to the cashier to pay for your order: Order Number #"+ id);
+    Optional<ButtonType> result = alert.showAndWait();
+  }
+
   @FXML private void removeFromOrderButton()
   {
     ItemProperty item = (ItemProperty) itemTable.getSelectionModel()
@@ -55,9 +70,10 @@ public class CheckoutViewController extends ViewController
 
   @FXML private void payButton()
   {
-    checkoutViewModel.submit();
+    orderNumberMessageNonCash(checkoutViewModel.submit());
     getViewHandler().openView("StartView.fxml");
     //getViewHandler().openView(pay);
+
   }
 
   @FXML private void backButton()

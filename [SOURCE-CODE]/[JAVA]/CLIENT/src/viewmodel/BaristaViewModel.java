@@ -23,7 +23,7 @@ public class BaristaViewModel
   public void reset()
   {
     this.orders = FXCollections.observableArrayList();
-    if(model.getAllPendingOrders()!=null)
+    if (model.getAllPendingOrders() != null)
     {
       for (Order order : model.getAllPendingOrders())
       {
@@ -31,7 +31,6 @@ public class BaristaViewModel
       }
     }
   }
-
   public ObservableList<OrderProperty> getOrders()
   {
     return orders;

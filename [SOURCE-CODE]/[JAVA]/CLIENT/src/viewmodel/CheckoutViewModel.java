@@ -68,10 +68,11 @@ public class CheckoutViewModel
     model.quitAndCancelOrder();
   }
 
-  public void submit()
+  public int submit()
   {
-    model.submitOrder();
+    return model.submitOrder();
   }
+
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
