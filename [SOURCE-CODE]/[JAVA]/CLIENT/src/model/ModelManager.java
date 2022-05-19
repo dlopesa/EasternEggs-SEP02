@@ -5,6 +5,8 @@ import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.*;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -21,6 +23,7 @@ public class ModelManager implements Model
   private RemoteClient client;
   private Order order;
   private ArrayList<String> types;
+  private ArrayList<String> permissions;
   private PropertyChangeSupport property;
 
   public ModelManager()
@@ -33,6 +36,11 @@ public class ModelManager implements Model
     types.add("tea");
     types.add("snack");
     types.add("smoothie");
+    permissions = new ArrayList<>();
+    permissions.add("Barista");
+    permissions.add("Cashier");
+    permissions.add("Display");
+    permissions.add("Admin");
     order = new Order(false);
     property = new PropertyChangeSupport(this);
     order.addListener(this);
@@ -43,9 +51,25 @@ public class ModelManager implements Model
 
   }
 
-  @Override public String getUserType()
+  @Override public String getUserType(String pwd)
+
   {
-    return null;
+    System.out.println("Model|From View: " + pwd);
+    String ak = null;
+    try
+    {
+      ak = client.getUserType(pwd);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    System.out.println("Model|From Client: " + ak);
+    return ak;
   }
 
   @Override public void addItemToOrder(Item item)
@@ -82,6 +106,8 @@ public class ModelManager implements Model
     item.removeExtra(extra);
   }
 
+
+
   @Override public void removeItemFromOrder(Item item)
   {
     order.removeItem(item);
@@ -97,6 +123,20 @@ public class ModelManager implements Model
   {
     return client.getAllItems();
   }
+
+  @Override public ArrayList<AccessKey> getAllAccessKey()
+  {
+    try
+    {
+      return client.getAllAccessKey();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
 
   @Override public void setComment(String comment)
   {
@@ -132,6 +172,12 @@ public class ModelManager implements Model
     }
   }
 
+  @Override public void addAccessKey(AccessKey accessKey) throws SQLException
+  {
+    client.addAccessKey(accessKey);
+  }
+
+
   @Override public void removeItemFromProductList(Item item)
   {
     try
@@ -144,6 +190,21 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
   }
+
+  @Override public void removeAccessKey(AccessKey accessKey)
+  {
+    try
+    {
+      client.removeAccessKey(accessKey);
+
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+
 
   @Override public ArrayList<Order> getAllPendingOrders()
   {
@@ -243,6 +304,9 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
     return null;
+  @Override public ArrayList<String> getAllPermissions()
+  {
+    return permissions;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

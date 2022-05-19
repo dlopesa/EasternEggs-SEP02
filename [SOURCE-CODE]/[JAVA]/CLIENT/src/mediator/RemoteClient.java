@@ -1,6 +1,7 @@
 package mediator;
 
 import utility.Extra;
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -40,6 +41,13 @@ public class RemoteClient
 
   public ItemList getItemsByType(String type)
       throws RemoteException, SQLException
+  public ArrayList<AccessKey> getAllAccessKey()
+      throws RemoteException, SQLException
+  {
+    return server.getAllAccessKey();
+  }
+
+  public void receiveOrder(Order order) throws RemoteException
   {
     return server.getItemsByType(type);
   }
@@ -78,6 +86,11 @@ public class RemoteClient
   public void addItemToProductList(Item item) throws RemoteException
   {
     server.addItemToProductList(item);
+  }
+
+  public void addAccessKey(AccessKey accessKey)
+  {
+    server.addAccessKey(accessKey);
   }
 
   public ArrayList<Order> getAllPendingOrders() throws RemoteException
@@ -121,4 +134,18 @@ public class RemoteClient
   {
     property.firePropertyChange("change", event.getValue1(), event.getValue2());
   }
+  public void removeAccessKey(AccessKey accessKey) throws RemoteException
+  {
+    server.removeAccessKey(accessKey);
+  }
+
+  public String getUserType(String pwd) throws RemoteException, SQLException
+  {
+    System.out.println("Client|From Client: " + pwd);
+    String ak = server.getUserType(pwd);
+    System.out.println("Client|From Server: " + ak);
+    return ak;
+  }
+
+
 }

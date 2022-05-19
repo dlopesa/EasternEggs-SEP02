@@ -1,14 +1,19 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import viewmodel.LoginViewModel;
+
+import java.rmi.RemoteException;
+import java.util.concurrent.TimeUnit;
 
 public class LoginViewController extends ViewController
 {
 
   @FXML private PasswordField passwordField;
+  @FXML private Label errorLabel;
   private LoginViewModel loginViewModel;
 
   @Override protected void init()
@@ -21,22 +26,33 @@ public class LoginViewController extends ViewController
 
   @FXML private void onEnter()
   {
-    getViewHandler().openView("DatabaseView.fxml");
+    String pwd = loginViewModel.getUserType();
+    System.out.println("ViewController: " + pwd);
+    if (pwd.equals("Barista"))
+    {
+      getViewHandler().openView("BaristaView.fxml");
+    }
+    else if (pwd.equals("Admin"))
+    {
+      getViewHandler().openView("DatabaseView.fxml");
+    }
+    else if (pwd.equals("Cashier"))
+    {
+      getViewHandler().openView("DatabaseView.fxml");
+    }
+    else if (pwd.equals("Display"))
+    {
+      getViewHandler().openView("DisplayView.fxml");
+    }
+    else
+    {
+      errorLabel.setVisible(true);
+      System.out.println("");
+    }
   }
-
   @FXML private void back()
   {
     getViewHandler().openView("StartView.fxml");
-  }
-
-  @FXML private void barista()
-  {
-    getViewHandler().openView("BaristaView.fxml");
-  }
-
-  @FXML private void display()
-  {
-    getViewHandler().openView("DisplayView.fxml");
   }
 
 }

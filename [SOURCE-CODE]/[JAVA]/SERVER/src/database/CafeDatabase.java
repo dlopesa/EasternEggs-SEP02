@@ -1,6 +1,7 @@
 package database;
 
 import utility.Extra;
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -15,6 +16,7 @@ public class CafeDatabase implements CafePersistence
   private OrderDAO orderDAO;
   private ItemDAO itemDAO;
   private ExtraDAO extraDAO;
+  private LoginDAO loginDAO;
 
   private CafeDatabase()
   {
@@ -23,6 +25,7 @@ public class CafeDatabase implements CafePersistence
       orderDAO = ConcreteOrderDAO.getInstance();
       itemDAO = ConcreteItemDAO.getInstance();
       extraDAO= ConcreteExtraDAO.getInstance();
+      loginDAO = ConcreteLoginDAO.getInstance();
     }
     catch (SQLException e)
     {
@@ -54,7 +57,18 @@ public class CafeDatabase implements CafePersistence
 
   @Override public ItemList getItemsByType(String type)
   {
-    //TODO item dao here. a new method in the dao needs to be made
+    return itemDAO.getItemsByType(type);
+  }
+  @Override public ArrayList<AccessKey> getAllAccessKey() throws SQLException
+  {
+    try
+    {
+      return loginDAO.getAllAccessKey();
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
     return null;
   }
 
@@ -130,6 +144,17 @@ public class CafeDatabase implements CafePersistence
       e.printStackTrace();
     }
   }
+  @Override public void addAccessKey(AccessKey accessKey)
+  {
+    try
+    {
+      loginDAO.addAccessKey(accessKey);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   @Override public ArrayList<Order> getOrdersByStatus(String status)
   {
@@ -153,5 +178,18 @@ public class CafeDatabase implements CafePersistence
   @Override public ArrayList<Extra> getAllExtrasByType(String type) throws SQLException
   {
     return extraDAO.getExtrasByType(type);
+  }
+  @Override public void removeAccessKey(AccessKey accessKey) throws SQLException
+  {
+    loginDAO.removeAccessKey(accessKey);
+  }
+
+  @Override public String getUserType(String pwd) throws SQLException
+  {
+    System.out.println("DataBase|From client: " + pwd);
+    String ak;
+    ak = loginDAO.getUserType(pwd);
+    System.out.println("DataBase|From DataBase: " + ak);
+    return ak;
   }
 }

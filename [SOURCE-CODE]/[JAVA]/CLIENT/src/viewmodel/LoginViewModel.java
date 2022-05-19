@@ -4,6 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 public class LoginViewModel
 {
   private StringProperty accessKeyProperty;
@@ -21,6 +24,17 @@ public class LoginViewModel
   {
     return accessKeyProperty;
   }
+
+  public String getUserType()
+  {
+    String pwd = accessKeyProperty.get();
+    System.out.println("ViewModel|From user: " + pwd);
+
+    String ak = model.getUserType(pwd);
+    System.out.println("ViewModel|From Model: " + ak);
+    return ak;
+  }
+
 
 
 }

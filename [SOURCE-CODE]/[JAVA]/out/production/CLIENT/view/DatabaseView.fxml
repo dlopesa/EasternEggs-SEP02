@@ -10,17 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.DatabaseViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DatabaseViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="64.0" prefWidth="600.0">
             <children>
                 <Label alignment="CENTER" text="Items">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
             </children>
@@ -31,74 +27,62 @@
                     <children>
                         <ScrollPane prefHeight="333.0" prefWidth="304.0">
                             <content>
-                                <TableView fx:id="itemTable" prefHeight="332.0"
-                                           prefWidth="310.0">
+                                <TableView fx:id="itemTable" prefHeight="332.0" prefWidth="310.0">
                                     <columns>
-                                        <TableColumn fx:id="idCol"
-                                                     prefWidth="75.0"
-                                                     text="ID"/>
-                                        <TableColumn fx:id="nameCol"
-                                                     prefWidth="75.0"
-                                                     text="Name"/>
-                                        <TableColumn fx:id="typeCol"
-                                                     prefWidth="75.0"
-                                                     text="Type"/>
-                                        <TableColumn fx:id="priceCol"
-                                                     prefWidth="75.0"
-                                                     text="Price"/>
+                                        <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+                                        <TableColumn fx:id="typeCol" prefWidth="75.0" text="Type" />
+                                        <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price" />
                                     </columns>
                                 </TableView>
                             </content>
                         </ScrollPane>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
-                      prefWidth="150.0" spacing="20.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false"
-                                onAction="#addItemPressed" prefWidth="130.0"
-                                text="Add Item">
+                        <Button mnemonicParsing="false" onAction="#addItemPressed" prefWidth="130.0" text="Add Item">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false"
-                                onAction="#removeItemPressed" prefWidth="130.0"
-                                text="Remove Item">
+                        <Button mnemonicParsing="false" onAction="#removeItemPressed" prefWidth="130.0" text="Remove Item">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false"
-                                onAction="#editItemPressed" prefWidth="130.0"
-                                text="Edit Item">
+                        <Button mnemonicParsing="false" onAction="#editItemPressed" prefWidth="130.0" text="Edit Item">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#backPressed"
-                                prefWidth="130.0" text="Back">
+                  <Button mnemonicParsing="false" onAction="#accessKeysPressed" prefWidth="130.0" text="Access Keys">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                        <Button mnemonicParsing="false" onAction="#backPressed" prefWidth="130.0" text="Back">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
                     </children>
                 </VBox>
             </children>
             <padding>
-                <Insets left="35.0"/>
+                <Insets left="35.0" />
             </padding>
         </HBox>
     </children>

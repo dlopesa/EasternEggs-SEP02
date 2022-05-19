@@ -64,5 +64,10 @@ public class DatabaseViewController extends ViewController
     getViewHandler().openView("AddItemView.fxml");
   }
 
+  @FXML public void accessKeysPressed()
+  {
+    getViewHandler().openView("ManageAccessKey.fxml");
+  }
+
 }
 

@@ -60,13 +60,13 @@ ALTER TABLE extrasAvailableForItem
 CREATE TABLE accessKey
 (
     accessKey varchar(50) PRIMARY KEY,
-    permission char NOT NULL
+    permission varchar(50) NOT NULL
 );
 
 
 --- dummy inserts
 
-INSERT INTO accessKey (accessKey, permission) VALUES ('123','B');
+INSERT INTO accessKey (accessKey, permission) VALUES ('admin','Admin');
 
 INSERT INTO item (name, type, price, description) VALUES ('Coffee', 'coffee',20, ':)' );
 

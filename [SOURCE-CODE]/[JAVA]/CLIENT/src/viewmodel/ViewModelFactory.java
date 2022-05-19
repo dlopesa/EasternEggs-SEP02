@@ -21,6 +21,8 @@ public class ViewModelFactory
   private CashierHandler cashierHandler;
   private ExtraViewModel extraViewModel;
   private DisplayViewModel displayViewModel;
+  private ManageAccessKeysViewModel manageAccessKeysViewModel;
+  private AddAccessKeyViewModel addAccessKeyViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -40,6 +42,9 @@ public class ViewModelFactory
     this.customerViewModel = new CustomerViewModel(model, descriptionViewModel,
         extraViewModel);
     this.displayViewModel = new DisplayViewModel(model);
+    this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
+    this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -70,6 +75,11 @@ public class ViewModelFactory
   public BaristaViewModel getBaristaViewModel()
   {
     return baristaViewModel;
+  }
+
+  public AddAccessKeyViewModel getAddAccessKeyViewModel()
+  {
+    return addAccessKeyViewModel;
   }
 
   public DescriptionViewModel getDescriptionViewModel()
@@ -115,5 +125,8 @@ public class ViewModelFactory
   public DisplayViewModel getDisplayViewModel()
   {
     return displayViewModel;
+  public ManageAccessKeysViewModel getManageAccessKeysViewModel()
+  {
+    return manageAccessKeysViewModel;
   }
 }

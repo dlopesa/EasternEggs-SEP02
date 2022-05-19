@@ -5,6 +5,7 @@ import database.CafePersistence;
 import database.ConcreteOrderDAO;
 import database.OrderDAO;
 import utility.Extra;
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -60,6 +61,12 @@ public class RemoteServer implements RemoteCafeServer
     return cafePersistence.getAllItems();
   }
 
+  @Override public ArrayList<AccessKey> getAllAccessKey()
+      throws RemoteException, SQLException
+  {
+    return cafePersistence.getAllAccessKey();
+  }
+
   @Override public ItemList getItemsByType(String type)
       throws RemoteException, SQLException
   {
@@ -90,6 +97,8 @@ public class RemoteServer implements RemoteCafeServer
     cafePersistence.editComment(order.getId(),comment);
   }
 
+
+
   @Override public void receiveUnpaidOrder(Order order) throws RemoteException
   {
     cafePersistence.receiveOrder(order);
@@ -103,6 +112,11 @@ public class RemoteServer implements RemoteCafeServer
   @Override public void addItemToProductList(Item item)
   {
     cafePersistence.addItemToProductList(item);
+  }
+
+  @Override public void addAccessKey(AccessKey accessKey) throws RemoteException
+  {
+    cafePersistence.addAccessKey(accessKey);
   }
 
   @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
@@ -141,5 +155,20 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException
   {
     return property.removeListener(listener, propertyNames);
+
+  @Override public void removeAccessKey(AccessKey accessKey)
+      throws RemoteException, SQLException
+  {
+    cafePersistence.removeAccessKey(accessKey);
+  }
+  @Override public String getUserType(String pwd)
+      throws RemoteException, SQLException
+  {
+    System.out.println("---SERVER---");
+    System.out.println("Server|From client: " + pwd);
+
+    String ak = cafePersistence.getUserType(pwd);
+    System.out.println("Server|From db: " + ak);
+    return ak;
   }
 }

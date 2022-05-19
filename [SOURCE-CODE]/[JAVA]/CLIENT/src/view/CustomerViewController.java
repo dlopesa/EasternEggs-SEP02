@@ -13,6 +13,8 @@ import utility.Item;
 import viewmodel.CustomerViewModel;
 
 import java.util.Optional;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class CustomerViewController extends ViewController
 {
@@ -117,19 +119,19 @@ public class CustomerViewController extends ViewController
     }
   }
 
-  @FXML private void descriptionButton()
+  @FXML private void descriptionButton() throws SQLException, RemoteException
   {
     ItemProperty item = getItemProperty();
     customerViewModel.seeDescription(item);
     getViewHandler().openView("DescriptionView.fxml");
   }
 
-  @FXML private void checkoutButton()
+  @FXML private void checkoutButton() throws SQLException, RemoteException
   {
     getViewHandler().openView("CheckoutView.fxml");
   }
 
-  @FXML private void quitButton()
+  @FXML private void quitButton() throws SQLException, RemoteException
   {
     customerViewModel.quit();
     getViewHandler().openView("StartView.fxml");
