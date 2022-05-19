@@ -57,7 +57,7 @@ public class CafeDatabase implements CafePersistence
 
   @Override public ItemList getItemsByType(String type)
   {
-    return itemDAO.getItemsByType(type);
+   return null; //TODO this method does nothing. it should. but that's ok
   }
   @Override public ArrayList<AccessKey> getAllAccessKey() throws SQLException
   {

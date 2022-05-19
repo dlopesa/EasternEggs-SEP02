@@ -41,15 +41,14 @@ public class RemoteClient
 
   public ItemList getItemsByType(String type)
       throws RemoteException, SQLException
+  {
+    return server.getItemsByType(type);
+  }
+
   public ArrayList<AccessKey> getAllAccessKey()
       throws RemoteException, SQLException
   {
     return server.getAllAccessKey();
-  }
-
-  public void receiveOrder(Order order) throws RemoteException
-  {
-    return server.getItemsByType(type);
   }
 
   public int receiveOrder(Order order) throws RemoteException
@@ -134,6 +133,7 @@ public class RemoteClient
   {
     property.firePropertyChange("change", event.getValue1(), event.getValue2());
   }
+
   public void removeAccessKey(AccessKey accessKey) throws RemoteException
   {
     server.removeAccessKey(accessKey);
@@ -146,6 +146,5 @@ public class RemoteClient
     System.out.println("Client|From Server: " + ak);
     return ak;
   }
-
 
 }

@@ -304,6 +304,7 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
     return null;
+  }
   @Override public ArrayList<String> getAllPermissions()
   {
     return permissions;

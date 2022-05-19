@@ -38,7 +38,7 @@ public class LoginViewController extends ViewController
     }
     else if (pwd.equals("Cashier"))
     {
-      getViewHandler().openView("DatabaseView.fxml");
+      getViewHandler().openView("CashierView.fxml");
     }
     else if (pwd.equals("Display"))
     {

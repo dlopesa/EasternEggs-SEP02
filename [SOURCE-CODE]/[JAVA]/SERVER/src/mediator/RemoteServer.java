@@ -155,6 +155,7 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException
   {
     return property.removeListener(listener, propertyNames);
+  }
 
   @Override public void removeAccessKey(AccessKey accessKey)
       throws RemoteException, SQLException

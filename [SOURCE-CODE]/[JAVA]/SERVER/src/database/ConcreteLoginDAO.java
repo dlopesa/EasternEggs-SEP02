@@ -39,7 +39,7 @@ public class ConcreteLoginDAO implements LoginDAO
     //System.out.println("I'm sutck on connection");
     return DriverManager.getConnection(
         "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
-        "postgres", "root");
+        "postgres", "123456");
     //Kamil's password 1234
     //Laura's password 123456
   }

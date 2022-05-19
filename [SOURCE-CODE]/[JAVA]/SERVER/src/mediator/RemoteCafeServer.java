@@ -20,7 +20,7 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
   void cancelOrder(Order order) throws RemoteException;
   void editCommentInOrder(Order order, String comment) throws RemoteException;
   ArrayList<AccessKey> getAllAccessKey() throws RemoteException, SQLException;
-  void receiveOrder(Order order) throws RemoteException;
+  int receiveOrder(Order order) throws RemoteException;
   void completeOrder(Order order) throws RemoteException;
   void removeAccessKey(AccessKey accessKey) throws RemoteException,
       SQLException;
@@ -39,6 +39,5 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
       String... propertyNames) throws RemoteException;
   boolean removeListener(GeneralListener<String, String> listener,
       String... propertyNames) throws RemoteException;
-  void removeItemFromProductList(Item item) throws RemoteException, SQLException;
   String getUserType(String pwd) throws RemoteException, SQLException;
 }

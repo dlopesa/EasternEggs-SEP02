@@ -33,7 +33,7 @@
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="errorLabel" visible="false" text="Acess Key Invaid" textFill="RED" />
+                  <Label fx:id="errorLabel" text="Acess Key Invaid" textFill="RED" visible="false" />
                         <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
                </children>
                 </VBox>
@@ -47,16 +47,6 @@
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#onEnter" text="Enter">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#barista" text="Barista">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="385.0" layoutY="61.0" mnemonicParsing="false" onAction="#display" text="Display">
                <font>
                   <Font size="18.0" />
                </font>

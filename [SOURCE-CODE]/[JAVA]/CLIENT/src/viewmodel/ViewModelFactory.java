@@ -43,7 +43,6 @@ public class ViewModelFactory
         extraViewModel);
     this.displayViewModel = new DisplayViewModel(model);
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
   }
 
@@ -125,6 +124,8 @@ public class ViewModelFactory
   public DisplayViewModel getDisplayViewModel()
   {
     return displayViewModel;
+  }
+
   public ManageAccessKeysViewModel getManageAccessKeysViewModel()
   {
     return manageAccessKeysViewModel;
