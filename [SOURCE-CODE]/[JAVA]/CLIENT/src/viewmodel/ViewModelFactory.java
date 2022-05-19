@@ -13,6 +13,7 @@ public class ViewModelFactory
   private BaristaViewModel baristaViewModel;
   private CheckoutViewModel checkoutViewModel;
   private DescriptionViewModel descriptionViewModel;
+  private ExtraViewModel extraViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -23,7 +24,8 @@ public class ViewModelFactory
     this.baristaViewModel = new BaristaViewModel(model);
     this.checkoutViewModel = new CheckoutViewModel(model);
     this.descriptionViewModel = new DescriptionViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel);
+    this.extraViewModel = new ExtraViewModel(model);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel, extraViewModel);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -64,5 +66,10 @@ public class ViewModelFactory
   public CheckoutViewModel getCheckoutViewModel()
   {
     return checkoutViewModel;
+  }
+
+  public ExtraViewModel getExtraViewModel()
+  {
+    return extraViewModel;
   }
 }

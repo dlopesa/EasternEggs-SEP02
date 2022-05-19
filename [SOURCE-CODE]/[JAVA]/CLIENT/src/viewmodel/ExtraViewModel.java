@@ -24,7 +24,6 @@ public class ExtraViewModel
     this.model = model;
     availableExtras = FXCollections.observableArrayList();
     addedExtras = FXCollections.observableArrayList();
-
   }
 
   public void reset()
@@ -50,7 +49,6 @@ public class ExtraViewModel
   public void setList(ObservableList<ExtraProperty> extraList, String type)
   {
     extraList.clear();
-
     for (int i = 0; i < model.getAllExtrasByType(type).size(); i++)
     {
       extraList.add(new ExtraProperty(model.getAllExtrasByType(type).get(i)));
@@ -83,7 +81,8 @@ public class ExtraViewModel
     {
       for (int i = 0; i < addedExtras.size(); i++)
       {
-        model.addExtraToItem(addedExtras.get(i).getExtra(), currentItem.getItem());
+        model.addExtraToItem(addedExtras.get(i).getExtra(),
+            currentItem.getItem());
       }
     }
     System.out.println(currentItem.getItem());

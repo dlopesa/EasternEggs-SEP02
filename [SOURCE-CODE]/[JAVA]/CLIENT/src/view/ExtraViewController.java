@@ -55,7 +55,6 @@ public class ExtraViewController extends ViewController
 
     ExtraProperty extra = (ExtraProperty) availableExtras.getSelectionModel().getSelectedItem();
     extraViewModel.addExtraToItem(extra);
-
   }
 
   @FXML private void onRemove()
