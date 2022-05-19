@@ -29,6 +29,7 @@ public class ExtraViewController extends ViewController
   {
     extraViewModel.reset();
     setTable();
+    itemName.textProperty().bind(extraViewModel.getNameProperty());
   }
 
   private void setTable()
