@@ -83,7 +83,7 @@ public class ConcreteOrderDAO implements OrderDAO
 
   private Connection getConnection() throws SQLException
   {
-    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "root");
   }
 
   @Override public Order readById(int id) throws SQLException

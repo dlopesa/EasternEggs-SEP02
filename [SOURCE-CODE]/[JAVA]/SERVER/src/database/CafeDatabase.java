@@ -1,5 +1,6 @@
 package database;
 
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -13,6 +14,7 @@ public class CafeDatabase implements CafePersistence
   private static Object lock = new Object();
   private OrderDAO orderDAO;
   private ItemDAO itemDAO;
+  private LoginDAO loginDAO;
 
   private CafeDatabase()
   {
@@ -20,6 +22,7 @@ public class CafeDatabase implements CafePersistence
     {
       orderDAO = ConcreteOrderDAO.getInstance();
       itemDAO = ConcreteItemDAO.getInstance();
+      loginDAO = ConcreteLoginDAO.getInstance();
     }
     catch (SQLException e)
     {
@@ -47,6 +50,19 @@ public class CafeDatabase implements CafePersistence
   @Override public ItemList getAllItems() throws SQLException
   {
     return itemDAO.getAllItems();
+  }
+
+  @Override public ArrayList<AccessKey> getAllAccessKey() throws SQLException
+  {
+    try
+    {
+      return loginDAO.getAllAccessKey();
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public ItemList getItemsByType()
@@ -113,6 +129,17 @@ public class CafeDatabase implements CafePersistence
       e.printStackTrace();
     }
   }
+  @Override public void addAccessKey(AccessKey accessKey)
+  {
+    try
+    {
+      loginDAO.addAccessKey(accessKey);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   @Override public ArrayList<Order> getOrdersByStatus(String status)
   {
@@ -132,4 +159,18 @@ public class CafeDatabase implements CafePersistence
     SQLException {
     itemDAO.deleteItem(item);
   }
+
+  @Override public void removeAccessKey(AccessKey accessKey) throws SQLException
+  {
+    loginDAO.removeAccessKey(accessKey);
   }
+
+  @Override public String getUserType(String pwd) throws SQLException
+  {
+    System.out.println("DataBase|From client: " + pwd);
+    String ak;
+    ak = loginDAO.getUserType(pwd);
+    System.out.println("DataBase|From DataBase: " + ak);
+    return ak;
+  }
+}

@@ -2,8 +2,7 @@ package mediator;
 
 import database.CafeDatabase;
 import database.CafePersistence;
-import database.ConcreteOrderDAO;
-import database.OrderDAO;
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -55,11 +54,19 @@ public class RemoteServer implements RemoteCafeServer
     return cafePersistence.getAllItems();
   }
 
+  @Override public ArrayList<AccessKey> getAllAccessKey()
+      throws RemoteException, SQLException
+  {
+    return cafePersistence.getAllAccessKey();
+  }
+
   @Override public ItemList getItemsByType(String type)
       throws RemoteException, SQLException
   {
     return null;
   }
+
+
 
   @Override public void receiveOrder(Order order) throws RemoteException
   {
@@ -74,6 +81,8 @@ public class RemoteServer implements RemoteCafeServer
   {
     cafePersistence.completeOrder(order.getId());
   }
+
+
 
   @Override public void receiveUnpaidOrder(Order order) throws RemoteException
   {
@@ -90,6 +99,11 @@ public class RemoteServer implements RemoteCafeServer
     cafePersistence.addItemToProductList(item);
   }
 
+  @Override public void addAccessKey(AccessKey accessKey) throws RemoteException
+  {
+    cafePersistence.addAccessKey(accessKey);
+  }
+
   @Override public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return cafePersistence.getOrdersByStatus("pending");
@@ -99,5 +113,22 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException, SQLException
   {
     cafePersistence.removeItemFromProductList(item);
+  }
+
+
+  @Override public void removeAccessKey(AccessKey accessKey)
+      throws RemoteException, SQLException
+  {
+    cafePersistence.removeAccessKey(accessKey);
+  }
+  @Override public String getUserType(String pwd)
+      throws RemoteException, SQLException
+  {
+    System.out.println("---SERVER---");
+    System.out.println("Server|From client: " + pwd);
+
+    String ak = cafePersistence.getUserType(pwd);
+    System.out.println("Server|From db: " + ak);
+    return ak;
   }
 }

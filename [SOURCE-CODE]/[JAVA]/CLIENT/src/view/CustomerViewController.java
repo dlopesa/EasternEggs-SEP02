@@ -14,6 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import property.ItemProperty;
 import viewmodel.CustomerViewModel;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 public class CustomerViewController extends ViewController
 {
   @FXML private TableView itemTableCoffee;
@@ -94,19 +97,19 @@ public class CustomerViewController extends ViewController
     customerViewModel.addToOrder(item);
   }
 
-  @FXML private void descriptionButton()
+  @FXML private void descriptionButton() throws SQLException, RemoteException
   {
     ItemProperty item = getItemProperty();
     customerViewModel.seeDescription(item);
     getViewHandler().openView("DescriptionView.fxml");
   }
 
-  @FXML private void checkoutButton()
+  @FXML private void checkoutButton() throws SQLException, RemoteException
   {
     getViewHandler().openView("CheckoutView.fxml");
   }
 
-  @FXML private void quitButton()
+  @FXML private void quitButton() throws SQLException, RemoteException
   {
     customerViewModel.quit();
     getViewHandler().openView("StartView.fxml");

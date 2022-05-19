@@ -1,5 +1,6 @@
 package mediator;
 
+import utility.AccessKey;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
@@ -15,7 +16,8 @@ public class RemoteClient
 {
   private RemoteCafeServer server;
 
-  public RemoteClient() throws MalformedURLException, NotBoundException, RemoteException
+  public RemoteClient()
+      throws MalformedURLException, NotBoundException, RemoteException
   {
     server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1099/Cafe");
     //UnicastRemoteObject.exportObject(this,0);
@@ -25,6 +27,12 @@ public class RemoteClient
   public ItemList getAllItems() throws RemoteException, SQLException
   {
     return server.getAllItems();
+  }
+
+  public ArrayList<AccessKey> getAllAccessKey()
+      throws RemoteException, SQLException
+  {
+    return server.getAllAccessKey();
   }
 
   public void receiveOrder(Order order) throws RemoteException
@@ -52,6 +60,11 @@ public class RemoteClient
     server.addItemToProductList(item);
   }
 
+  public void addAccessKey(AccessKey accessKey)
+  {
+    server.addAccessKey(accessKey);
+  }
+
   public ArrayList<Order> getAllPendingOrders() throws RemoteException
   {
     return server.getAllPendingOrders();
@@ -61,4 +74,19 @@ public class RemoteClient
   {
     server.removeItemFromProductList(item);
   }
+
+  public void removeAccessKey(AccessKey accessKey) throws RemoteException
+  {
+    server.removeAccessKey(accessKey);
+  }
+
+  public String getUserType(String pwd) throws RemoteException, SQLException
+  {
+    System.out.println("Client|From Client: " + pwd);
+    String ak = server.getUserType(pwd);
+    System.out.println("Client|From Server: " + ak);
+    return ak;
+  }
+
+
 }

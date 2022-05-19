@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,6 +23,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                     <children>
+                  <Label />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Access Key:">
                             <font>
                                 <Font size="20.0" />
@@ -31,6 +33,7 @@
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
+                  <Label fx:id="errorLabel" text="Acess Key Invaid" textFill="RED" visible="false" />
                         <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
                </children>
                 </VBox>
@@ -44,11 +47,6 @@
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#onEnter" text="Enter">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#barista" text="Barista">
                <font>
                   <Font size="18.0" />
                </font>
