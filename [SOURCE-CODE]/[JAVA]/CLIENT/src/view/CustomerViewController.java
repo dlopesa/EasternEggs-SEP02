@@ -93,6 +93,7 @@ public class CustomerViewController extends ViewController
     alert.setTitle("Addition of extras");
     alert.setHeaderText("Would you like to add any extras to your "+getItemProperty().getItem().getName()+" ?");
     Optional<ButtonType> result = alert.showAndWait();
+
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
 
@@ -107,6 +108,10 @@ public class CustomerViewController extends ViewController
     }
     else
     {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Adding item...");
+      alert.setHeaderText(item.getItem().getName() + " is added to your order.");
+      alert.show();
       customerViewModel.addToOrder(item);
     }
   }
