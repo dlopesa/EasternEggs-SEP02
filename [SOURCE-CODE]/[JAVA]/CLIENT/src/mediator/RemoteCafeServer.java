@@ -13,7 +13,7 @@ public interface RemoteCafeServer extends Remote
 {
   ItemList getAllItems() throws RemoteException, SQLException;
   ItemList getItemsByType(String type) throws RemoteException, SQLException;
-  void receiveOrder(Order order) throws RemoteException;
+  int receiveOrder(Order order) throws RemoteException;
   void completeOrder(Order order) throws RemoteException;
   void receiveUnpaidOrder(Order order) throws RemoteException;
   void acceptPayment(Order order) throws RemoteException;

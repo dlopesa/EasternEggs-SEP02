@@ -11,7 +11,7 @@ public interface CafePersistence
 {
   public ItemList getAllItems() throws SQLException;
   public ItemList getItemsByType();
-  public void receiveOrder(Order order);
+  public int receiveOrder(Order order);
   public void completeOrder(int orderId);
   public void acceptPayment(int orderId);
   public void editComment(int orderId, String comment);

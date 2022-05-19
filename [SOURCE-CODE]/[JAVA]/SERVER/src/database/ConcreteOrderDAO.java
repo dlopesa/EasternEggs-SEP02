@@ -31,17 +31,19 @@ public class ConcreteOrderDAO implements OrderDAO
     return instance;
   }
 
-  @Override public void create(Order order) throws SQLException
+  @Override public int create(Order order) throws SQLException
   {
     String comment = order.getComment();
     LocalDateTime dateTime = order.getDateTime().getLocalDateTime();
     double price = order.getPrice();
     String status = order.getStatus();
     ArrayList<Item> items = order.getItemList().getAllItems();
+    int id = 5555;
 
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO order_(comment, datetime, price, status) VALUES (?,?,?,?);",
+      PreparedStatement statement = connection.prepareStatement(
+          "INSERT INTO order_(comment, datetime, price, status) VALUES (?,?,?,?);",
           PreparedStatement.RETURN_GENERATED_KEYS);
       statement.setString(1, comment);
       statement.setTimestamp(2, Timestamp.valueOf(dateTime));
@@ -53,6 +55,7 @@ public class ConcreteOrderDAO implements OrderDAO
       if (keys.next())
       {
         orderId = keys.getInt(1);
+        id = orderId;
       }
       else
       {
@@ -62,7 +65,8 @@ public class ConcreteOrderDAO implements OrderDAO
       {
         int itemId = item.getId();
         ArrayList<Extra> extras = item.getExtras();
-        PreparedStatement itemInOrderStatement = connection.prepareStatement("INSERT INTO iteminorder(order_id, item_id) VALUES (?,?)");
+        PreparedStatement itemInOrderStatement = connection.prepareStatement(
+            "INSERT INTO iteminorder(order_id, item_id) VALUES (?,?)");
         itemInOrderStatement.setInt(1, orderId);
         itemInOrderStatement.setInt(2, itemId);
         itemInOrderStatement.executeUpdate();
@@ -79,18 +83,21 @@ public class ConcreteOrderDAO implements OrderDAO
       }
 
     }
+    return id;
   }
 
   private Connection getConnection() throws SQLException
   {
-    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+    return DriverManager.getConnection(
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
   }
 
   @Override public Order readById(int id) throws SQLException
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM order_ WHERE order_id = ?");
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM order_ WHERE order_id = ?");
       statement.setInt(1, id);
       ResultSet orderResultSet = statement.executeQuery();
       if (orderResultSet.next())
@@ -102,13 +109,15 @@ public class ConcreteOrderDAO implements OrderDAO
 
         Order order = new Order(id, new ItemList(), comment, dateTime, price, status);
 
-        PreparedStatement findItemsInOrder = connection.prepareStatement("SELECT * FROM iteminorder WHERE order_id = ?");
+        PreparedStatement findItemsInOrder = connection.prepareStatement(
+            "SELECT * FROM iteminorder WHERE order_id = ?");
         findItemsInOrder.setInt(1, id);
         ResultSet itemInOrderResultSet = findItemsInOrder.executeQuery();
         while (itemInOrderResultSet.next())
         {
           int itemId = itemInOrderResultSet.getInt("item_id");
-          PreparedStatement findActualItem = connection.prepareStatement("SELECT * FROM item WHERE item_id = ?");
+          PreparedStatement findActualItem = connection.prepareStatement(
+              "SELECT * FROM item WHERE item_id = ?");
           findActualItem.setInt(1, itemId);
           ResultSet itemResultSet = findActualItem.executeQuery();
           if (itemResultSet.next())
@@ -122,7 +131,8 @@ public class ConcreteOrderDAO implements OrderDAO
 
             order.addItem(item);
 
-            PreparedStatement findExtrasInItem = connection.prepareStatement("SELECT * FROM extrainiteminorder WHERE (order_id = ? AND item_id = ?)");
+            PreparedStatement findExtrasInItem = connection.prepareStatement(
+                "SELECT * FROM extrainiteminorder WHERE (order_id = ? AND item_id = ?)");
             findExtrasInItem.setInt(1, id);
             findExtrasInItem.setInt(2, itemId);
 
@@ -148,12 +158,14 @@ public class ConcreteOrderDAO implements OrderDAO
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement findOrder = connection.prepareStatement("SELECT * FROM order_ WHERE order_id = ?");
+      PreparedStatement findOrder = connection.prepareStatement(
+          "SELECT * FROM order_ WHERE order_id = ?");
       findOrder.setInt(1, orderId);
       ResultSet orderResultSet = findOrder.executeQuery();
       if (orderResultSet.next())
       {
-        PreparedStatement updateStatus = connection.prepareStatement("UPDATE order_ SET status = ? WHERE order_id = ?");
+        PreparedStatement updateStatus = connection.prepareStatement(
+            "UPDATE order_ SET status = ? WHERE order_id = ?");
         updateStatus.setString(1, status);
         updateStatus.setInt(2, orderId);
         updateStatus.executeUpdate();
@@ -165,12 +177,14 @@ public class ConcreteOrderDAO implements OrderDAO
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement findOrder = connection.prepareStatement("SELECT * FROM order_ WHERE order_id = ?");
+      PreparedStatement findOrder = connection.prepareStatement(
+          "SELECT * FROM order_ WHERE order_id = ?");
       findOrder.setInt(1, orderId);
       ResultSet orderResultSet = findOrder.executeQuery();
       if (orderResultSet.next())
       {
-        PreparedStatement updateStatus = connection.prepareStatement("UPDATE order_ SET comment = ? WHERE order_id = ?");
+        PreparedStatement updateStatus = connection.prepareStatement(
+            "UPDATE order_ SET comment = ? WHERE order_id = ?");
         updateStatus.setString(1, comment);
         updateStatus.setInt(2, orderId);
         updateStatus.executeUpdate();
@@ -182,7 +196,8 @@ public class ConcreteOrderDAO implements OrderDAO
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement addItemToOrderStatement = connection.prepareStatement("INSERT INTO iteminorder(item_id, order_id) VALUES (?, ?)");
+      PreparedStatement addItemToOrderStatement = connection.prepareStatement(
+          "INSERT INTO iteminorder(item_id, order_id) VALUES (?, ?)");
       addItemToOrderStatement.setInt(1, item.getId());
       addItemToOrderStatement.setInt(2, orderId);
       addItemToOrderStatement.executeUpdate();
@@ -193,27 +208,31 @@ public class ConcreteOrderDAO implements OrderDAO
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM order_ WHERE order_id = ?");
+      PreparedStatement deleteStatement = connection.prepareStatement(
+          "DELETE FROM order_ WHERE order_id = ?");
       deleteStatement.setInt(1, orderId);
       deleteStatement.executeUpdate();
     }
   }
 
-  @Override public ArrayList<Order> getOrdersByStatus(String status)
-      throws SQLException
+  @Override public ArrayList<Order> getOrdersByStatus(String status) throws SQLException
   {
     ArrayList<Order> returnOrders = new ArrayList<>();
     ArrayList<Integer> returnOrdersIds = new ArrayList<>();
-    try (Connection connection = getConnection()) {
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM order_ WHERE status = ?");
-      statement.setString(1,status);
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM order_ WHERE status = ?");
+      statement.setString(1, status);
       ResultSet orderResultSet = statement.executeQuery();
-      while (orderResultSet.next()) {
+      while (orderResultSet.next())
+      {
         int id = orderResultSet.getInt("order_id");
         returnOrdersIds.add(id);
       }
 
-      for (int i : returnOrdersIds) {
+      for (int i : returnOrdersIds)
+      {
         returnOrders.add(readById(i));
       }
     }

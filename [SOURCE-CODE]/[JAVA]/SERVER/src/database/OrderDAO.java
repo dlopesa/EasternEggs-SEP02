@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface OrderDAO
 {
-  public void create(Order order) throws SQLException;
+  public int create(Order order) throws SQLException;
   public Order readById(int id) throws SQLException;
   public void updateStatus(int orderId, String status) throws SQLException;
   public void updateComment(int orderId, String comment) throws SQLException;

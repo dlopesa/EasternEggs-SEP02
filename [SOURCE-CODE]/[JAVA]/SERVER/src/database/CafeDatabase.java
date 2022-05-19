@@ -54,16 +54,17 @@ public class CafeDatabase implements CafePersistence
     return null; //TODO item dao here
   }
 
-  @Override public void receiveOrder(Order order)
+  @Override public int receiveOrder(Order order)
   {
     try
     {
-      orderDAO.create(order);
+      return orderDAO.create(order);
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
+    return -10;
   }
 
   @Override public void completeOrder(int orderId)

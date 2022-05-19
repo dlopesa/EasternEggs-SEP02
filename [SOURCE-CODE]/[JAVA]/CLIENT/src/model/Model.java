@@ -7,6 +7,7 @@ import utility.Order;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public interface Model extends PropertyChangeListener,
   void setUserType(String type);
   String getUserType();
   void addItemToOrder(Item item);
-  void submitOrder()throws NullPointerException;
+  int submitOrder()throws NullPointerException;
   void addExtraToItem(Extra extra, Item item);
   void removeExtraFromItem(Extra extra, Item item);
   void removeItemFromOrder(Item item);
