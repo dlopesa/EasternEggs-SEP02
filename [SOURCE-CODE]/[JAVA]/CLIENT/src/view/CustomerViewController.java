@@ -87,11 +87,11 @@ public class CustomerViewController extends ViewController
     return item;
   }
 
-  private boolean confirmation()
+  private boolean confirmation(String name)
   {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Addition of extras");
-    alert.setHeaderText("Would you like to add any extras to your "+getItemProperty().getItem().getName()+" ?");
+    alert.setHeaderText("Would you like to add any extras to your "+name+" ?");
     Optional<ButtonType> result = alert.showAndWait();
 
     return (result.isPresent()) && (result.get() == ButtonType.OK);
@@ -101,7 +101,7 @@ public class CustomerViewController extends ViewController
   {
 
     ItemProperty item = getItemProperty();
-    if (confirmation())
+    if (confirmation(item.getItem().getName()))
     {
       customerViewModel.setItemForExtras(item);
       getViewHandler().openView("ExtraView.fxml");
