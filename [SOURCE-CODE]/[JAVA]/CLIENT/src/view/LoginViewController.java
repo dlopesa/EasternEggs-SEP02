@@ -34,4 +34,9 @@ public class LoginViewController extends ViewController
     getViewHandler().openView("BaristaView.fxml");
   }
 
+  @FXML private void display()
+  {
+    getViewHandler().openView("DisplayView.fxml");
+  }
+
 }

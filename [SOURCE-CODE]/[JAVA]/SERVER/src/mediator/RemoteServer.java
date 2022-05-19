@@ -8,6 +8,8 @@ import utility.Extra;
 import utility.Item;
 import utility.ItemList;
 import utility.Order;
+import utility.observer.listener.GeneralListener;
+import utility.observer.subject.PropertyChangeHandler;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -22,11 +24,13 @@ public class RemoteServer implements RemoteCafeServer
 
 {
   private CafePersistence cafePersistence;
+  private PropertyChangeHandler<String, String> property;
 
   public RemoteServer()
       throws RemoteException, MalformedURLException, SQLException
   {
     cafePersistence = CafeDatabase.getInstance();
+    property = new PropertyChangeHandler<>(this);
     startRegistry();
     startServer();
   }
@@ -64,16 +68,14 @@ public class RemoteServer implements RemoteCafeServer
 
   @Override public int receiveOrder(Order order) throws RemoteException
   {
-    System.out.println(order);
-    return cafePersistence.receiveOrder(order);
-    //Shouldn't we call the CafePersistence instead?
-    //CafeDatabase get instance method is not used
-
+    cafePersistence.receiveOrder(order);
+    property.firePropertyChange("pending", null, null);
   }
 
   @Override public void completeOrder(Order order) throws RemoteException
   {
     cafePersistence.completeOrder(order.getId());
+    property.firePropertyChange("completed", null, null);
   }
 
   @Override public void cancelOrder(Order order) throws RemoteException
@@ -111,6 +113,10 @@ public class RemoteServer implements RemoteCafeServer
   {
     return cafePersistence.getOrdersByStatus("unpaid");
   }
+   @Override public ArrayList<Order> getAllCompletedOrders() throws RemoteException
+   {
+    return cafePersistence.getOrdersByStatus("completed");
+   }
 
   @Override public void removeItemFromProductList(Item item)
       throws RemoteException, SQLException
@@ -122,5 +128,16 @@ public class RemoteServer implements RemoteCafeServer
       throws RemoteException, SQLException
   {
     return cafePersistence.getAllExtrasByType(type);
+  @Override public boolean addListener(GeneralListener<String, String> listener,
+      String... propertyNames) throws RemoteException
+  {
+    return property.addListener(listener, propertyNames);
+  }
+
+  @Override public boolean removeListener(
+      GeneralListener<String, String> listener, String... propertyNames)
+      throws RemoteException
+  {
+    return property.removeListener(listener, propertyNames);
   }
 }

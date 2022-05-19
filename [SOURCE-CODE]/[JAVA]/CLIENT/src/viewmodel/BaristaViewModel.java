@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 
 public class BaristaViewModel
 {
+  //TODO: baristaVM still has dependency with Utility package
   private Model model;
   private ObservableList<OrderProperty> orders;
   private BaristaHandler handler;

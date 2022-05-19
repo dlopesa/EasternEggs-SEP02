@@ -158,7 +158,6 @@ public class ConcreteOrderDAO implements OrderDAO
             }
           }
         }
-        System.out.println(order);
         return order;
       }
     }

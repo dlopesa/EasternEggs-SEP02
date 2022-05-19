@@ -20,6 +20,7 @@ public class ViewModelFactory
   private EditCommentViewModel editCommentViewModel;
   private CashierHandler cashierHandler;
   private ExtraViewModel extraViewModel;
+  private DisplayViewModel displayViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -37,6 +38,7 @@ public class ViewModelFactory
     this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);
     this.extraViewModel = new ExtraViewModel(model);
     this.customerViewModel = new CustomerViewModel(model, descriptionViewModel, extraViewModel);
+    this.displayViewModel = new DisplayViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -107,5 +109,8 @@ public class ViewModelFactory
   public ExtraViewModel getExtraViewModel()
   {
     return extraViewModel;
+  public DisplayViewModel getDisplayViewModel()
+  {
+    return displayViewModel;
   }
 }

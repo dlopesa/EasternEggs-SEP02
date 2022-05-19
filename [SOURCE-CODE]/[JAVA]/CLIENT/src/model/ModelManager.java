@@ -26,6 +26,7 @@ public class ModelManager implements Model
   public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
+    client.addListener(this);
     types = new ArrayList<>();
     types.add("coffee");
     types.add("tea");
@@ -135,7 +136,7 @@ public class ModelManager implements Model
       client.removeItemFromProductList(item);
 
     }
-    catch (RemoteException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -165,8 +166,20 @@ public class ModelManager implements Model
     {
       e.printStackTrace();
     }
-    return null;
+    return new ArrayList<>();
 
+
+  public ArrayList<Order> getAllCompletedOrders()
+  {
+    try
+    {
+      return client.getAllCompletedOrders();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return new ArrayList<>();
   }
 
   @Override public void completeOrder(Order order) throws RemoteException

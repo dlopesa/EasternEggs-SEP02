@@ -9,16 +9,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ItemProperty;
+import utility.Item;
 import viewmodel.CustomerViewModel;
 
 import java.util.Optional;
 
 public class CustomerViewController extends ViewController
 {
-  @FXML private TableView itemTableCoffee;
-  @FXML private TableView itemTableTea;
-  @FXML private TableView itemTableSnack;
-  @FXML private TableView itemTableSmoothie;
+  @FXML private TableView<ItemProperty> itemTableCoffee;
+  @FXML private TableView<ItemProperty> itemTableTea;
+  @FXML private TableView<ItemProperty> itemTableSnack;
+  @FXML private TableView<ItemProperty> itemTableSmoothie;
   @FXML private Label errorLabel;
   @FXML private TabPane tabPane;
   private CustomerViewModel customerViewModel;
