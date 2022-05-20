@@ -32,6 +32,11 @@ public class DescriptionViewController extends ViewController
         .bindBidirectional(descriptionViewModel.chosenProperty());
   }
 
+  public void reset()
+  {
+    descriptionViewModel.reset();
+  }
+
   @FXML private void backButton()
   {
     getViewHandler().openView("CustomerView.fxml");

@@ -106,7 +106,7 @@ public class CustomerViewController extends ViewController
     ItemProperty item = getItemProperty();
     if (confirmation(item.getItem().getName()))
     {
-      customerViewModel.setItemForExtras(item);
+      customerViewModel.setItem(item);
       getViewHandler().openView("ExtraView.fxml");
     }
     else
@@ -122,7 +122,7 @@ public class CustomerViewController extends ViewController
   @FXML private void descriptionButton() throws SQLException, RemoteException
   {
     ItemProperty item = getItemProperty();
-    customerViewModel.seeDescription(item);
+    customerViewModel.setItem(item);
     getViewHandler().openView("DescriptionView.fxml");
   }
 

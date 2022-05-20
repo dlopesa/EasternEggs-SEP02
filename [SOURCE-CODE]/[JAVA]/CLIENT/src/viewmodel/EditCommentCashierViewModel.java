@@ -4,19 +4,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 import utility.Order;
-import view.CashierViewController;
 
-public class EditCommentViewModel
+public class EditCommentCashierViewModel
 {
   private Model model;
   private StringProperty orderNumber;
   private StringProperty commentArea;
   private CashierHandler handler;
 
-  public EditCommentViewModel(Model model, CashierHandler handler) {
+  public EditCommentCashierViewModel(Model model, CashierHandler handler) {
     this.model = model;
     this.handler = handler;
-
     this.orderNumber = new SimpleStringProperty();
     this.commentArea = new SimpleStringProperty();
   }

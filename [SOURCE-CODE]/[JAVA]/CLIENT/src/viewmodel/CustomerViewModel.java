@@ -13,14 +13,12 @@ public class CustomerViewModel
   private Model model;
   private StringProperty error;
   private ArrayList<ItemProperty> items;
-  private DescriptionViewModel descriptionViewModel;
-  private ExtraViewModel extraViewModel;
+  private CustomerHandler handler;
 
-  public CustomerViewModel(Model model, DescriptionViewModel descriptionViewModel, ExtraViewModel extraViewModel)
+  public CustomerViewModel(Model model, CustomerHandler handler)
   {
     this.model = model;
-    this.extraViewModel=extraViewModel;
-    this.descriptionViewModel=descriptionViewModel;
+    this.handler=handler;
     error = new SimpleStringProperty("");
     items = new ArrayList<>();
     reset();
@@ -72,13 +70,9 @@ public class CustomerViewModel
     model.quitAndCancelOrder();
   }
 
-  public void seeDescription(ItemProperty item)
+  public void setItem(ItemProperty item)
   {
-    descriptionViewModel.setItemProperty(item);
+    handler.setItem(item);
   }
 
-  public void setItemForExtras(ItemProperty item)
-  {
-    extraViewModel.setItem(item);
-  }
 }

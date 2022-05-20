@@ -21,8 +21,8 @@ public class ExtraViewController extends ViewController
   {
 
     this.extraViewModel = getViewModelFactory().getExtraViewModel();
-    itemName.textProperty().bind(extraViewModel.getNameProperty());
     reset();
+    itemName.textProperty().bind(extraViewModel.getNameProperty());
   }
 
   public void reset()

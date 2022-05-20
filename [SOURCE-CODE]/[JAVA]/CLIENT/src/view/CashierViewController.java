@@ -9,7 +9,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import property.ItemProperty;
 import property.OrderProperty;
 import viewmodel.CashierViewModel;
 
@@ -83,8 +82,8 @@ public class CashierViewController extends ViewController
   @FXML private void editCommentPressed() {
     OrderProperty order = (OrderProperty) pendingOrderSelection.getSelectedItem();
     viewModel.setSelectedPendingOrder(order);
-    getViewModelFactory().getEditCommentViewModel().reset();
-    getViewHandler().openView("EditCommentView.fxml");
+    getViewModelFactory().getEditCommentCashierViewModel().reset();
+    getViewHandler().openView("EditCommentCashierView.fxml");
   }
 
   @FXML private void backPressed() {

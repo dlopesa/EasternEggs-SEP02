@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,36 +15,32 @@ public class ExtraViewModel
 {
 
   private Model model;
-
-  private ItemProperty currentItem;
+  private CustomerHandler handler;
   private ObservableList<ExtraProperty> availableExtras;
   private ObservableList<ExtraProperty> addedExtras;
+  private ItemProperty currentItem;
+  private StringProperty name;
 
-  public ExtraViewModel(Model model)
+  public ExtraViewModel(Model model, CustomerHandler handler)
   {
     this.model = model;
+    this.handler = handler;
+    name=new SimpleStringProperty();
     availableExtras = FXCollections.observableArrayList();
     addedExtras = FXCollections.observableArrayList();
   }
 
   public void reset()
   {
+    currentItem = handler.getItem();
+    name=currentItem.nameProperty();
     setList(availableExtras, currentItem.typeProperty().get());
   }
 
-  public void setItem(ItemProperty item)
-  {
-    this.currentItem = item;
-  }
 
   public StringProperty getNameProperty()
   {
-    return currentItem.nameProperty();
-  }
-
-  public StringProperty getTypeProperty()
-  {
-    return currentItem.typeProperty();
+    return name;
   }
 
   public void setList(ObservableList<ExtraProperty> extraList, String type)

@@ -15,10 +15,12 @@ public class DescriptionViewModel
   private StringProperty description;
   private StringProperty error;
   private StringProperty chosen;
+  private CustomerHandler handler;
 
-  public DescriptionViewModel(Model model)
+  public DescriptionViewModel(Model model, CustomerHandler handler)
   {
     this.model = model;
+    this.handler=handler;
     name = new SimpleStringProperty();
     price = new SimpleStringProperty();
     error = new SimpleStringProperty();
@@ -28,11 +30,12 @@ public class DescriptionViewModel
 
   public void reset()
   {
-    name.set("");
-    price.set("");
+    ItemProperty item = handler.getItem();
+    name.set(item.nameProperty().get());
+    price.set(String.valueOf(item.priceProperty().get()));
     error.set("");
-    description.set("");
-    chosen.set("");
+    description.set(item.descriptionProperty().get());
+    chosen.set(item.typeProperty().get());
   }
 
   public StringProperty nameProperty()
@@ -60,11 +63,4 @@ public class DescriptionViewModel
     return error;
   }
 
-  public void setItemProperty(ItemProperty item)
-  {
-    name.set(item.nameProperty().get());
-    chosen = (item.typeProperty());
-    price.set(String.valueOf(item.priceProperty().get()));
-    description.set(item.descriptionProperty().get());
-  }
 }

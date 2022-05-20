@@ -3,18 +3,18 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import viewmodel.EditCommentViewModel;
+import viewmodel.EditCommentCashierViewModel;
 
-public class EditCommentViewController extends ViewController
+public class EditCommentCashierViewController extends ViewController
 {
   @FXML private Label orderNumberLabel;
   @FXML private TextArea commentTextArea;
-  private EditCommentViewModel viewModel;
+  private EditCommentCashierViewModel viewModel;
 
 
   @Override protected void init()
   {
-    viewModel = getViewModelFactory().getEditCommentViewModel();
+    viewModel = getViewModelFactory().getEditCommentCashierViewModel();
     orderNumberLabel.textProperty().bind(viewModel.getOrderNumber());
     commentTextArea.textProperty().bindBidirectional(viewModel.getCommentProperty());
   }

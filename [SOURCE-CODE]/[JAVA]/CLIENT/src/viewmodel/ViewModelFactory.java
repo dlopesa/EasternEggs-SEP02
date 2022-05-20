@@ -1,7 +1,6 @@
 package viewmodel;
 
 import model.Model;
-import utility.Order;
 
 public class ViewModelFactory
 {
@@ -17,12 +16,14 @@ public class ViewModelFactory
   private CheckoutViewModel checkoutViewModel;
   private DescriptionViewModel descriptionViewModel;
   private CashierViewModel cashierViewModel;
-  private EditCommentViewModel editCommentViewModel;
+  private EditCommentCashierViewModel editCommentCashierViewModel;
   private CashierHandler cashierHandler;
   private ExtraViewModel extraViewModel;
   private DisplayViewModel displayViewModel;
   private ManageAccessKeysViewModel manageAccessKeysViewModel;
   private AddAccessKeyViewModel addAccessKeyViewModel;
+  private EditCommentCustomerViewModel editCommentCustomerViewModel;
+  private CustomerHandler customerHandler;
 
   public ViewModelFactory(Model model)
   {
@@ -30,20 +31,21 @@ public class ViewModelFactory
     this.loginViewModel = new LoginViewModel(model);
     this.addItemViewModel = new AddItemViewModel(model);
     this.databaseViewModel = new DatabaseViewModel(model);
+    this.customerHandler = new CustomerHandler();
     this.baristaHandler = new BaristaHandler();
     this.baristaViewModel = new BaristaViewModel(model, baristaHandler);
     this.orderDetailViewModel = new OrderDetailViewModel(model, baristaHandler);
     this.checkoutViewModel = new CheckoutViewModel(model);
-    this.descriptionViewModel = new DescriptionViewModel(model);
+    this.descriptionViewModel = new DescriptionViewModel(model, customerHandler);
     this.cashierHandler = new CashierHandler();
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
-    this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);
-    this.extraViewModel = new ExtraViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel,
-        extraViewModel);
+    this.editCommentCashierViewModel = new EditCommentCashierViewModel(model, cashierHandler);
+    this.extraViewModel = new ExtraViewModel(model, customerHandler);
+    this.customerViewModel = new CustomerViewModel(model,customerHandler);
     this.displayViewModel = new DisplayViewModel(model);
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
+    this.editCommentCustomerViewModel = new EditCommentCustomerViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -96,9 +98,9 @@ public class ViewModelFactory
     return cashierViewModel;
   }
 
-  public EditCommentViewModel getEditCommentViewModel()
+  public EditCommentCashierViewModel getEditCommentCashierViewModel()
   {
-    return editCommentViewModel;
+    return editCommentCashierViewModel;
   }
 
   public CashierHandler getCashierHandler()
@@ -129,5 +131,10 @@ public class ViewModelFactory
   public ManageAccessKeysViewModel getManageAccessKeysViewModel()
   {
     return manageAccessKeysViewModel;
+  }
+
+  public EditCommentCustomerViewModel getEditCommentCustomerViewModel()
+  {
+    return editCommentCustomerViewModel;
   }
 }
