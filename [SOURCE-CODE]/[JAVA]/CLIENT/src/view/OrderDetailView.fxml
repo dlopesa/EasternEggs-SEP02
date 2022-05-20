@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OrderDetailViewController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OrderDetailViewController">
    <children>
       <Label fx:id="titleLabel" text="Items in Order">
          <font>
@@ -25,12 +25,24 @@
             <TableColumn fx:id="priceCol" prefWidth="130.0" text="PRICE" />
         </columns>
       </TableView>
+      <Label fx:id="titleLabel1" text="Extras in Items">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="extrasTable" prefHeight="160.0" prefWidth="500.0">
+         <columns>
+            <TableColumn fx:id="idCol1" prefWidth="100.0" text="ID" />
+            <TableColumn fx:id="typeCol1" prefWidth="150.0" text="NAME" />
+            <TableColumn fx:id="nameCol1" prefWidth="250.0" text="EXTRAS" />
+         </columns>
+      </TableView>
       <Label text="Comment">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextArea fx:id="commentArea" editable="false" prefHeight="100.0" prefWidth="200.0">
+      <TextArea fx:id="commentArea" editable="false" prefHeight="125.0" prefWidth="320.0">
          <VBox.margin>
             <Insets left="100.0" right="100.0" />
          </VBox.margin>
