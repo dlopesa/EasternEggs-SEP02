@@ -3,7 +3,6 @@ package viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
-import utility.Order;
 
 public class EditCommentCustomerViewModel
 {
@@ -25,6 +24,6 @@ public class EditCommentCustomerViewModel
   }
 
   public void submit() {
-    model.editOrderComment(model.getOrder(),commentArea.get());
+    model.editOrderCommentByCustomer(commentArea.get());
   }
 }

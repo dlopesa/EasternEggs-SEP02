@@ -34,7 +34,7 @@ public class EditCommentCashierViewModel
 
   public void editComment() {
     Order order = handler.getSelectedPendingOrder().getOrder();
-    model.editOrderComment(order,commentArea.get());
+    model.editOrderCommentByCashier(order,commentArea.get());
   }
 
 }

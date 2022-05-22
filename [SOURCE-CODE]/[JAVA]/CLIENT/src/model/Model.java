@@ -4,7 +4,6 @@ import utility.*;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +34,8 @@ public interface Model extends PropertyChangeListener,
   ArrayList<Order> getAllCompletedOrders();
   void completeOrder(Order order) throws RemoteException;
   void acceptPayment(Order order);
-  void editOrderComment(Order order, String comment);
+  void editOrderCommentByCashier(Order order, String comment);
+  void editOrderCommentByCustomer(String comment);
   void cancelUnpaidOrder(Order order);
   ArrayList<String> getAllTypes();
   ArrayList<Extra> getAllExtrasByType(String type);

@@ -263,7 +263,7 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public void editOrderComment(Order order, String comment)
+  @Override public void editOrderCommentByCashier(Order order, String comment)
   {
     try
     {
@@ -273,6 +273,11 @@ public class ModelManager implements Model
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void editOrderCommentByCustomer(String comment)
+  {
+    order.setComment(comment);
   }
 
   @Override public void cancelUnpaidOrder(Order order)

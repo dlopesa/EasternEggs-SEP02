@@ -75,7 +75,6 @@ public class ConcreteOrderDAO implements OrderDAO
         int item_in_order_id = 0;
         if (keysItemInOrder.next())
         {
-          System.out.println(keysItemInOrder.getInt(1));
           item_in_order_id = keysItemInOrder.getInt(1);
         }
         for (Extra extra : extras)

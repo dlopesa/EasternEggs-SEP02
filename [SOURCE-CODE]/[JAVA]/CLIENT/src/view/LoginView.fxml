@@ -34,7 +34,7 @@
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
                   <Label fx:id="errorLabel" text="Acess Key Invaid" textFill="RED" visible="false" />
-                        <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+                        <PasswordField fx:id="passwordField" onAction="#onEnter" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
                </children>
                 </VBox>
             </children>
