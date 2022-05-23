@@ -24,6 +24,7 @@ public class ViewModelFactory
   private AddAccessKeyViewModel addAccessKeyViewModel;
   private EditCommentCustomerViewModel editCommentCustomerViewModel;
   private CustomerHandler customerHandler;
+  private PaymentViewModel paymentViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -46,6 +47,7 @@ public class ViewModelFactory
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
     this.editCommentCustomerViewModel = new EditCommentCustomerViewModel(model);
+    this.paymentViewModel = new PaymentViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -136,5 +138,9 @@ public class ViewModelFactory
   public EditCommentCustomerViewModel getEditCommentCustomerViewModel()
   {
     return editCommentCustomerViewModel;
+  }
+  public PaymentViewModel getPaymentViewModel()
+  {
+    return paymentViewModel;
   }
 }

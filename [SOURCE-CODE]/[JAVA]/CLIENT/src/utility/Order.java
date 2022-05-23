@@ -86,6 +86,10 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     return price;
   }
 
+  public void setIsTakeAway(){
+    comment+="\n \n TAKE-AWAY";
+  }
+
   public void addItem(Item item)
   {
     itemList.add(item);
@@ -159,6 +163,11 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     copy.itemList = this.itemList;
     copy.status = this.status;
     return copy;
+  }
+
+  public void setStatus(String status)
+  {
+    this.status=status;
   }
 
   public String getTime()
