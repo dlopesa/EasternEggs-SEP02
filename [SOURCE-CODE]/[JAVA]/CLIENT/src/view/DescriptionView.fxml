@@ -10,105 +10,114 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DescriptionViewController">
+<VBox prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.DescriptionViewController"
+      userData="Description of an item">
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
                 <Label text="Item's details">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                 </Label>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="100.0">
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
             <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <children>
                         <Label text="Name">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <padding>
-                        <Insets left="100.0" />
+                        <Insets left="100.0"/>
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <children>
                         <TextField fx:id="nameField" editable="false">
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                         </TextField>
                     </children>
                     <padding>
-                        <Insets right="100.0" />
+                        <Insets right="100.0"/>
                     </padding>
                 </VBox>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="100.0">
             <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <children>
                         <Label text="Type">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <padding>
-                        <Insets left="100.0" />
+                        <Insets left="100.0"/>
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <padding>
-                        <Insets right="100.0" />
+                        <Insets right="100.0"/>
                     </padding>
                     <children>
-                        <ChoiceBox fx:id="typeChoiceBox" prefWidth="200.0" />
+                        <ChoiceBox fx:id="typeChoiceBox" prefWidth="200.0"/>
                     </children>
                 </VBox>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="100.0">
             <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <children>
                         <Label text="Price">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <padding>
-                        <Insets left="100.0" />
+                        <Insets left="100.0"/>
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <children>
                         <TextField fx:id="priceField" editable="false">
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                         </TextField>
                     </children>
                     <padding>
-                        <Insets right="100.0" />
+                        <Insets right="100.0"/>
                     </padding>
                 </VBox>
             </children>
@@ -119,38 +128,42 @@
                     <children>
                         <Label text="Description">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <padding>
-                        <Insets left="100.0" />
+                        <Insets left="100.0"/>
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="300.0">
                     <padding>
-                        <Insets right="100.0" />
+                        <Insets right="100.0"/>
                     </padding>
                     <children>
-                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" />
+                        <TextArea fx:id="descriptionArea" editable="false"
+                                  prefHeight="200.0" prefWidth="200.0"/>
                     </children>
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                 </VBox>
             </children>
             <padding>
-                <Insets top="10.0" />
+                <Insets top="10.0"/>
             </padding>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+              spacing="150.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#backButton" text="Back">
+                <Button mnemonicParsing="false" onAction="#backButton"
+                        text="Back">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
             </children>
@@ -159,7 +172,7 @@
             <children>
                 <Label fx:id="errorLabel" text="ErrorLabel" textFill="RED">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
             </children>

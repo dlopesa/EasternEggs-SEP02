@@ -1,12 +1,16 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import property.OrderProperty;
 import utility.Order;
 
-public class CashierViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class CashierViewModel implements PropertyChangeListener
 {
   private Model model;
   private ObservableList<OrderProperty> unpaidOrders;
@@ -16,18 +20,21 @@ public class CashierViewModel
   public CashierViewModel(Model model, CashierHandler handler)
   {
     this.model = model;
-    reset();
+    model.addListener(this);
     this.handler = handler;
+    this.unpaidOrders = FXCollections.observableArrayList();
+    this.pendingOrders = FXCollections.observableArrayList();
+    reset();
   }
 
   public void reset()
   {
-    this.unpaidOrders = FXCollections.observableArrayList();
+    unpaidOrders.clear();
     for (Order order : model.getAllUnpaidOrders())
     {
       unpaidOrders.add(new OrderProperty(order));
     }
-    this.pendingOrders = FXCollections.observableArrayList();
+    pendingOrders.clear();
     for (Order order : model.getAllPendingOrders())
     {
       pendingOrders.add(new OrderProperty(order));
@@ -62,5 +69,16 @@ public class CashierViewModel
   public void markOrderAsPaid()
   {
     model.acceptPayment(handler.getSelectedUnpaidOrder().getOrder());
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(()->
+    {
+      if(evt.getPropertyName().equals("change"))
+      {
+        reset();
+      }
+    });
   }
 }

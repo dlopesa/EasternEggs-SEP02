@@ -29,13 +29,12 @@ public class CashierViewController extends ViewController
     reset();
     unpaidOrderSelection = unpaidTable.getSelectionModel();
     pendingOrderSelection = pendingTable.getSelectionModel();
-
+    setTable(unpaidTable, "unpaid");
+    setTable(pendingTable, "pending");
   }
 
   public void reset() {
     viewModel.reset();
-    setTable(unpaidTable, "unpaid");
-    setTable(pendingTable, "pending");
   }
 
   private void setTable(TableView table, String status)

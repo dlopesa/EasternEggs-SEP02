@@ -41,7 +41,7 @@ public class ItemList implements Serializable
       }
     }
     if (!found) {
-      System.out.println("item not found: " + item.toString() + ", extra was: " + extra);
+      System.out.println("Item not found: " + item.toString() + ", extra was: " + extra);
     }
   }
 

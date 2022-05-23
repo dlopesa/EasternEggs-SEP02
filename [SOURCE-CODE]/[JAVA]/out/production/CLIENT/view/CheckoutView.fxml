@@ -12,7 +12,8 @@
 
 <VBox prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.CheckoutViewController">
+      fx:controller="view.CheckoutViewController"
+userData="Checkout">
     <children>
         <HBox alignment="CENTER" prefHeight="76.0" prefWidth="630.0">
             <children>

@@ -165,11 +165,7 @@ public class RemoteServer implements RemoteCafeServer
   @Override public String getUserType(String pwd)
       throws RemoteException, SQLException
   {
-    System.out.println("---SERVER---");
-    System.out.println("Server|From client: " + pwd);
-
     String ak = cafePersistence.getUserType(pwd);
-    System.out.println("Server|From db: " + ak);
     return ak;
   }
 }

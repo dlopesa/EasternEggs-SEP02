@@ -63,8 +63,10 @@ public class AddAccessKeyViewModel
         throw new IllegalArgumentException();
       }
 
-      for (AccessKey accessKey : model.getAllAccessKey()) {
-        if (accessKeyS.get().equals(accessKey.getAccessKey())) {
+      for (AccessKey accessKey : model.getAllAccessKey())
+      {
+        if (accessKeyS.get().equals(accessKey.getAccessKey()))
+        {
           throw new IllegalStateException();
         }
       }

@@ -60,7 +60,6 @@ public class ConcreteItemDAO implements ItemDAO
       statement.setString(4, description);
       statement.executeUpdate();
     }
-    System.out.println("The adding of an item is completed.");
   }
 
   @Override public void readItemById(int id)

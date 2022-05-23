@@ -27,7 +27,6 @@ public class LoginViewController extends ViewController
   @FXML private void onEnter()
   {
     String pwd = loginViewModel.getUserType();
-    System.out.println("ViewController: " + pwd);
     if (pwd.equals("Barista"))
     {
       getViewHandler().openView("BaristaView.fxml");
@@ -47,7 +46,6 @@ public class LoginViewController extends ViewController
     else
     {
       errorLabel.setVisible(true);
-      System.out.println("");
     }
   }
   @FXML private void back()

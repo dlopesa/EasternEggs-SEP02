@@ -79,7 +79,6 @@ public class ConcreteOrderDAO implements OrderDAO
         }
         for (Extra extra : extras)
         {
-          System.out.println("entered statement.");
           PreparedStatement extrainiteminorderStatement = connection.prepareStatement(
               "INSERT INTO extrainiteminorder(extra_id,item_in_order_id, item_id, order_id) VALUES (?,?,?,?)");
           extrainiteminorderStatement.setString(1, extra.getName());
@@ -160,7 +159,6 @@ public class ConcreteOrderDAO implements OrderDAO
         return order;
       }
     }
-    System.out.println("No order was found with this id?");
     return null;
   }
 

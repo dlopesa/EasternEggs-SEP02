@@ -186,10 +186,8 @@ public class CafeDatabase implements CafePersistence
 
   @Override public String getUserType(String pwd) throws SQLException
   {
-    System.out.println("DataBase|From client: " + pwd);
     String ak;
     ak = loginDAO.getUserType(pwd);
-    System.out.println("DataBase|From DataBase: " + ak);
     return ak;
   }
 }

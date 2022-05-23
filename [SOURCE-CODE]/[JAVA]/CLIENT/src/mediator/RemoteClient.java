@@ -141,9 +141,7 @@ public class RemoteClient
 
   public String getUserType(String pwd) throws RemoteException, SQLException
   {
-    System.out.println("Client|From Client: " + pwd);
     String ak = server.getUserType(pwd);
-    System.out.println("Client|From Server: " + ak);
     return ak;
   }
 

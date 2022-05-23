@@ -10,13 +10,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageAccessKeyViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.ManageAccessKeyViewController"
+      userData="Manage access keys">
     <children>
         <HBox alignment="CENTER" prefHeight="64.0" prefWidth="600.0">
             <children>
                 <Label alignment="CENTER" text="Access Key Manager">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                 </Label>
             </children>
@@ -27,47 +31,59 @@
                     <children>
                         <ScrollPane prefHeight="333.0" prefWidth="304.0">
                             <content>
-                                <TableView fx:id="accessKeyTable" prefHeight="332.0" prefWidth="310.0">
+                                <TableView fx:id="accessKeyTable"
+                                           prefHeight="332.0" prefWidth="310.0">
                                     <columns>
-                                        <TableColumn fx:id="accessKey" prefWidth="155.0" text="AccessKey" />
-                                        <TableColumn fx:id="permissionKey" prefWidth="155.0" text="Permission" />
+                                        <TableColumn fx:id="accessKey"
+                                                     prefWidth="155.0"
+                                                     text="AccessKey"/>
+                                        <TableColumn fx:id="permissionKey"
+                                                     prefWidth="155.0"
+                                                     text="Permission"/>
                                     </columns>
                                 </TableView>
                             </content>
                         </ScrollPane>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                      prefWidth="150.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#addKeyPressed" prefWidth="130.0" text="Add Key">
+                        <Button mnemonicParsing="false"
+                                onAction="#addKeyPressed" prefWidth="130.0"
+                                text="Add Key">
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#removeItemPressed" prefWidth="130.0" text="Remove Key">
+                        <Button mnemonicParsing="false"
+                                onAction="#removeItemPressed" prefWidth="130.0"
+                                text="Remove Key">
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#backButtonPressed" prefWidth="130.0" text="Back">
+                        <Button mnemonicParsing="false"
+                                onAction="#backButtonPressed" prefWidth="130.0"
+                                text="Back">
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Button>
                     </children>
                 </VBox>
             </children>
             <padding>
-                <Insets left="35.0" />
+                <Insets left="35.0"/>
             </padding>
         </HBox>
     </children>

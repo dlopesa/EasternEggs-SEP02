@@ -14,13 +14,11 @@ public class ConcreteLoginDAO implements LoginDAO
 
   private ConcreteLoginDAO() throws SQLException
   {
-    System.out.println("I'm stuck on ConcreteLoginDAO");
     DriverManager.registerDriver(new org.postgresql.Driver());
   }
 
   public static ConcreteLoginDAO getInstance() throws SQLException
   {
-    System.out.println("I'm stuck on instance");
     if (instance == null)
     {
       synchronized (lock)
@@ -36,7 +34,6 @@ public class ConcreteLoginDAO implements LoginDAO
 
   private Connection getConnection() throws SQLException
   {
-    //System.out.println("I'm sutck on connection");
     return DriverManager.getConnection(
         "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe",
         "postgres", "1234");
@@ -47,7 +44,6 @@ public class ConcreteLoginDAO implements LoginDAO
 
   @Override public String getUserType(String pwd)
   {
-    System.out.println("I'm stuck on getUserType");
     String userType = "default";
     try (Connection connection = getConnection())
     {
@@ -57,7 +53,6 @@ public class ConcreteLoginDAO implements LoginDAO
       while (accessKey.next())
       {
         userType = accessKey.getString("permission");
-        System.out.println(userType);
       }
     }
     catch (SQLException throwables)
@@ -108,6 +103,5 @@ public class ConcreteLoginDAO implements LoginDAO
       statement.setString(2, permissionS);
       statement.executeUpdate();
     }
-    System.out.println("The adding of an accessKey is completed.");
   }
 }

@@ -28,10 +28,7 @@ public class LoginViewModel
   public String getUserType()
   {
     String pwd = accessKeyProperty.get();
-    System.out.println("ViewModel|From user: " + pwd);
-
     String ak = model.getUserType(pwd);
-    System.out.println("ViewModel|From Model: " + ak);
     return ak;
   }
 

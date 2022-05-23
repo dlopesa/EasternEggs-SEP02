@@ -54,7 +54,6 @@ public class ModelManager implements Model
   @Override public String getUserType(String pwd)
 
   {
-    System.out.println("Model|From View: " + pwd);
     String ak = null;
     try
     {
@@ -68,7 +67,6 @@ public class ModelManager implements Model
     {
       e.printStackTrace();
     }
-    System.out.println("Model|From Client: " + ak);
     return ak;
   }
 
@@ -98,7 +96,6 @@ public class ModelManager implements Model
   @Override public void addExtraToItem(Extra extra, Item item)
   {
     item.addExtra(extra);
-    System.out.println("Model maanaad a: " + item);
   }
 
   @Override public void removeExtraFromItem(Extra extra, Item item)
