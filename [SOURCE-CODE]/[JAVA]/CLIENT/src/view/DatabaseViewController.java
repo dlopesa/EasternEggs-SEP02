@@ -57,17 +57,12 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void backPressed()
   {
-    getViewHandler().openView("LoginView.fxml");
+    getViewHandler().openView("AdminView.fxml");
   }
 
   @FXML public void addItemPressed()
   {
     getViewHandler().openView("AddItemView.fxml");
-  }
-
-  @FXML public void accessKeysPressed()
-  {
-    getViewHandler().openView("ManageAccessKey.fxml");
   }
 
 }

@@ -57,12 +57,14 @@ public class ConcreteExtraDAO implements ExtraDAO
     String name = extra.getName();
     ArrayList<String> availableTypes = extra.getAvailableTypes();
     try (Connection connection = getConnection()) {
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO extra(name) VALUES (?);");
+      PreparedStatement statement = connection.prepareStatement(""
+          + "INSERT INTO extra(name) VALUES (?);");
       statement.setString(1,name);
       statement.executeUpdate();
 
       for (String type : availableTypes) {
-        PreparedStatement statement2 = connection.prepareStatement("INSERT INTO extraavailablefortype(extra_id, type) VALUES (?,?);");
+        PreparedStatement statement2 = connection.prepareStatement(""
+            + "INSERT INTO extraavailablefortype(extra_id, type) VALUES (?,?);");
         statement2.setString(1,name);
         statement2.setString(2,type);
         statement2.executeUpdate();
@@ -81,34 +83,6 @@ public class ConcreteExtraDAO implements ExtraDAO
       deleteStatement.executeUpdate();
     }
   }
-
-//  @Override public ArrayList<Extra> getAllExtras() throws SQLException
-//  {
-//
-//    ArrayList<Extra> extras = new ArrayList<>();
-//
-//    try (Connection connection = getConnection())
-//    {
-//      PreparedStatement statement = connection.prepareStatement("SELECT * FROM extra");
-//      ResultSet extraResultSet = statement.executeQuery();
-//      while (extraResultSet.next())
-//      {
-//        String name = extraResultSet.getString("name");
-//        Extra extra = new Extra(name);
-//        //TODO just redo this.
-////        PreparedStatement statement2 = connection.prepareStatement("SELECT * FROM extraAvailableForType WHERE extra_id = ?");
-////        statement2.setString(1, name);
-////        ResultSet extraAndTypesResultSet = statement.executeQuery();
-////        while (extraAndTypesResultSet.next()) {
-////          String type = extraAndTypesResultSet.getString("type");
-////          extra.addAvailableType(type);
-////        }
-//        extras.add(extra);
-//      }
-//    }
-//    return extras;
-//  }
-
 
   @Override public ArrayList<Extra> getAllExtras() throws SQLException
   {

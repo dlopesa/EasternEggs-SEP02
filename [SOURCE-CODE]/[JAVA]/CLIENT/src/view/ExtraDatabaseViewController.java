@@ -35,7 +35,7 @@ public class ExtraDatabaseViewController extends ViewController
   }
 
   @FXML private void addExtraPressed() {
-    getViewHandler().openView("AddExtraView.fxml"); //TODO implement this view
+    getViewHandler().openView("AddExtraView.fxml");
   }
 
   @FXML private void removeExtraPressed() {
@@ -46,7 +46,7 @@ public class ExtraDatabaseViewController extends ViewController
   }
 
   @FXML private void backPressed() {
-    getViewHandler().openView("DatabaseView.fxml");
+    getViewHandler().openView("AdminView.fxml");
 
   }
 }

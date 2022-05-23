@@ -65,11 +65,6 @@
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                  <Button mnemonicParsing="false" onAction="#accessKeysPressed" prefWidth="130.0" text="Access Keys">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
                         <Button mnemonicParsing="false" onAction="#backPressed" prefWidth="130.0" text="Back">
                             <VBox.margin>
                                 <Insets />

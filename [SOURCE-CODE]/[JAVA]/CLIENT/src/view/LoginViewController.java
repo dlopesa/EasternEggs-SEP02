@@ -34,7 +34,7 @@ public class LoginViewController extends ViewController
     }
     else if (pwd.equals("Admin"))
     {
-      getViewHandler().openView("DatabaseView.fxml");
+      getViewHandler().openView("AdminView.fxml");
     }
     else if (pwd.equals("Cashier"))
     {
@@ -47,7 +47,6 @@ public class LoginViewController extends ViewController
     else
     {
       errorLabel.setVisible(true);
-      System.out.println("");
     }
   }
   @FXML private void back()
