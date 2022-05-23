@@ -190,4 +190,20 @@ public class CafeDatabase implements CafePersistence
     ak = loginDAO.getUserType(pwd);
     return ak;
   }
+
+  @Override public ArrayList<Extra> getAllExtras() throws SQLException
+  {
+    return extraDAO.getAllExtras();
+  }
+
+  @Override public void addExtraToExtraList(Extra extra) throws SQLException
+  {
+    extraDAO.create(extra);
+  }
+
+  @Override public void removeExtraFromExtraList(Extra extra)
+      throws SQLException
+  {
+    extraDAO.delete(extra);
+  }
 }

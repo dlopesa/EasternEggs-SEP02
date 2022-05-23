@@ -168,4 +168,21 @@ public class RemoteServer implements RemoteCafeServer
     String ak = cafePersistence.getUserType(pwd);
     return ak;
   }
+
+  @Override public ArrayList<Extra> getAllExtras() throws SQLException
+  {
+    return cafePersistence.getAllExtras();
+  }
+
+  @Override public void addExtraToExtraList(Extra extra)
+      throws RemoteException, SQLException
+  {
+    cafePersistence.addExtraToExtraList(extra);
+  }
+
+  @Override public void removeExtraFromExtraList(Extra extra)
+      throws RemoteException, SQLException
+  {
+    cafePersistence.removeExtraFromExtraList(extra);
+  }
 }

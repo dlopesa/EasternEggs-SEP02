@@ -46,12 +46,12 @@ public class ManageAccessKeyViewController extends  ViewController
     reset();
   }
 
-  public void backButtonPressed(ActionEvent actionEvent)
+  @FXML public void backButtonPressed()
   {
-    getViewHandler().openView("LoginView.fxml");
+    getViewHandler().openView("AdminView.fxml");
   }
 
-  public void addKeyPressed(ActionEvent actionEvent)
+  @FXML public void addKeyPressed()
   {
     getViewHandler().openView("AddAccessKey.fxml");
   }
