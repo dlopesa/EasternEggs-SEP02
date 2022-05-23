@@ -45,21 +45,7 @@ public class CheckoutViewController extends ViewController
     itemTable.setItems(checkoutViewModel.getItemsInOrder());
   }
 
-  private void orderNumberMessageNonCash(int id)
-  {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Order "+id);
-      alert.setHeaderText("Your order is being prepared: Order Number #"+ id);
-      alert.showAndWait();
-  }
 
-  private void orderNumberMessageCash(int id)
-  {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Order #"+id);
-    alert.setHeaderText("Please go to the cashier to pay for your order: Order Number #"+ id);
-    Optional<ButtonType> result = alert.showAndWait();
-  }
 
   @FXML private void removeFromOrderButton()
   {
@@ -70,8 +56,7 @@ public class CheckoutViewController extends ViewController
 
   @FXML private void payButton()
   {
-    orderNumberMessageNonCash(checkoutViewModel.submit());
-    getViewHandler().openView("StartView.fxml");
+    getViewHandler().openView("PaymentView.fxml");
     //getViewHandler().openView(pay);
 
   }

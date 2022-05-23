@@ -165,6 +165,12 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     this.dateTime = dateTime;
   }
 
+
+  public void setStatus(String status)
+  {
+    this.status=status;
+  }
+
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
@@ -173,6 +179,10 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
+  }
+
+  public void setIsTakeAway(){
+    comment+="\n \n TAKE-AWAY";
   }
 
   public int getOrderId()

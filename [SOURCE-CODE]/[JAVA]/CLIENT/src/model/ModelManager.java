@@ -26,8 +26,7 @@ public class ModelManager implements Model
   private ArrayList<String> permissions;
   private PropertyChangeSupport property;
 
-  public ModelManager()
-      throws MalformedURLException, NotBoundException, RemoteException
+  public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
     client.addListener(this);
@@ -82,6 +81,7 @@ public class ModelManager implements Model
     int tempId = -20;
     try
     {
+      System.out.println("Model: Sending the order to the database: the following methods have already been tested and are working. The order should be displayed in the database");
       tempId = client.receiveOrder(order);
 
       quitAndCancelOrder();
@@ -106,8 +106,6 @@ public class ModelManager implements Model
     item.removeExtra(extra);
   }
 
-
-
   @Override public void removeItemFromOrder(Item item)
   {
     order.removeItem(item);
@@ -118,8 +116,7 @@ public class ModelManager implements Model
     return order;
   }
 
-  @Override public ItemList getAllExistingItems()
-      throws RemoteException, SQLException
+  @Override public ItemList getAllExistingItems() throws RemoteException, SQLException
   {
     return client.getAllItems();
   }
@@ -137,7 +134,6 @@ public class ModelManager implements Model
     return null;
   }
 
-
   @Override public void setComment(String comment)
   {
 
@@ -150,14 +146,18 @@ public class ModelManager implements Model
     property.firePropertyChange("cancel", order.getPrice(), null);
   }
 
-  @Override public void payForOrder(boolean isCash)
+  @Override public int payForOrder(boolean isCash)
   {
-
+    if (isCash)
+    {
+      order.setStatus("unpaid");
+    }
+    return submitOrder();
   }
 
-  @Override public void setIsTakeAway(boolean isTakeAway)
+  @Override public void setIsTakeAway()
   {
-
+    order.setIsTakeAway();
   }
 
   @Override public void addItemToProductList(Item item)
@@ -177,13 +177,11 @@ public class ModelManager implements Model
     client.addAccessKey(accessKey);
   }
 
-
   @Override public void removeItemFromProductList(Item item)
   {
     try
     {
       client.removeItemFromProductList(item);
-
     }
     catch (Exception e)
     {
@@ -203,8 +201,6 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
   }
-
-
 
   @Override public ArrayList<Order> getAllPendingOrders()
   {
@@ -305,6 +301,7 @@ public class ModelManager implements Model
     }
     return null;
   }
+
   @Override public ArrayList<String> getAllPermissions()
   {
     return permissions;
@@ -312,8 +309,7 @@ public class ModelManager implements Model
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
-        evt.getNewValue());
+    property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
   }
 
   @Override public void addListener(PropertyChangeListener listener)

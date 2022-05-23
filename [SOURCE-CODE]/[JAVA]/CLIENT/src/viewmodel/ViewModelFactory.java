@@ -23,6 +23,7 @@ public class ViewModelFactory
   private DisplayViewModel displayViewModel;
   private ManageAccessKeysViewModel manageAccessKeysViewModel;
   private AddAccessKeyViewModel addAccessKeyViewModel;
+  private PaymentViewModel paymentViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -39,11 +40,11 @@ public class ViewModelFactory
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
     this.editCommentViewModel = new EditCommentViewModel(model, cashierHandler);
     this.extraViewModel = new ExtraViewModel(model);
-    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel,
-        extraViewModel);
+    this.customerViewModel = new CustomerViewModel(model, descriptionViewModel, extraViewModel);
     this.displayViewModel = new DisplayViewModel(model);
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
+    this.paymentViewModel = new PaymentViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -129,5 +130,10 @@ public class ViewModelFactory
   public ManageAccessKeysViewModel getManageAccessKeysViewModel()
   {
     return manageAccessKeysViewModel;
+  }
+
+  public PaymentViewModel getPaymentViewModel()
+  {
+    return paymentViewModel;
   }
 }

@@ -25,8 +25,8 @@ public interface Model extends PropertyChangeListener,
   ArrayList<AccessKey> getAllAccessKey() throws RemoteException, SQLException;
   void setComment(String comment);
   void quitAndCancelOrder();
-  void payForOrder(boolean isCash);
-  void setIsTakeAway(boolean isTakeAway);
+  int payForOrder(boolean isCash);
+  void setIsTakeAway();
   void addItemToProductList(Item item);
   void addAccessKey(AccessKey accessKey) throws SQLException;
   void removeItemFromProductList(Item item);
