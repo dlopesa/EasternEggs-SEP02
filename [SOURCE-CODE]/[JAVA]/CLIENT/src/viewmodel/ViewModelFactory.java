@@ -39,12 +39,14 @@ public class ViewModelFactory
     this.baristaViewModel = new BaristaViewModel(model, baristaHandler);
     this.orderDetailViewModel = new OrderDetailViewModel(model, baristaHandler);
     this.checkoutViewModel = new CheckoutViewModel(model);
-    this.descriptionViewModel = new DescriptionViewModel(model, customerHandler);
+    this.descriptionViewModel = new DescriptionViewModel(model,
+        customerHandler);
     this.cashierHandler = new CashierHandler();
     this.cashierViewModel = new CashierViewModel(model, cashierHandler);
-    this.editCommentCashierViewModel = new EditCommentCashierViewModel(model, cashierHandler);
+    this.editCommentCashierViewModel = new EditCommentCashierViewModel(model,
+        cashierHandler);
     this.extraViewModel = new ExtraViewModel(model, customerHandler);
-    this.customerViewModel = new CustomerViewModel(model,customerHandler);
+    this.customerViewModel = new CustomerViewModel(model, customerHandler);
     this.displayViewModel = new DisplayViewModel(model);
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
@@ -143,9 +145,12 @@ public class ViewModelFactory
   {
     return editCommentCustomerViewModel;
   }
+
   public PaymentViewModel getPaymentViewModel()
   {
     return paymentViewModel;
+  }
+
   public ExtraDatabaseViewModel getExtraDatabaseViewModel()
   {
     return extraDatabaseViewModel;
