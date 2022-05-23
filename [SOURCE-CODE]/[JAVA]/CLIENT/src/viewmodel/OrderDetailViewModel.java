@@ -44,6 +44,7 @@ public class OrderDetailViewModel
         extrasInItems.add(new ExtraInItemProperty(item, item.getExtras()));
       }
     }
+    //TODO new method inside DAO will be probably needed to get the item_in_order_id with the proper extras
   }
 
   public ObservableList<ExtraInItemProperty> getExtrasInItems()
