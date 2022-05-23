@@ -1,5 +1,6 @@
 package mediator;
 
+import property.ExtraProperty;
 import utility.Extra;
 import utility.AccessKey;
 import utility.Item;
@@ -25,7 +26,7 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
   void receiveUnpaidOrder(Order order) throws RemoteException;
   void acceptPayment(Order order) throws RemoteException;
   void addItemToProductList(Item item) throws RemoteException;
-  void addAccessKey(AccessKey accessKey);
+  void addAccessKey(AccessKey accessKey) throws RemoteException;
   ArrayList<Order> getAllPendingOrders() throws RemoteException;
   ArrayList<Order> getAllUnpaidOrders() throws RemoteException;
   void removeItemFromProductList(Item item) throws RemoteException;
@@ -37,4 +38,7 @@ public interface RemoteCafeServer extends Remote, RemoteSubject<String, String>
       String... propertyNames) throws RemoteException;
   void removeAccessKey(AccessKey accessKey) throws RemoteException;
   String getUserType(String pwd) throws RemoteException, SQLException;
+  ArrayList<Extra> getAllExtras() throws RemoteException;
+  void addExtraToExtraList(Extra extra) throws RemoteException;
+  void removeExtraFromExtraList(Extra extra) throws RemoteException;
 }

@@ -26,4 +26,7 @@ public interface CafePersistence
   ArrayList<Extra> getAllExtrasByType(String type) throws SQLException;
   public void removeAccessKey(AccessKey accessKey) throws SQLException;
   public String getUserType(String pwd) throws SQLException;
+  ArrayList<Extra> getAllExtras() throws SQLException;
+  public void addExtraToExtraList(Extra extra) throws SQLException;
+  public void removeExtraFromExtraList(Extra extra) throws SQLException;
 }

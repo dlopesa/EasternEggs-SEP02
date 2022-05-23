@@ -23,6 +23,8 @@ public class ViewModelFactory
   private DisplayViewModel displayViewModel;
   private ManageAccessKeysViewModel manageAccessKeysViewModel;
   private AddAccessKeyViewModel addAccessKeyViewModel;
+  private ExtraDatabaseViewModel extraDatabaseViewModel;
+  private AddExtraViewModel addExtraViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -44,6 +46,8 @@ public class ViewModelFactory
     this.displayViewModel = new DisplayViewModel(model);
     this.manageAccessKeysViewModel = new ManageAccessKeysViewModel(model);
     this.addAccessKeyViewModel = new AddAccessKeyViewModel(model);
+    this.extraDatabaseViewModel = new ExtraDatabaseViewModel(model);
+    this.addExtraViewModel = new AddExtraViewModel(model);
   }
 
   public CustomerViewModel getCustomerViewModel()
@@ -129,5 +133,15 @@ public class ViewModelFactory
   public ManageAccessKeysViewModel getManageAccessKeysViewModel()
   {
     return manageAccessKeysViewModel;
+  }
+
+  public ExtraDatabaseViewModel getExtraDatabaseViewModel()
+  {
+    return extraDatabaseViewModel;
+  }
+
+  public AddExtraViewModel getAddExtraViewModel()
+  {
+    return addExtraViewModel;
   }
 }

@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class DatabaseViewModel
 {
-  private ArrayList<ItemProperty> allItems;
+  private ObservableList<ItemProperty> allItems;
   private Model model;
 
   public DatabaseViewModel(Model model)
   {
     this.model = model;
-    allItems = new ArrayList<>();
+    allItems = FXCollections.observableArrayList();
     reset();
   }
 
@@ -39,12 +39,7 @@ public class DatabaseViewModel
 
   public ObservableList<ItemProperty> getAllItems()
   {
-    ObservableList<ItemProperty> observableList = FXCollections.observableArrayList();
-    for (int i = 0; i < allItems.size(); i++)
-    {
-      observableList.add(allItems.get(i));
-    }
-    return observableList;
+   return allItems;
   }
 
   public void removeItem(ItemProperty item)

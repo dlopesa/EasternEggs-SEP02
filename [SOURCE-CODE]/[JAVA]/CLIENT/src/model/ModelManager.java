@@ -6,7 +6,6 @@ import utility.Item;
 import utility.ItemList;
 import utility.Order;
 import utility.*;
-import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -172,7 +171,8 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public void addAccessKey(AccessKey accessKey) throws SQLException
+  @Override public void addAccessKey(AccessKey accessKey)
+      throws SQLException, RemoteException
   {
     client.addAccessKey(accessKey);
   }
@@ -308,6 +308,43 @@ public class ModelManager implements Model
   @Override public ArrayList<String> getAllPermissions()
   {
     return permissions;
+  }
+
+  @Override public ArrayList<Extra> getAllExtras()
+  {
+    try
+    {
+      return client.getAllExtras();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  @Override public void addExtraToExtraList(Extra extra)
+  {
+    try
+    {
+      client.addExtraToExtraList(extra);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void removeExtraFromExtraList(Extra extra)
+  {
+    try
+    {
+      client.removeExtraFromExtraList(extra);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

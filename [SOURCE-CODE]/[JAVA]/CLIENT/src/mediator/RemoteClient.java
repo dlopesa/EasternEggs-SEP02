@@ -1,5 +1,6 @@
 package mediator;
 
+import property.ExtraProperty;
 import utility.Extra;
 import utility.AccessKey;
 import utility.Item;
@@ -87,7 +88,7 @@ public class RemoteClient
     server.addItemToProductList(item);
   }
 
-  public void addAccessKey(AccessKey accessKey)
+  public void addAccessKey(AccessKey accessKey) throws RemoteException
   {
     server.addAccessKey(accessKey);
   }
@@ -145,6 +146,22 @@ public class RemoteClient
     String ak = server.getUserType(pwd);
     System.out.println("Client|From Server: " + ak);
     return ak;
+  }
+
+  public ArrayList<Extra> getAllExtras() throws RemoteException
+  {
+    return server.getAllExtras();
+  }
+
+  public void addExtraToExtraList(Extra extra) throws RemoteException
+  {
+    server.addExtraToExtraList(extra);
+  }
+
+  public void removeExtraFromExtraList(Extra extra)
+      throws RemoteException
+  {
+   server.removeExtraFromExtraList(extra);
   }
 
 }

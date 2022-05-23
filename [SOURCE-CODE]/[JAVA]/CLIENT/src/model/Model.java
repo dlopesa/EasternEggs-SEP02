@@ -4,7 +4,6 @@ import utility.*;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public interface Model extends PropertyChangeListener,
   void payForOrder(boolean isCash);
   void setIsTakeAway(boolean isTakeAway);
   void addItemToProductList(Item item);
-  void addAccessKey(AccessKey accessKey) throws SQLException;
+  void addAccessKey(AccessKey accessKey) throws SQLException, RemoteException;
   void removeItemFromProductList(Item item);
   ArrayList<Order> getAllPendingOrders();
   ArrayList<Order> getAllUnpaidOrders();
@@ -40,4 +39,7 @@ public interface Model extends PropertyChangeListener,
   ArrayList<String> getAllTypes();
   ArrayList<Extra> getAllExtrasByType(String type);
   ArrayList<String> getAllPermissions();
+  ArrayList<Extra> getAllExtras();
+  void addExtraToExtraList(Extra extra);
+  void removeExtraFromExtraList(Extra extra);
 }
