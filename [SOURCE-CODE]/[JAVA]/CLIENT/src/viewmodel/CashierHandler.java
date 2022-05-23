@@ -8,11 +8,6 @@ public class CashierHandler
   private OrderProperty selectedUnpaidOrder;
   private OrderProperty selectedPendingOrder;
 
-  public CashierHandler()
-  {
-
-  }
-
   public void setSelectedUnpaidOrder(OrderProperty order)
   {
     this.selectedUnpaidOrder = order;

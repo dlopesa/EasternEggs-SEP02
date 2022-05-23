@@ -47,7 +47,6 @@ public class CustomerViewController extends ViewController
 
   private void setTable(TableView table, String type)
   {
-
     TableColumn idColTemp = (TableColumn) table.getColumns().get(0);
     TableColumn nameColTemp = (TableColumn) table.getColumns().get(1);
     TableColumn typeColTemp = (TableColumn) table.getColumns().get(2);
@@ -71,20 +70,16 @@ public class CustomerViewController extends ViewController
     switch (indexOfTab)
     {
       case 0:
-        item = (ItemProperty) itemTableCoffee.getSelectionModel()
-            .getSelectedItem();
+        item = itemTableCoffee.getSelectionModel().getSelectedItem();
         break;
       case 1:
-        item = (ItemProperty) itemTableTea.getSelectionModel()
-            .getSelectedItem();
+        item = itemTableTea.getSelectionModel().getSelectedItem();
         break;
       case 2:
-        item = (ItemProperty) itemTableSnack.getSelectionModel()
-            .getSelectedItem();
+        item = itemTableSnack.getSelectionModel().getSelectedItem();
         break;
       case 3:
-        item = (ItemProperty) itemTableSmoothie.getSelectionModel()
-            .getSelectedItem();
+        item = itemTableSmoothie.getSelectionModel().getSelectedItem();
         break;
     }
     return item;
@@ -92,12 +87,15 @@ public class CustomerViewController extends ViewController
 
   private boolean confirmation(String name)
   {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    ButtonType accept = new ButtonType("Yes");
+    ButtonType decline = new ButtonType("No, add without extras");
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", accept, decline);
     alert.setTitle("Addition of extras");
-    alert.setHeaderText("Would you like to add any extras to your "+name+" ?");
+    alert.setHeaderText(
+        "Would you like to add any extras to your " + name + " ?");
     Optional<ButtonType> result = alert.showAndWait();
 
-    return (result.isPresent()) && (result.get() == ButtonType.OK);
+    return (result.isPresent()) && (result.get() == accept);
   }
 
   @FXML private void addToOrderButton()
@@ -113,7 +111,8 @@ public class CustomerViewController extends ViewController
     {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Adding item...");
-      alert.setHeaderText(item.getItem().getName() + " is added to your order.");
+      alert.setHeaderText(
+          item.getItem().getName() + " is added to your order.");
       alert.show();
       customerViewModel.addToOrder(item);
     }

@@ -11,8 +11,7 @@ import model.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class CheckoutViewModel
-    implements PropertyChangeListener
+public class CheckoutViewModel implements PropertyChangeListener
 {
   private Model model;
   private StringProperty totalPrice;
@@ -37,9 +36,9 @@ public class CheckoutViewModel
     for (int i = 0;
          i < model.getOrder().getItemList().getAllItems().size(); i++)
     {
-        ItemProperty itemProperty = new ItemProperty(
-            model.getOrder().getItemList().getAllItems().get(i));
-        items.add(itemProperty);
+      ItemProperty itemProperty = new ItemProperty(
+          model.getOrder().getItemList().getAllItems().get(i));
+      items.add(itemProperty);
     }
   }
 
@@ -73,11 +72,10 @@ public class CheckoutViewModel
     return model.submitOrder();
   }
 
-
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {
-      if(!evt.getPropertyName().equals("change"))
+      if (!evt.getPropertyName().equals("change"))
       {
         populatingItemsFromOrder();
         double tempPrice = (double) evt.getOldValue();
@@ -85,6 +83,5 @@ public class CheckoutViewModel
       }
     });
   }
-
 
 }

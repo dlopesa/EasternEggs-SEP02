@@ -12,7 +12,7 @@ public class CustomerViewModel
 {
   private Model model;
   private StringProperty error;
-  private ArrayList<ItemProperty> items;
+  private ArrayList<ItemProperty> items;//TODO change to ObservableList
   private CustomerHandler handler;
 
   public CustomerViewModel(Model model, CustomerHandler handler)

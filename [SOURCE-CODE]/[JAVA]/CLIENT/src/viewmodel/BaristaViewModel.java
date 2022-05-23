@@ -12,7 +12,6 @@ import java.rmi.RemoteException;
 
 public class BaristaViewModel implements PropertyChangeListener
 {
-  //TODO: baristaVM still has dependency with Utility package
   private Model model;
   private ObservableList<OrderProperty> orders;
   private BaristaHandler handler;
@@ -47,10 +46,6 @@ public class BaristaViewModel implements PropertyChangeListener
     handler.setSelectedOrder(order);
   }
 
-  public OrderProperty getSelectedOrder()
-  {
-    return handler.getSelectedOrder();
-  }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {

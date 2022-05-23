@@ -6,10 +6,6 @@ public class CustomerHandler
 {
   private ItemProperty item;
 
-  public CustomerHandler()
-  {
-
-  }
 
   public void setItem(ItemProperty item)
   {
