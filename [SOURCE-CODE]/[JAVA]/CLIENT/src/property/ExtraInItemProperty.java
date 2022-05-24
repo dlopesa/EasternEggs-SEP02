@@ -17,7 +17,7 @@ public class ExtraInItemProperty
   {
     this.item = item;
     this.name = item.nameProperty();
-    this.id = item.idProperty();
+    this.id = item.getItem_in_order_id();
     this.extras = extras;
   }
 

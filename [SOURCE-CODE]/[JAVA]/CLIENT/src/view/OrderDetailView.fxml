@@ -32,7 +32,7 @@
         </Label>
         <TableView fx:id="extrasTable" prefHeight="160.0" prefWidth="500.0">
             <columns>
-                <TableColumn fx:id="idCol1" prefWidth="100.0" text="ID" />
+            <TableColumn prefWidth="130.0" text="ID" />
                 <TableColumn fx:id="typeCol1" prefWidth="150.0" text="NAME" />
                 <TableColumn fx:id="nameCol1" prefWidth="269.0" text="EXTRAS" />
             </columns>

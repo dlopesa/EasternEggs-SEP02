@@ -8,20 +8,24 @@ public class ItemList implements Serializable
 {
   private ArrayList<Item> items;
 
-  public ItemList() {
+  public ItemList()
+  {
     this.items = new ArrayList<>();
   }
 
-  public void setItems(ArrayList<Item> items) {
+  public void setItems(ArrayList<Item> items)
+  {
     this.items = items;
   }
 
-  public void add(Item item) {
+  public void add(Item item)
+  {
     items.add(item);
   }
 
-  public void remove(Item item) {
-    if(contains(item))
+  public void remove(Item item)
+  {
+    if (contains(item))
     {
       items.remove(item);
     }
@@ -31,37 +35,48 @@ public class ItemList implements Serializable
     }
   }
 
-  public void addExtraToItem(Item item, Extra extra) {
+  public void addExtraToItem(Item item, Extra extra)
+  {
     boolean found = false;
-    for (Item itemInList : items) {
-      if (itemInList.getId() == item.getId()) {
+    for (Item itemInList : items)
+    {
+      if (itemInList.getItem_in_order_id() == item.getItem_in_order_id())
+      {
         itemInList.addExtra(extra);
         found = true;
         break;
       }
     }
-    if (!found) {
-      System.out.println("item not found: " + item.toString() + ", extra was: " + extra);
+    if (!found)
+    {
+      System.out.println(
+          "Item not found: " + item.toString() + ", extra was: " + extra);
     }
   }
 
-  public ArrayList<Item> getAllItems() {
+  public ArrayList<Item> getAllItems()
+  {
     return items;
   }
 
-  public ArrayList<Item> getItemsByType(String type) {
+  public ArrayList<Item> getItemsByType(String type)
+  {
     ArrayList<Item> itemsOfThisType = new ArrayList<>();
-    for (Item item : items) {
-      if (item.getType().equals(type)) {
+    for (Item item : items)
+    {
+      if (item.getType().equals(type))
+      {
         itemsOfThisType.add(item);
       }
     }
     return itemsOfThisType;
   }
 
-  public ItemList copy() {
+  public ItemList copy()
+  {
     ItemList copy = new ItemList();
-    for (Item item : items) {
+    for (Item item : items)
+    {
       copy.add(item);
     }
     return copy;

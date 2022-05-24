@@ -3,13 +3,10 @@ package view;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ItemProperty;
-import utility.Item;
 import viewmodel.CustomerViewModel;
 
 import java.util.Optional;

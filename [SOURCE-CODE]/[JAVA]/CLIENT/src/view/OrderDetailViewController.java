@@ -2,10 +2,7 @@ package view;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -13,24 +10,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.ExtraInItemProperty;
-import property.ExtraProperty;
 import property.ItemProperty;
 import utility.Item;
-import utility.Order;
-import viewmodel.BaristaViewModel;
 import viewmodel.OrderDetailViewModel;
-
-import java.util.ArrayList;
 
 public class OrderDetailViewController extends ViewController
 {
   @FXML private Label titleLabel;
-  @FXML private TableView itemsTable;
-  @FXML private TableColumn idCol;
-  @FXML private TableColumn nameCol;
-  @FXML private TableColumn typeCol;
-  @FXML private TableColumn priceCol;
-  @FXML private TableView extrasTable;
+  @FXML private TableView<ItemProperty> itemsTable;
+  @FXML private TableColumn<ItemProperty, IntegerProperty> idCol;
+  @FXML private TableColumn<ItemProperty, StringProperty> nameCol;
+  @FXML private TableColumn<ItemProperty, StringProperty> typeCol;
+  @FXML private TableColumn<ItemProperty, DoubleProperty> priceCol;
+  @FXML private TableView<ExtraInItemProperty> extrasTable;
   @FXML private TextArea commentArea;
   OrderDetailViewModel viewModel;
 
@@ -42,16 +34,14 @@ public class OrderDetailViewController extends ViewController
   {
     this.viewModel = getViewModelFactory().getOrderDetailViewModel();
 
-    idCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, IntegerProperty>("id"));
-    nameCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, StringProperty>("name"));
-    typeCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, StringProperty>("type"));
-    priceCol.setCellValueFactory(
-        new PropertyValueFactory<ItemProperty, DoubleProperty>("price"));
+    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-    TableColumn idColTemp = (TableColumn) extrasTable.getColumns().get(0);
-    TableColumn nameColTemp = (TableColumn) extrasTable.getColumns().get(1);
-    TableColumn extraColTemp = (TableColumn) extrasTable.getColumns().get(2);
-
+    TableColumn idColTemp = extrasTable.getColumns().get(0);
+    TableColumn nameColTemp = extrasTable.getColumns().get(1);
+    TableColumn extraColTemp = extrasTable.getColumns().get(2);
     idColTemp.setCellValueFactory(
         new PropertyValueFactory<ExtraInItemProperty, Integer>("id"));
     nameColTemp.setCellValueFactory(

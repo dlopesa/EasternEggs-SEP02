@@ -1,13 +1,8 @@
 package viewmodel;
 
-import com.sun.javafx.collections.ImmutableObservableList;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.util.StringConverter;
 import model.Model;
 import property.ItemProperty;
-import utility.Item;
 
 import java.util.ArrayList;
 
