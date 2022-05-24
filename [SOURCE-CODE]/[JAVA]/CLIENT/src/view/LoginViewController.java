@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
+import model.UserProxy;
 import viewmodel.LoginViewModel;
 
 import java.rmi.RemoteException;
@@ -19,35 +20,39 @@ public class LoginViewController extends ViewController
   @Override protected void init()
   {
     this.loginViewModel = getViewModelFactory().getLoginViewModel();
-
     loginViewModel.getAccessKeyProperty().bind(passwordField.textProperty());
-
   }
 
   @FXML private void onEnter()
   {
     String pwd = loginViewModel.getUserType();
-    if (pwd.equals("Barista"))
+    switch (pwd)
     {
-      getViewHandler().openView("BaristaView.fxml");
-    }
-    else if (pwd.equals("Admin"))
-    {
-      getViewHandler().openView("AdminView.fxml");
-    }
-    else if (pwd.equals("Cashier"))
-    {
-      getViewHandler().openView("CashierView.fxml");
-    }
-    else if (pwd.equals("Display"))
-    {
-      getViewHandler().openView("DisplayView.fxml");
-    }
-    else
-    {
-      errorLabel.setVisible(true);
+      case "Barista":
+        loginViewModel.setUserType(UserProxy.BARISTA);
+        getViewHandler().openView("BaristaView.fxml");
+
+        break;
+      case "Admin":
+        loginViewModel.setUserType(UserProxy.ADMIN);
+        getViewHandler().openView("AdminView.fxml");
+
+        break;
+      case "Cashier":
+        loginViewModel.setUserType(UserProxy.CASHIER);
+        getViewHandler().openView("CashierView.fxml");
+
+        break;
+      case "Display":
+        loginViewModel.setUserType(UserProxy.DISPLAY);
+        getViewHandler().openView("DisplayView.fxml");
+        break;
+      default:
+        errorLabel.setVisible(true);
+        break;
     }
   }
+
   @FXML private void back()
   {
     getViewHandler().openView("StartView.fxml");

@@ -27,7 +27,7 @@ public class OrderDetailViewModel
     {
       model.completeOrder(handler.getSelectedOrder().getOrder());
     }
-    catch (RemoteException e)
+    catch (RemoteException | IllegalAccessException e)
     {
       e.printStackTrace();
     }

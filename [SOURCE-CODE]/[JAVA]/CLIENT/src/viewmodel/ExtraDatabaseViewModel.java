@@ -16,7 +16,6 @@ public class ExtraDatabaseViewModel
     this.model = model;
     allExtras = FXCollections.observableArrayList();
     this.selectedExtra = null;
-    reset();
   }
 
   public void setSelectedExtra(ExtraProperty extra) {
@@ -44,6 +43,13 @@ public class ExtraDatabaseViewModel
   }
 
   public void removeExtra() {
-    model.removeExtraFromExtraList(selectedExtra.getExtra());
+    try
+    {
+      model.removeExtraFromExtraList(selectedExtra.getExtra());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

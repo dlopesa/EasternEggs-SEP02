@@ -130,11 +130,6 @@ public class ModelManager implements Model
     return null;
   }
 
-  @Override public void setComment(String comment)
-  {
-
-  }
-
   @Override public void quitAndCancelOrder()
   {
     order = new Order(false);

@@ -13,15 +13,38 @@ public class PaymentViewModel
 
   public int payWithCash()
   {
-    return model.payForOrder(true);
+    try
+    {
+      return model.payForOrder(true);
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+    return -100;
   }
 
   public int payWithCardOrMP()
   {
-    return model.payForOrder(false);
+    try
+    {
+      return model.payForOrder(false);
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+    return -100;
   }
 
   public void setIsTakeAway(){
-    model.setIsTakeAway();
+    try
+    {
+      model.setIsTakeAway();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

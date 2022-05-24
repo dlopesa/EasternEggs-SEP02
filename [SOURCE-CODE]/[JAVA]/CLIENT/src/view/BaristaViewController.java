@@ -30,10 +30,10 @@ public class BaristaViewController extends ViewController
     statusCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("status"));
     orderTableView.setItems(viewModel.getOrders());
     selectionModel = orderTableView.getSelectionModel();
-    reset();
   }
 
   public void reset() {
+    viewModel.open();
     viewModel.reset();
   }
 
@@ -41,9 +41,11 @@ public class BaristaViewController extends ViewController
     OrderProperty order = (OrderProperty) selectionModel.getSelectedItem();
     viewModel.setSelectedOrder(order);
     getViewHandler().openView("OrderDetailView.fxml");
+    viewModel.close();
   }
 
   @FXML private void backPressed() {
     getViewHandler().openView("StartView.fxml");
+    viewModel.close();
   }
 }

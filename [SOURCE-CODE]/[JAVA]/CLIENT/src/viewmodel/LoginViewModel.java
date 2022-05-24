@@ -18,18 +18,19 @@ public class LoginViewModel
     accessKeyProperty=new SimpleStringProperty();
   }
 
-
-
   public StringProperty getAccessKeyProperty()
   {
     return accessKeyProperty;
   }
 
+  public void setUserType(String type) {
+    model.setUserType(type);
+  }
+
   public String getUserType()
   {
-    String pwd = accessKeyProperty.get();
-    String ak = model.getUserType(pwd);
-    return ak;
+    String pwd = getAccessKeyProperty().get();
+    return model.getUserType(pwd);
   }
 
 

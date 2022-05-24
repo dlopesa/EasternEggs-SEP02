@@ -21,7 +21,6 @@ public class CustomerViewModel
     this.handler=handler;
     error = new SimpleStringProperty("");
     items = new ArrayList<>();
-    reset();
   }
 
   public void reset()
@@ -43,7 +42,14 @@ public class CustomerViewModel
 
   public void addToOrder(ItemProperty item)
   {
-    model.addItemToOrder(item.getItem());
+    try
+    {
+      model.addItemToOrder(item.getItem());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public ObservableList<ItemProperty> getItemsByType(String type)
@@ -67,7 +73,14 @@ public class CustomerViewModel
 
   public void quit()
   {
-    model.quitAndCancelOrder();
+    try
+    {
+      model.quitAndCancelOrder();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void setItem(ItemProperty item)

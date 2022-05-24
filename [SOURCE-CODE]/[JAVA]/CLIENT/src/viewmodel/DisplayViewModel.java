@@ -14,6 +14,7 @@ public class DisplayViewModel implements PropertyChangeListener
   private Model model;
   private ObservableList<OrderProperty> pendingList;
   private ObservableList<OrderProperty> completedList;
+  private boolean open;
 
   public DisplayViewModel(Model model)
   {
@@ -21,10 +22,18 @@ public class DisplayViewModel implements PropertyChangeListener
     model.addListener(this);
     pendingList= FXCollections.observableArrayList();
     completedList= FXCollections.observableArrayList();
-    reset();
+    this.open = false;
   }
 
-  public void reset()
+  public void open() {
+    this.open = true;
+  }
+
+  public void close() {
+    this.open = false;
+  }
+
+  public void reset() throws IllegalAccessException
   {
     pendingList.clear();
     for(int i=0; i<model.getAllPendingOrders().size(); i++)
@@ -51,9 +60,16 @@ public class DisplayViewModel implements PropertyChangeListener
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(()->{
-      if(evt.getPropertyName().equals("change"))
+      if(evt.getPropertyName().equals("change") && open)
       {
-        reset();
+        try
+        {
+          reset();
+        }
+        catch (IllegalAccessException e)
+        {
+          e.printStackTrace();
+        }
       }
     });
   }

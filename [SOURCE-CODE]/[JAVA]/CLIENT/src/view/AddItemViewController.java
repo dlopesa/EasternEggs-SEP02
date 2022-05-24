@@ -1,7 +1,5 @@
 package view;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -28,11 +26,18 @@ public class AddItemViewController extends ViewController
         .bindBidirectional(addItemViewModel.descriptionProperty());
     errorLabel.textProperty()
         .bindBidirectional(addItemViewModel.errorProperty());
-    typeChoiceBox.getItems().addAll(addItemViewModel.getTypes());
+
     //Putting items inside the choice box
     typeChoiceBox.valueProperty()
         .bindBidirectional(addItemViewModel.chosenProperty());
     //Binding the chosen item with the view model
+  }
+
+  public void reset()
+  {
+    addItemViewModel.reset();
+    typeChoiceBox.getItems().clear();
+    typeChoiceBox.getItems().addAll(addItemViewModel.getTypes());
   }
 
   @FXML private void submitButton()
@@ -44,6 +49,6 @@ public class AddItemViewController extends ViewController
   @FXML private void backButton()
   {
     getViewHandler().openView("DatabaseView.fxml");
-    addItemViewModel.clear();
+    addItemViewModel.reset();
   }
 }

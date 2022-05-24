@@ -23,9 +23,19 @@ public class AddAccessKeyViewModel
     this.model = model;
     accessKeyS = new SimpleStringProperty();
     chosen = new SimpleStringProperty();
-    permission = model.getAllPermissions();
     error = new SimpleStringProperty();
     clear();
+  }
+
+  public void reset() {
+    try
+    {
+      permission = model.getAllPermissions();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void clear()
@@ -85,6 +95,10 @@ public class AddAccessKeyViewModel
     catch (SQLException | RemoteException throwables)
     {
       throwables.printStackTrace();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
     }
   }
 }
