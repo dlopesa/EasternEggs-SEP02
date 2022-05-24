@@ -28,8 +28,8 @@ public class AddAccessKeyViewModel
    * One-argument constructor taking the model initializing the StringProperties and calling the method clear(),
    * which sets the accessKey and error StringProperties to an empty String.
    *
-   * @param model
-   *            the model
+   * @param model the model
+   *
    */
   public AddAccessKeyViewModel(Model model)
   {

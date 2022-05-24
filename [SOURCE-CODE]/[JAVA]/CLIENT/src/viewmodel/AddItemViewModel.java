@@ -11,6 +11,12 @@ import utility.Item;
 
 import java.util.ArrayList;
 
+/**
+ * ViewModel class for the AddItemViewController
+ *
+ * @author Group 1
+ * @version 1 May - 2022
+ */
 public class AddItemViewModel
 {
   private Model model;
@@ -21,6 +27,12 @@ public class AddItemViewModel
   private StringProperty error;
   private StringProperty chosen;
 
+  /**
+   * One-argument constructor taking the model as a parameter and initializing it.
+   * The StringProperties are created, and the clear() method is called to set
+   * the name, price, error and description to an empty String.
+   * @param model
+   */
   public AddItemViewModel(Model model)
   {
     this.model = model;
@@ -33,6 +45,9 @@ public class AddItemViewModel
     clear();
   }
 
+  /**
+   * A void method setting the name, price, error and description StringProperties to an empty String.
+   */
   public void clear()
   {
     name.set("");
@@ -41,36 +56,64 @@ public class AddItemViewModel
     description.set("");
   }
 
+  /**
+   * A getter method for the item's name
+   * @return the item's name as a StringProperty.
+   */
   public StringProperty nameProperty()
   {
     return name;
   }
 
+  /**
+   * A getter method returning the chosen item.
+   * @return the chosen item as a StringProperty.
+   */
   public StringProperty chosenProperty()
   {
     return chosen;
   }
 
+  /**
+   * A getter method for the item's price.
+   * @return the item's price as a StringProperty.
+   */
   public StringProperty priceProperty()
   {
     return price;
   }
 
+  /**
+   * A getter method for the item's description.
+   * @return the item's description as a StringProperty.
+   */
   public StringProperty descriptionProperty()
   {
     return description;
   }
 
+  /**
+   * A getter method for the error message.
+   * @return the error message as a StringProperty.
+   */
   public StringProperty errorProperty()
   {
     return error;
   }
 
+  /**
+   * A getter method returning the list of types
+   * @return an ArrayList of Strings representing the available types.
+   */
   public ArrayList<String> getTypes()
   {
     return types;
   }
 
+  /**
+   * A void method submitting the addition of an item to the database.
+   * @throws IllegalArgumentException if the name, description, chosen item, or price is an empty String.
+   */
   public void submit()
   {
     try
