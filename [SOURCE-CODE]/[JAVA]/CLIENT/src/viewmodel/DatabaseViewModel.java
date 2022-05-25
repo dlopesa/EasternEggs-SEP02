@@ -25,9 +25,9 @@ public class DatabaseViewModel
     allItems.clear();
     try
     {
-      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
-      {
-        allItems.add(new ItemProperty(model.getAllExistingItems().getAllItems().get(i)));
+
+      for (Item item : model.getAllExistingItems().getAllItems()) {
+        allItems.add(new ItemProperty(item));
       }
     }
     catch(Exception e)

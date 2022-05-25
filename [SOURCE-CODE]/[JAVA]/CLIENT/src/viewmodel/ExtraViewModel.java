@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import model.Model;
 import property.ExtraProperty;
 import property.ItemProperty;
+import utility.Extra;
 import utility.Item;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ public class ExtraViewModel
   {
     this.model = model;
     this.handler = handler;
-    name=new SimpleStringProperty();
-    error=new SimpleStringProperty();
+    name = new SimpleStringProperty();
+    error = new SimpleStringProperty();
     availableExtras = FXCollections.observableArrayList();
     addedExtras = FXCollections.observableArrayList();
   }
@@ -36,7 +37,7 @@ public class ExtraViewModel
   {
     error.set("");
     currentItem = handler.getItem();
-    name=currentItem.nameProperty();
+    name = currentItem.nameProperty();
     try
     {
       setList(availableExtras, currentItem.typeProperty().get());
@@ -46,7 +47,6 @@ public class ExtraViewModel
       e.printStackTrace();
     }
   }
-
 
   public StringProperty getNameProperty()
   {
@@ -62,9 +62,10 @@ public class ExtraViewModel
       throws IllegalAccessException
   {
     extraList.clear();
-    for (int i = 0; i < model.getAllExtrasByType(type).size(); i++)
+
+    for (Extra extra : model.getAllExtrasByType(type))
     {
-      extraList.add(new ExtraProperty(model.getAllExtrasByType(type).get(i)));
+      extraList.add(new ExtraProperty(extra));
     }
   }
 
@@ -80,10 +81,10 @@ public class ExtraViewModel
 
   public void addExtraToItem(ExtraProperty extra)
   {
-    if(!addedExtras.contains(extra))
+    if (!addedExtras.contains(extra))
     {
       addedExtras.add(extra);
-      if(!error.get().equals(""))
+      if (!error.get().equals(""))
       {
         error.set("");
       }
@@ -97,7 +98,7 @@ public class ExtraViewModel
   public void removeExtraFromItem(ExtraProperty extra)
   {
     addedExtras.remove(extra);
-    if(!error.get().equals(""))
+    if (!error.get().equals(""))
     {
       error.set("");
     }

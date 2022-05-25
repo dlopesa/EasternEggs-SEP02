@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import property.ExtraProperty;
+import utility.Extra;
 
 public class ExtraDatabaseViewModel
 {
@@ -27,9 +28,8 @@ public class ExtraDatabaseViewModel
     allExtras.clear();
     try
     {
-      for (int i = 0; i < model.getAllExtras().size(); i++)
-      {
-        allExtras.add(new ExtraProperty(model.getAllExtras().get(i)));
+      for (Extra extra : model.getAllExtras()) {
+        allExtras.add(new ExtraProperty(extra));
       }
     }
     catch(Exception e)
