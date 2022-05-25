@@ -1,11 +1,13 @@
 package view;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import property.OrderProperty;
-import utility.Order;
 import viewmodel.BaristaViewModel;
 
 import java.rmi.RemoteException;
@@ -24,10 +26,10 @@ public class BaristaViewController extends ViewController
   {
     viewModel = getViewModelFactory().getBaristaViewModel();
 
-    idCol.setCellValueFactory(new PropertyValueFactory<Order, Integer>("id"));
-    timeCol.setCellValueFactory(new PropertyValueFactory<Order, String>("time"));
-    priceCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("price"));
-    statusCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("status"));
+    idCol.setCellValueFactory(new PropertyValueFactory<OrderProperty, IntegerProperty>("id"));
+    timeCol.setCellValueFactory(new PropertyValueFactory<OrderProperty, StringProperty>("time"));
+    priceCol.setCellValueFactory(new PropertyValueFactory<OrderProperty, DoubleProperty>("price"));
+    statusCol.setCellValueFactory(new PropertyValueFactory<OrderProperty, DoubleProperty>("status"));
     orderTableView.setItems(viewModel.getOrders());
     selectionModel = orderTableView.getSelectionModel();
   }

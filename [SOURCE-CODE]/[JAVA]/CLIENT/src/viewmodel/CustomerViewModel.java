@@ -6,14 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import property.ItemProperty;
+import utility.Item;
+
 import java.util.ArrayList;
 
 public class CustomerViewModel
 {
   private Model model;
   private StringProperty error;
-  private ArrayList<ItemProperty> items;//TODO change to ObservableList
+  private ArrayList<ItemProperty> items;//TODO change to ObservableList, ask Steffen, also VC
   private CustomerHandler handler;
+  //private ArrayList<String> types
 
   public CustomerViewModel(Model model, CustomerHandler handler)
   {
@@ -28,10 +31,10 @@ public class CustomerViewModel
     items.clear();
     try
     {
-      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
+      //todo enhanced
+      for (Item item: model.getAllExistingItems().getAllItems())
       {
-        items.add(new ItemProperty(model.getAllExistingItems().getAllItems()
-            .get(i)));
+        items.add(new ItemProperty(item));
       }
     }
     catch(Exception e)

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class ExtraViewController extends ViewController
 {
   @FXML Label itemName;
+  @FXML Label errorLabel;
   @FXML private TableView availableExtras;
   @FXML private TableView addedExtras;
   private ExtraViewModel extraViewModel;
@@ -21,6 +22,7 @@ public class ExtraViewController extends ViewController
   {
     this.extraViewModel = getViewModelFactory().getExtraViewModel();
     itemName.textProperty().bind(extraViewModel.getNameProperty());
+    errorLabel.textProperty().bind(extraViewModel.getErrorProperty());
   }
 
   public void reset()

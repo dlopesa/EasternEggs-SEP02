@@ -40,8 +40,7 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void removeItemPressed()
   {
-    ItemProperty item = (ItemProperty) itemTable.getSelectionModel().getSelectedItem(); //VIOLAZIONE - use ItemPRoperty
-    //TODO add an instance variable to the View Model of the selected item and make the removeItem method not take any arguments and just use the selected Item stored in VM.
+    ItemProperty item = (ItemProperty) itemTable.getSelectionModel().getSelectedItem();
     viewModel.removeItem(item);
 
     reset();
@@ -49,7 +48,7 @@ public class DatabaseViewController extends ViewController
 
   @FXML public void editItemPressed()
   {
-    //Todo future use case
+
   }
 
   @FXML public void backPressed()

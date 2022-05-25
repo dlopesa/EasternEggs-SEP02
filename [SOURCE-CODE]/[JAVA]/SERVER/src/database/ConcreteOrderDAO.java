@@ -76,6 +76,8 @@ public class ConcreteOrderDAO implements OrderDAO
         if (keysItemInOrder.next())
         {
           item_in_order_id = keysItemInOrder.getInt(1);
+          System.out.println(item + " SETTING ID: " + item_in_order_id);
+          item.setItem_in_order_id(item_in_order_id);
         }
         for (Extra extra : extras)
         {
@@ -96,7 +98,7 @@ public class ConcreteOrderDAO implements OrderDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "1234");
   }
 
   @Override public Order readById(int id) throws SQLException
@@ -125,6 +127,7 @@ public class ConcreteOrderDAO implements OrderDAO
         while (itemInOrderResultSet.next())
         {
           int itemId = itemInOrderResultSet.getInt("item_id");
+          int item_in_order_id = itemInOrderResultSet.getInt("item_in_order_id");
           PreparedStatement findActualItem = connection.prepareStatement(
               "SELECT * FROM item WHERE item_id = ?");
           findActualItem.setInt(1, itemId);
@@ -139,12 +142,19 @@ public class ConcreteOrderDAO implements OrderDAO
             Item item = new Item(itemId, itemName, itemType, itemPrice,
                 description);
 
+            if(id==8)
+            {
+              System.out.println(item + "SETTING ID: " + item_in_order_id);
+              item.setItem_in_order_id(item_in_order_id);
+            }
             order.addItem(item);
 
+
+
             PreparedStatement findExtrasInItem = connection.prepareStatement(
-                "SELECT * FROM extrainiteminorder WHERE (order_id = ? AND item_id = ?)");
+                "SELECT * FROM extrainiteminorder WHERE (order_id = ? AND item_in_order_id = ?)");
             findExtrasInItem.setInt(1, id);
-            findExtrasInItem.setInt(2, itemId);
+            findExtrasInItem.setInt(2, item_in_order_id);
 
             ResultSet extrasInItem = findExtrasInItem.executeQuery();
 
@@ -154,6 +164,8 @@ public class ConcreteOrderDAO implements OrderDAO
               Extra extra = new Extra(extraName);
               order.addExtraToItem(item, extra);
             }
+
+
           }
         }
         return order;
