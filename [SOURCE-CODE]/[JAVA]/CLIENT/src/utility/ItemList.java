@@ -4,22 +4,37 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * A class that represent an item list
+ */
 public class ItemList implements Serializable
 {
   private ArrayList<Item> items;
 
+  /**
+   * A zero argument constructor
+   */
   public ItemList() {
     this.items = new ArrayList<>();
   }
+
 
   public void setItems(ArrayList<Item> items) {
     this.items = items;
   }
 
+  /**
+   * Method that adds an item to a list
+   * @param item
+   */
   public void add(Item item) {
     items.add(item);
   }
 
+  /**
+   * Method that removes an item from a list
+   * @param item
+   */
   public void remove(Item item) {
     if(contains(item))
     {
@@ -31,6 +46,11 @@ public class ItemList implements Serializable
     }
   }
 
+  /**
+   * Adds an extra to an item
+   * @param item
+   * @param extra
+   */
   public void addExtraToItem(Item item, Extra extra) {
     boolean found = false;
     for (Item itemInList : items) {
@@ -45,9 +65,14 @@ public class ItemList implements Serializable
     }
   }
 
+  /**
+   * Gets all the items in a list? TODO ask someone
+   * @return
+   */
   public ArrayList<Item> getAllItems() {
     return items;
   }
+
 
   public ArrayList<Item> getItemsByType(String type) {
     ArrayList<Item> itemsOfThisType = new ArrayList<>();
@@ -67,6 +92,11 @@ public class ItemList implements Serializable
     return copy;
   }
 
+  /**
+   * Compare two item lists and check if them are equal
+   * @param o
+   * @returns a bollean comparing two item lists and check if them are equal
+   */
   @Override public boolean equals(Object o)
   {
     if (this == o)
@@ -82,11 +112,20 @@ public class ItemList implements Serializable
     return Objects.hash(items);
   }
 
+  /**
+   *
+   * @returns a String with all the information of a item list
+   */
   @Override public String toString()
   {
     return "ItemList{" + "items=" + items + '}';
   }
 
+  /**
+   * Method that checks if an Item is on a list
+   * @param item
+   * @return
+   */
   public boolean contains(Item item)
   {
     return items.contains(item);

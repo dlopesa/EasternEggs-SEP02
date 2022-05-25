@@ -7,6 +7,9 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class that represents an order
+ */
 public class Order implements Serializable, UnnamedPropertyChangeSubject
 {
   private int id; // NEW INSTANCE VARIABLE. ONLY USEFUL FOR WHEN THE ORDER COMES
@@ -18,6 +21,10 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   private String status;
   private PropertyChangeSupport property;
 
+  /**
+   * Constructor with seven arguments
+   * @param paidWithCash checks if it«s paid by cash
+   */
   public Order(boolean paidWithCash)
   {
     property = new PropertyChangeSupport(this);
@@ -36,6 +43,15 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     }
   }
 
+  /**
+   * Overloaded Constructor with 7 arguments, used to get an order from a database
+   * @param id
+   * @param itemList
+   * @param comment
+   * @param dateTime
+   * @param price
+   * @param status
+   */
   public Order(int id, ItemList itemList, String comment, DateTime dateTime, double price,
       String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
   // FROM THE DATABASE.
@@ -49,6 +65,13 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     this.status = status;
   }
 
+  /**
+   * TODO don't know bout the difference
+   * @param comment
+   * @param dateTime
+   * @param price
+   * @param status
+   */
   public Order(String comment, DateTime dateTime, double price, String status)
   {
     property = new PropertyChangeSupport(this);
@@ -90,6 +113,10 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     comment+="\n \n TAKE-AWAY";
   }
 
+  /**
+   * Metho that adds an item to an order
+   * @param item
+   */
   public void addItem(Item item)
   {
     itemList.add(item);
@@ -102,6 +129,10 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     return id;
   }
 
+  /**
+   * Methos that removes an item from a oderder
+   * @param item
+   */
   public void removeItem(Item item)
   {
     itemList.remove(item);
@@ -134,12 +165,21 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     return dateTime;
   }
 
+  /**
+   *
+   * @returns a String with all the information from an order
+   */
   @Override public String toString()
   {
     return "Order{" + "itemList=" + itemList + ", comment='" + comment + '\'' + ", dateTime="
         + dateTime + ", price=" + price + ", status='" + status + '\'' + '}';
   }
 
+  /**
+   * Method thar check if it equals
+   * @param o
+   * @return
+   */
   @Override public boolean equals(Object o) //EQUALS METHOD DOES NOT COMPARE IDS
   // INTENTIONALLY. I GUESS.
   {
@@ -180,11 +220,19 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     this.dateTime = dateTime;
   }
 
+  /**
+   * Method that adds a listener
+   * @param listener
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
 
+  /**
+   * Method that removes a listener
+   * @param listener
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);

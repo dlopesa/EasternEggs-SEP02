@@ -4,11 +4,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import utility.AccessKey;
 
+
 public class AccessKeyProperty
 {
   private StringProperty accessKeyS;
   private StringProperty permissionKey;
 
+  /**
+   *
+   * @param accessKey
+   */
   public AccessKeyProperty(AccessKey accessKey)
   {
     accessKeyS = new SimpleStringProperty(accessKey.getAccessKey());

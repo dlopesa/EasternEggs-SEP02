@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * A class that represents an item
+ */
 public class Item implements Serializable
 {
   private int id;
@@ -18,6 +21,14 @@ public class Item implements Serializable
     return extras;
   }
 
+  /**
+   * A five arguments constructor that composes an item.
+   * @param id
+   * @param name
+   * @param type
+   * @param price
+   * @param description
+   */
   public Item(int id, String name, String type, double price, String description)
   {
     this.id = id;
@@ -28,6 +39,13 @@ public class Item implements Serializable
     this.extras = new ArrayList<>();
   }
 
+  /**
+   * An overloaded constructor with only four arguments ( not taking the id )
+   * @param name
+   * @param type
+   * @param price
+   * @param description
+   */
   public Item(String name, String type, double price, String description)
   {
     this.id = -1;
@@ -38,6 +56,13 @@ public class Item implements Serializable
     this.extras = new ArrayList<>();
   }
 
+  /**
+   * n overloaded constructor with only four arguments ( not taking the description  )
+   * @param id
+   * @param name
+   * @param type
+   * @param price
+   */
   public Item(int id, String name, String type, double price)
   {
     this.id = id;
@@ -65,6 +90,10 @@ public class Item implements Serializable
     extras.add(extra);
   }
 
+  /**
+   * Method that removes an extra
+   * @param extra
+   */
   public void removeExtra(Extra extra)
   {
     extras.remove(extra);
@@ -110,12 +139,21 @@ public class Item implements Serializable
     this.description = description;
   }
 
+  /**
+   *
+   * @returns a String with all the information about an item
+   */
   @Override public String toString()
   {
     return "Item{" + "id=" + id + ", name='" + name + '\'' + ", type='" + type + '\'' + ", price="
         + price + ", description='" + description + '\'' + ", extras=" + extras + '}';
   }
 
+  /**
+   *
+   * @param o
+   * @return a boolean stating if an extra is equal to the an object
+   */
   @Override public boolean equals(Object o)
   {
     if (this == o)

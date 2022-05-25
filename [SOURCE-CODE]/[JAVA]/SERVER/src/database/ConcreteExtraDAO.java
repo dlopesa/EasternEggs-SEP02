@@ -115,7 +115,7 @@ public class ConcreteExtraDAO implements ExtraDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "123456");
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=cafe", "postgres", "root");
 
   }
 

@@ -5,10 +5,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * A class thar represents date and time
+ */
 public class DateTime implements Serializable
 {
   private LocalDateTime time;
 
+  /**
+   * A zero arguments contructor that gets the time right now
+   */
   public DateTime()
   {
     this.time = LocalDateTime.now();
@@ -23,6 +29,10 @@ public class DateTime implements Serializable
     return time;
   }
 
+  /**
+   *
+   * @returns a String with the date and time
+   */
   public String getTimestamp()
   {
     DateTimeFormatter dtf;
@@ -36,6 +46,11 @@ public class DateTime implements Serializable
     return time.format(dtf);
   }
 
+  /**
+   *
+   * @param o
+   * @returns true or false depending if two date&time are equal
+   */
   @Override public boolean equals(Object o)
   {
     if (!(o instanceof DateTime)) {
@@ -53,6 +68,10 @@ public class DateTime implements Serializable
     );
   }
 
+  /**
+   *
+   * @returns a Sring with only the time
+   */
   public String getTime() {
     DateTimeFormatter dtf;
     dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -63,7 +82,10 @@ public class DateTime implements Serializable
   {
     return Objects.hash(time);
   }
-
+  /**
+   *
+   * @returns a String with the date and time
+   */
   @Override public String toString()
   {
     return getTimestamp();
