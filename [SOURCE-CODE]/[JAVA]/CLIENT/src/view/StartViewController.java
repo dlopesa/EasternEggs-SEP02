@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
+import model.UserProxy;
 import viewmodel.StartViewModel;
 
 public class StartViewController extends ViewController
@@ -14,6 +15,7 @@ public class StartViewController extends ViewController
   }
 
   @FXML private void orderButton(){
+    startViewModel.setUserType(UserProxy.CUSTOMER);
     getViewHandler().openView("CustomerView.fxml");
   }
 

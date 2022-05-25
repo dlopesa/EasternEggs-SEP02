@@ -34,7 +34,14 @@ public class EditCommentCashierViewModel
 
   public void editComment() {
     Order order = handler.getSelectedPendingOrder().getOrder();
-    model.editOrderCommentByCashier(order,commentArea.get());
+    try
+    {
+      model.editOrderCommentByCashier(order,commentArea.get());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
 }

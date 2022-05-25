@@ -34,7 +34,14 @@ public class ExtraViewModel
   {
     currentItem = handler.getItem();
     name=currentItem.nameProperty();
-    setList(availableExtras, currentItem.typeProperty().get());
+    try
+    {
+      setList(availableExtras, currentItem.typeProperty().get());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
 
@@ -44,6 +51,7 @@ public class ExtraViewModel
   }
 
   public void setList(ObservableList<ExtraProperty> extraList, String type)
+      throws IllegalAccessException
   {
     extraList.clear();
     for (int i = 0; i < model.getAllExtrasByType(type).size(); i++)
@@ -78,11 +86,25 @@ public class ExtraViewModel
     {
       for (int i = 0; i < addedExtras.size(); i++)
       {
-        model.addExtraToItem(addedExtras.get(i).getExtra(),
-            currentItem.getItem());
+        try
+        {
+          model.addExtraToItem(addedExtras.get(i).getExtra(),
+              currentItem.getItem());
+        }
+        catch (IllegalAccessException e)
+        {
+          e.printStackTrace();
+        }
       }
     }
-    model.addItemToOrder(currentItem.getItem());
+    try
+    {
+      model.addItemToOrder(currentItem.getItem());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
     addedExtras.clear();
     availableExtras.clear();
   }

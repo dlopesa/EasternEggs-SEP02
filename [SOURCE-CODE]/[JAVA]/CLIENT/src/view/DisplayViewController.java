@@ -21,12 +21,19 @@ public class DisplayViewController extends ViewController
     displayViewModel = getViewModelFactory().getDisplayViewModel();
     setColumns(tableViewCompleted);
     setColumns(tableViewPending);
-    reset();
   }
 
   public void reset()
   {
-    displayViewModel.reset();
+    displayViewModel.open();
+    try
+    {
+      displayViewModel.reset();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
     tableViewPending.setItems(displayViewModel.getPendingList());
     tableViewCompleted.setItems(displayViewModel.getCompletedList());
   }
@@ -44,5 +51,6 @@ public class DisplayViewController extends ViewController
   @FXML private void back()
   {
     getViewHandler().openView("LoginView.fxml");
+    displayViewModel.close();
   }
 }

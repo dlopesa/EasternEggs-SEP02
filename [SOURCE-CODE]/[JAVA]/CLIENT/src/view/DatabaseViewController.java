@@ -30,9 +30,6 @@ public class DatabaseViewController extends ViewController
     typeCol.setCellValueFactory(new PropertyValueFactory<ItemProperty, StringProperty>("type"));
     priceCol.setCellValueFactory(
         new PropertyValueFactory<ItemProperty, DoubleProperty>("price"));
-
-    reset();
-
   }
 
   public void reset()

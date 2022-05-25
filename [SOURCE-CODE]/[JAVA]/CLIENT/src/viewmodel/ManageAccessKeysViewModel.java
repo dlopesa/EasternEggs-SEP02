@@ -22,7 +22,6 @@ public class ManageAccessKeysViewModel
   {
     this.model = model;
     //allKeys = new ArrayList<>();
-    reset();
   }
 
   public ObservableList<AccessKeyProperty> getAllAccessKeys()
@@ -32,18 +31,16 @@ public class ManageAccessKeysViewModel
 
   public void removeAccessKey(AccessKeyProperty accessKey)
   {
-    model.removeAccessKey(accessKey.getAccessKey());
+    try
+    {
+      model.removeAccessKey(accessKey.getAccessKey());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  //public ObservableList<AccessKeyProperty> getAllAccessKeys()
-  //{
-  //  ObservableList<AccessKeyProperty> observableList = FXCollections.observableArrayList();
-  //  for (AccessKeyProperty allKey : allKeys)
-  //  {
-  //    observableList.add(allKey);
-   // }
-   // return observableList;
-  //}
 
   public void reset()
   {
@@ -56,7 +53,7 @@ public class ManageAccessKeysViewModel
         allKeys.add(new AccessKeyProperty(accessKey));
       }
     }
-    catch (RemoteException | SQLException e)
+    catch (RemoteException | SQLException | IllegalAccessException e)
     {
       e.printStackTrace();
     }

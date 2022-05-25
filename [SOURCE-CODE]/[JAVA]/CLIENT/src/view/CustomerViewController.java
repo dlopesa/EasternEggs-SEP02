@@ -33,7 +33,6 @@ public class CustomerViewController extends ViewController
     tabPane.setTabMinHeight(22);
     //Alignment of tabs
     errorLabel.textProperty().bind(customerViewModel.getErrorProperty());
-    reset();
   }
 
   public void reset()

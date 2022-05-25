@@ -28,8 +28,6 @@ public class ManageAccessKeyViewController extends  ViewController
   viewModel = getViewModelFactory().getManageAccessKeysViewModel();
   accessKey.setCellValueFactory(new PropertyValueFactory<AccessKeyProperty, StringProperty>("accessKey"));
   permissionKey.setCellValueFactory(new PropertyValueFactory<AccessKeyProperty, StringProperty>("permissionKey"));
-
-  reset();
   }
 
   public void reset()

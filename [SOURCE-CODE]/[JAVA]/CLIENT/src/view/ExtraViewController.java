@@ -19,9 +19,7 @@ public class ExtraViewController extends ViewController
 
   @Override protected void init()
   {
-
     this.extraViewModel = getViewModelFactory().getExtraViewModel();
-    reset();
     itemName.textProperty().bind(extraViewModel.getNameProperty());
   }
 

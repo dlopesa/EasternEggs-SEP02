@@ -21,11 +21,17 @@ public class AddAccessKeyViewController extends ViewController
     accessKey.textProperty().bindBidirectional(addAccessKeyViewModel.accessKeyProperty());
     errorLabel.textProperty()
         .bindBidirectional(addAccessKeyViewModel.errorProperty());
-    permissionChoiceBox.getItems().addAll(addAccessKeyViewModel.getPermission());
+
     //Putting items inside the choice box
     permissionChoiceBox.valueProperty()
         .bindBidirectional(addAccessKeyViewModel.chosenProperty());
     //Binding the chosen item with the view model
+  }
+
+  public void reset() {
+    addAccessKeyViewModel.reset();
+    permissionChoiceBox.getItems().clear();
+    permissionChoiceBox.getItems().addAll(addAccessKeyViewModel.getPermission());
   }
   @FXML public void submitButton()
   {

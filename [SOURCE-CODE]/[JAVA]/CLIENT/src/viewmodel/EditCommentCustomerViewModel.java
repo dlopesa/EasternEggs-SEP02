@@ -24,6 +24,13 @@ public class EditCommentCustomerViewModel
   }
 
   public void submit() {
-    model.editOrderCommentByCustomer(commentArea.get());
+    try
+    {
+      model.editOrderCommentByCustomer(commentArea.get());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }
