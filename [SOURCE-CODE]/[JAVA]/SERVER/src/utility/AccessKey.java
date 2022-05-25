@@ -38,5 +38,4 @@ public class AccessKey implements Serializable
     return "AccessKey{" + "accessKey='" + accessKey + '\'' + ", permissionKey='"
         + permissionKey + '\'' + '}';
   }
-
 }

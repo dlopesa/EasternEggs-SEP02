@@ -34,6 +34,7 @@ public class CashierViewController extends ViewController
   }
 
   public void reset() {
+    viewModel.open();
     viewModel.reset();
   }
 
@@ -83,9 +84,11 @@ public class CashierViewController extends ViewController
     viewModel.setSelectedPendingOrder(order);
     getViewModelFactory().getEditCommentCashierViewModel().reset();
     getViewHandler().openView("EditCommentCashierView.fxml");
+    viewModel.close();
   }
 
   @FXML private void backPressed() {
     getViewHandler().openView("LoginView.fxml");
+    viewModel.close();
   }
 }

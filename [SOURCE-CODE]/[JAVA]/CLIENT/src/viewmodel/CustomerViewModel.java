@@ -6,14 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import property.ItemProperty;
+import utility.Item;
+
 import java.util.ArrayList;
 
 public class CustomerViewModel
 {
   private Model model;
   private StringProperty error;
-  private ArrayList<ItemProperty> items;//TODO change to ObservableList
+  private ArrayList<ItemProperty> items;//TODO change to ObservableList, ask Steffen, also VC
   private CustomerHandler handler;
+  //private ArrayList<String> types
 
   public CustomerViewModel(Model model, CustomerHandler handler)
   {
@@ -21,7 +24,6 @@ public class CustomerViewModel
     this.handler=handler;
     error = new SimpleStringProperty("");
     items = new ArrayList<>();
-    reset();
   }
 
   public void reset()
@@ -29,10 +31,10 @@ public class CustomerViewModel
     items.clear();
     try
     {
-      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
+      //todo enhanced
+      for (Item item: model.getAllExistingItems().getAllItems())
       {
-        items.add(new ItemProperty(model.getAllExistingItems().getAllItems()
-            .get(i)));
+        items.add(new ItemProperty(item));
       }
     }
     catch(Exception e)
@@ -43,7 +45,14 @@ public class CustomerViewModel
 
   public void addToOrder(ItemProperty item)
   {
-    model.addItemToOrder(item.getItem());
+    try
+    {
+      model.addItemToOrder(item.getItem());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public ObservableList<ItemProperty> getItemsByType(String type)
@@ -67,7 +76,14 @@ public class CustomerViewModel
 
   public void quit()
   {
-    model.quitAndCancelOrder();
+    try
+    {
+      model.quitAndCancelOrder();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void setItem(ItemProperty item)

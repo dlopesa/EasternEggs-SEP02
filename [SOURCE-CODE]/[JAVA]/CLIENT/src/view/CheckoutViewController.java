@@ -28,6 +28,10 @@ public class CheckoutViewController extends ViewController
     orderTable();
   }
 
+  public void reset() {
+    checkoutViewModel.reset();
+  }
+
   private void orderTable()
   {
     TableColumn idColTemp = (TableColumn) itemTable.getColumns().get(0);

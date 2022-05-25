@@ -17,7 +17,8 @@ public class ExtraProperty implements Serializable
   {
     name = new SimpleStringProperty(extra.getName());
     typesAvailable = FXCollections.observableArrayList();
-    for (String type : extra.getAvailableTypes()) {
+    for (String type : extra.getAvailableTypes())
+    {
       typesAvailable.add(new SimpleStringProperty(type));
     }
   }
@@ -27,12 +28,18 @@ public class ExtraProperty implements Serializable
     return typesAvailable;
   }
 
-  public String getTypes() {
+  public String getTypes()
+  {
     String s = "";
-    for (int i = 0; i < getTypesAvailable().size(); i++) {
-      s+= getTypesAvailable().get(i).get();
-      if (i < getTypesAvailable().size()-1) {
-        s+= ", ";
+
+    int size = getTypesAvailable().size();
+
+    for (int i = 0; i < size; i++)
+    {
+      s += getTypesAvailable().get(i).get();
+      if (i < size - 1)
+      {
+        s += ", ";
       }
     }
     return s;
@@ -40,7 +47,7 @@ public class ExtraProperty implements Serializable
 
   public ExtraProperty(String name)
   {
-    this.name= new SimpleStringProperty(name);
+    this.name = new SimpleStringProperty(name);
   }
 
   public StringProperty nameProperty()

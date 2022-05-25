@@ -18,7 +18,6 @@ public class DatabaseViewModel
   {
     this.model = model;
     allItems = FXCollections.observableArrayList();
-    reset();
   }
 
   public void reset()
@@ -26,9 +25,9 @@ public class DatabaseViewModel
     allItems.clear();
     try
     {
-      for (int i = 0; i < model.getAllExistingItems().getAllItems().size(); i++)
-      {
-        allItems.add(new ItemProperty(model.getAllExistingItems().getAllItems().get(i)));
+
+      for (Item item : model.getAllExistingItems().getAllItems()) {
+        allItems.add(new ItemProperty(item));
       }
     }
     catch(Exception e)
@@ -44,6 +43,13 @@ public class DatabaseViewModel
 
   public void removeItem(ItemProperty item)
   {
-    model.removeItemFromProductList(item.getItem());
+    try
+    {
+      model.removeItemFromProductList(item.getItem());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

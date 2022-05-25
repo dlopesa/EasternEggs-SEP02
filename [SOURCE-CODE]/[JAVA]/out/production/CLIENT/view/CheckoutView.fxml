@@ -3,23 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.CheckoutViewController"
-userData="Checkout">
+<VBox prefHeight="500.0" prefWidth="650.0" userData="Checkout" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CheckoutViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="76.0" prefWidth="630.0">
             <children>
                 <Label text="Checkout">
                     <font>
-                        <Font size="38.0"/>
+                        <Font size="38.0" />
                     </font>
                 </Label>
             </children>
@@ -28,26 +24,17 @@ userData="Checkout">
             <children>
                 <VBox prefHeight="334.0" prefWidth="315.0">
                     <children>
-                        <ScrollPane prefHeight="333.0" prefWidth="304.0">
-                            <content>
-                                <TableView fx:id="itemTable" prefHeight="332.0"
-                                           prefWidth="310.0">
-                                    <columns>
-                                        <TableColumn prefWidth="75.0"
-                                                     text="ID"/>
-                                        <TableColumn prefWidth="75.0"
-                                                     text="Name"/>
-                                        <TableColumn prefWidth="75.0"
-                                                     text="Type"/>
-                                        <TableColumn prefWidth="75.0"
-                                                     text="Price"/>
-                                    </columns>
-                                </TableView>
-                            </content>
-                        </ScrollPane>
+                          <TableView fx:id="itemTable" prefHeight="332.0" prefWidth="310.0">
+                              <columns>
+                                  <TableColumn prefWidth="75.0" text="ID" />
+                                  <TableColumn prefWidth="75.0" text="Name" />
+                                  <TableColumn prefWidth="75.0" text="Type" />
+                                  <TableColumn prefWidth="75.0" text="Price" />
+                              </columns>
+                          </TableView>
                     </children>
                     <padding>
-                        <Insets top="15.0"/>
+                        <Insets top="15.0" />
                     </padding>
                 </VBox>
                 <VBox prefHeight="333.0" prefWidth="292.0" spacing="30.0">
@@ -56,74 +43,61 @@ userData="Checkout">
                             <children>
                                 <Label text="Total price:">
                                     <font>
-                                        <Font size="18.0"/>
+                                        <Font size="18.0" />
                                     </font>
                                 </Label>
                                 <Label fx:id="totalPriceLabel" text="Label">
                                     <font>
-                                        <Font size="18.0"/>
+                                        <Font size="18.0" />
                                     </font>
                                 </Label>
                             </children>
                         </HBox>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false"
-                                onAction="#removeFromOrderButton"
-                                prefHeight="0.0" prefWidth="150.0"
-                                text="Remove item">
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeFromOrderButton" prefHeight="0.0" prefWidth="150.0" text="Remove item">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#payButton"
-                                prefHeight="0.0" prefWidth="150.0" text="Pay">
+                        <Button mnemonicParsing="false" onAction="#payButton" prefHeight="0.0" prefWidth="150.0" text="Pay">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button layoutX="65.0" layoutY="146.0"
-                                mnemonicParsing="false"
-                                onAction="#addCommentButton" prefHeight="0.0"
-                                prefWidth="150.0" text="Add Comment">
+                        <Button layoutX="65.0" layoutY="146.0" mnemonicParsing="false" onAction="#addCommentButton" prefHeight="0.0" prefWidth="150.0" text="Add Comment">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER"
-                                mnemonicParsing="false" onAction="#backButton"
-                                prefHeight="0.0" prefWidth="150.0" text="Back">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backButton" prefHeight="0.0" prefWidth="150.0" text="Back">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER"
-                                layoutX="65.0" layoutY="260.0"
-                                mnemonicParsing="false" onAction="#quitButton"
-                                prefHeight="0.0" prefWidth="150.0" text="Quit">
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="260.0" mnemonicParsing="false" onAction="#quitButton" prefHeight="0.0" prefWidth="150.0" text="Quit">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Button>
                     </children>
                     <HBox.margin>
-                        <Insets/>
+                        <Insets />
                     </HBox.margin>
                     <padding>
-                        <Insets left="55.0" top="10.0"/>
+                        <Insets left="55.0" top="10.0" />
                     </padding>
                 </VBox>
             </children>
             <padding>
-                <Insets left="25.0"/>
+                <Insets left="25.0" />
             </padding>
         </HBox>
-        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER"
-               prefHeight="27.0" prefWidth="637.0" textFill="RED">
+        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="637.0" textFill="RED">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Label>
     </children>
     <padding>
-        <Insets left="20.0" top="10.0"/>
+        <Insets left="20.0" top="10.0" />
     </padding>
 </VBox>

@@ -16,6 +16,7 @@ public class CashierViewModel implements PropertyChangeListener
   private ObservableList<OrderProperty> unpaidOrders;
   private ObservableList<OrderProperty> pendingOrders;
   private CashierHandler handler;
+  private boolean open;
 
   public CashierViewModel(Model model, CashierHandler handler)
   {
@@ -24,20 +25,42 @@ public class CashierViewModel implements PropertyChangeListener
     this.handler = handler;
     this.unpaidOrders = FXCollections.observableArrayList();
     this.pendingOrders = FXCollections.observableArrayList();
-    reset();
+    this.open = false;
+  }
+
+  public void open() {
+    this.open = true;
+  }
+
+  public void close() {
+    this.open = false;
   }
 
   public void reset()
   {
     unpaidOrders.clear();
-    for (Order order : model.getAllUnpaidOrders())
+    try
     {
-      unpaidOrders.add(new OrderProperty(order));
+      for (Order order : model.getAllUnpaidOrders())
+      {
+        unpaidOrders.add(new OrderProperty(order));
+      }
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
     }
     pendingOrders.clear();
-    for (Order order : model.getAllPendingOrders())
+    try
     {
-      pendingOrders.add(new OrderProperty(order));
+      for (Order order : model.getAllPendingOrders())
+      {
+        pendingOrders.add(new OrderProperty(order));
+      }
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
     }
   }
 
@@ -63,19 +86,33 @@ public class CashierViewModel implements PropertyChangeListener
 
   public void cancelOrder()
   {
-    model.cancelUnpaidOrder(handler.getSelectedUnpaidOrder().getOrder());
+    try
+    {
+      model.cancelUnpaidOrder(handler.getSelectedUnpaidOrder().getOrder());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void markOrderAsPaid()
   {
-    model.acceptPayment(handler.getSelectedUnpaidOrder().getOrder());
+    try
+    {
+      model.acceptPayment(handler.getSelectedUnpaidOrder().getOrder());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(()->
     {
-      if(evt.getPropertyName().equals("change"))
+      if(evt.getPropertyName().equals("change") && open)
       {
         reset();
       }

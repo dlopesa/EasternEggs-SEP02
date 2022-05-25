@@ -15,7 +15,14 @@ public class EditCommentCustomerViewModel
   }
 
   public void reset() {
-    this.commentArea.set("");
+    try
+    {
+      this.commentArea.set(model.getOrder().getComment());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public StringProperty getCommentArea()
@@ -24,6 +31,13 @@ public class EditCommentCustomerViewModel
   }
 
   public void submit() {
-    model.editOrderCommentByCustomer(commentArea.get());
+    try
+    {
+      model.editOrderCommentByCustomer(commentArea.get());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

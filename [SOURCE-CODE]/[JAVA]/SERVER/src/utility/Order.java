@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Order implements Serializable, UnnamedPropertyChangeSubject
 {
   private int id; // NEW INSTANCE VARIABLE. ONLY USEFUL FOR WHEN THE ORDER COMES
-                  // FROM THE DATABASE.
+  // FROM THE DATABASE.
   private ItemList itemList;
   private String comment;
   private DateTime dateTime;
@@ -35,9 +35,9 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     }
   }
 
-  public Order(int id, ItemList itemList, String comment, DateTime dateTime,
-      double price, String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
-                                    // FROM THE DATABASE.
+  public Order(int id, ItemList itemList, String comment, DateTime dateTime, double price,
+      String status) // NEW CONSTRUCTOR FOR WHEN YOU GET AN ORDER
+  // FROM THE DATABASE.
   {
     property = new PropertyChangeSupport(this);
     this.id = id;
@@ -85,11 +85,20 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     return price;
   }
 
+  public void setIsTakeAway(){
+    comment+="\n \n TAKE-AWAY";
+  }
+
   public void addItem(Item item)
   {
     itemList.add(item);
     price += item.getPrice();
     property.firePropertyChange("add", getPrice(), null);
+  }
+
+  public int getOrderId()
+  {
+    return id;
   }
 
   public void removeItem(Item item)
@@ -102,6 +111,7 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   public void addExtraToItem(Item item, Extra extra)
   {
     itemList.addExtraToItem(item, extra);
+
   }
 
   public ItemList getItemList()
@@ -131,7 +141,7 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   }
 
   @Override public boolean equals(Object o) //EQUALS METHOD DOES NOT COMPARE IDS
-                                            // INTENTIONALLY. I GUESS.
+  // INTENTIONALLY. I GUESS.
   {
     if (!(o instanceof Order))
     {
@@ -155,6 +165,11 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     return copy;
   }
 
+  public void setStatus(String status)
+  {
+    this.status=status;
+  }
+
   public String getTime()
   {
     return dateTime.getTime();
@@ -165,12 +180,6 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
     this.dateTime = dateTime;
   }
 
-
-  public void setStatus(String status)
-  {
-    this.status=status;
-  }
-
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
@@ -179,14 +188,5 @@ public class Order implements Serializable, UnnamedPropertyChangeSubject
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
-  }
-
-  public void setIsTakeAway(){
-    comment+="\n \n TAKE-AWAY";
-  }
-
-  public int getOrderId()
-  {
-    return id;
   }
 }

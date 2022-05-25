@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import property.ExtraProperty;
+import utility.Extra;
 
 public class ExtraDatabaseViewModel
 {
@@ -16,7 +17,6 @@ public class ExtraDatabaseViewModel
     this.model = model;
     allExtras = FXCollections.observableArrayList();
     this.selectedExtra = null;
-    reset();
   }
 
   public void setSelectedExtra(ExtraProperty extra) {
@@ -28,9 +28,8 @@ public class ExtraDatabaseViewModel
     allExtras.clear();
     try
     {
-      for (int i = 0; i < model.getAllExtras().size(); i++)
-      {
-        allExtras.add(new ExtraProperty(model.getAllExtras().get(i)));
+      for (Extra extra : model.getAllExtras()) {
+        allExtras.add(new ExtraProperty(extra));
       }
     }
     catch(Exception e)
@@ -44,6 +43,13 @@ public class ExtraDatabaseViewModel
   }
 
   public void removeExtra() {
-    model.removeExtraFromExtraList(selectedExtra.getExtra());
+    try
+    {
+      model.removeExtraFromExtraList(selectedExtra.getExtra());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

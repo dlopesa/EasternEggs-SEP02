@@ -10,96 +10,99 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.ExtraViewController"
-      userData="Manage extras for your item">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="600.0" userData="Manage extras for your item" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ExtraViewController">
     <children>
         <VBox prefHeight="350.0" prefWidth="100.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="69.0" prefWidth="600.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Select extras for ">
+                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Select extras for ">
                             <font>
-                                <Font size="29.0"/>
+                                <Font size="29.0" />
                             </font>
                         </Text>
                         <Label fx:id="itemName" text="Label">
                             <font>
-                                <Font size="29.0"/>
+                                <Font size="29.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox prefHeight="0.0" prefWidth="600.0" spacing="60.0">
+                <HBox prefHeight="0.0" prefWidth="600.0" spacing="65.0">
                     <children>
                         <Label text="Available extras">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
                         <Label text="Added extras">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
                     </children>
                     <padding>
-                        <Insets left="25.0"/>
+                        <Insets left="25.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets left="20.0"/>
+                        <Insets bottom="5.0" left="35.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="257.0" prefWidth="550.0" spacing="100.0">
+                <HBox prefHeight="257.0" prefWidth="550.0" spacing="60.0">
                     <children>
-                        <VBox prefHeight="256.0" prefWidth="120.0">
+                        <VBox prefHeight="256.0" prefWidth="117.0">
                             <children>
-                                <TableView fx:id="availableExtras"
-                                           prefHeight="256.0" prefWidth="96.0">
+                                <TableView fx:id="availableExtras" prefHeight="256.0" prefWidth="96.0">
                                     <columns>
-                                        <TableColumn prefWidth="104.0"
-                                                     text="Extra"/>
+                                        <TableColumn prefWidth="116.0" text="Extra" />
                                     </columns>
                                 </TableView>
                             </children>
                         </VBox>
-                        <VBox prefHeight="256.0" prefWidth="120.0">
+                  <VBox prefHeight="256.0" prefWidth="123.0">
+                     <children>
+                        <TableView fx:id="addedExtras" prefHeight="256.0" prefWidth="129.0">
+                           <columns>
+                              <TableColumn prefWidth="122.0" text="Extra" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                        <VBox alignment="CENTER" prefHeight="256.0" prefWidth="123.0" spacing="50.0">
                             <children>
-                                <TableView fx:id="addedExtras"
-                                           prefHeight="256.0" prefWidth="96.0">
-                                    <columns>
-                                        <TableColumn prefWidth="104.0"
-                                                     text="Extra"/>
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0"
-                              prefWidth="200.0" spacing="30.0">
-                            <children>
-                                <Button mnemonicParsing="false"
-                                        onAction="#onAdd" prefHeight="40.0"
-                                        prefWidth="70.0" text="Add "/>
-                                <Button mnemonicParsing="false"
-                                        onAction="#onRemove" prefHeight="40.0"
-                                        prefWidth="70.0" text="Remove"/>
+                                <Button mnemonicParsing="false" onAction="#onAdd" prefHeight="60.0" prefWidth="100.0" text="Add ">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
+                                <Button mnemonicParsing="false" onAction="#onRemove" prefHeight="60.0" prefWidth="100.0" text="Remove">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
+                        <Button layoutX="22.0" layoutY="119.0" mnemonicParsing="false" onAction="#onDone" prefHeight="60.0" prefWidth="100.0" text="Done">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
                             </children>
                         </VBox>
                     </children>
                     <VBox.margin>
-                        <Insets left="50.0"/>
+                        <Insets right="50.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
                 </HBox>
             </children>
         </VBox>
-        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0">
-            <children>
-                <Button mnemonicParsing="false" onAction="#onDone"
-                        prefHeight="40.0" prefWidth="70.0" text="Done"/>
-            </children>
-        </VBox>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="errorLabel" textFill="RED">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
     </children>
 </VBox>

@@ -8,4 +8,8 @@ public class StartViewModel
   public StartViewModel(Model model){
     this.model=model;
   }
+
+  public void setUserType(String userType) {
+    model.setUserType(userType);
+  }
 }

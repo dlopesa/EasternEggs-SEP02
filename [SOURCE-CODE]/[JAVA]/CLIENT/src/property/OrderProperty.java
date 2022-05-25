@@ -84,6 +84,8 @@ public class OrderProperty
     return price;
   }
 
+
+
   public StringProperty statusProperty()
   {
     return status;
@@ -106,5 +108,12 @@ public class OrderProperty
     return new Order(id.get(), newItemList, comment.get(),
         dateTime.get(), price.get(),
         status.get());
+  }
+
+  @Override public String toString()
+  {
+    return "OrderProperty{" + "id=" + id + ", comment=" + comment
+        + ", dateTime=" + dateTime + ", price=" + price + ", status=" + status
+        + ", itemList=" + itemList + ", time=" + time + '}';
   }
 }
