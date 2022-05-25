@@ -10,12 +10,17 @@ import java.sql.SQLException;
 public class LoginViewModel
 {
   private StringProperty accessKeyProperty;
+  private StringProperty errorProperty;
   private Model model;
 
   public LoginViewModel(Model model)
   {
     this.model = model;
     accessKeyProperty=new SimpleStringProperty();
+  }
+
+  public void reset() {
+
   }
 
   public StringProperty getAccessKeyProperty()

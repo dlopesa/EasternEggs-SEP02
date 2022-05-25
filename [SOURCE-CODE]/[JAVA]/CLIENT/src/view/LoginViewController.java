@@ -30,21 +30,25 @@ public class LoginViewController extends ViewController
     {
       case "Barista":
         loginViewModel.setUserType(UserProxy.BARISTA);
+        errorLabel.setVisible(false);
         getViewHandler().openView("BaristaView.fxml");
 
         break;
       case "Admin":
         loginViewModel.setUserType(UserProxy.ADMIN);
+        errorLabel.setVisible(false);
         getViewHandler().openView("AdminView.fxml");
 
         break;
       case "Cashier":
         loginViewModel.setUserType(UserProxy.CASHIER);
+        errorLabel.setVisible(false);
         getViewHandler().openView("CashierView.fxml");
 
         break;
       case "Display":
         loginViewModel.setUserType(UserProxy.DISPLAY);
+        errorLabel.setVisible(false);
         getViewHandler().openView("DisplayView.fxml");
         break;
       default:
