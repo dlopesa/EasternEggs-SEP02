@@ -52,14 +52,6 @@
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#editItemPressed" prefWidth="130.0" text="Edit Item">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
                         <Button mnemonicParsing="false" onAction="#backPressed" prefWidth="130.0" text="Back">
                             <VBox.margin>
                                 <Insets />
