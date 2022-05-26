@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class UserProxy implements Model
 {
-  private Model model;
+  private ModelManager modelManager;
   private String userType;
   public static String CUSTOMER = "customer";
   public static String ADMIN = "admin";
@@ -18,9 +18,9 @@ public class UserProxy implements Model
   public static String CASHIER = "cashier";
   public static String DISPLAY = "display";
 
-  public UserProxy(Model model)
+  public UserProxy(ModelManager modelManager)
   {
-    this.model = model;
+    this.modelManager = modelManager;
   }
 
   @Override public void setUserType(String type)
@@ -30,14 +30,14 @@ public class UserProxy implements Model
 
   @Override public String getUserType(String pwd)
   {
-    return model.getUserType(pwd);
+    return modelManager.getUserType(pwd);
   }
 
   @Override public void addItemToOrder(Item item) throws IllegalAccessException
   {
     if (userType.equals(CUSTOMER))
     {
-      model.addItemToOrder(item);
+      modelManager.addItemToOrder(item);
     }
     else
       throw new IllegalAccessException(
@@ -49,7 +49,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      return model.submitOrder();
+      return modelManager.submitOrder();
     }
     else
       throw new IllegalAccessException("Only a customer can submit an order.");
@@ -60,7 +60,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.addExtraToItem(extra, item);
+      modelManager.addExtraToItem(extra, item);
     }
     else
       throw new IllegalAccessException(
@@ -72,7 +72,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.removeExtraFromItem(extra, item);
+      modelManager.removeExtraFromItem(extra, item);
     }
     else
       throw new IllegalAccessException(
@@ -84,7 +84,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.removeAccessKey(accessKey);
+      modelManager.removeAccessKey(accessKey);
     }
     else
       throw new IllegalAccessException(
@@ -96,7 +96,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.removeItemFromOrder(item);
+      modelManager.removeItemFromOrder(item);
     }
     else
       throw new IllegalAccessException(
@@ -107,7 +107,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      return model.getOrder();
+      return modelManager.getOrder();
     }
     else
       throw new IllegalAccessException("Only a customer can return an order.");
@@ -118,7 +118,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER) || userType.equals(ADMIN))
     {
-      return model.getAllExistingItems();
+      return modelManager.getAllExistingItems();
     }
     else
       throw new IllegalAccessException(
@@ -130,7 +130,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      return model.getAllAccessKey();
+      return modelManager.getAllAccessKey();
     }
     else
       throw new IllegalAccessException(
@@ -141,7 +141,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.quitAndCancelOrder();
+      modelManager.quitAndCancelOrder();
     }
     else
       throw new IllegalAccessException(
@@ -152,7 +152,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      return model.payForOrder(isCash);
+      return modelManager.payForOrder(isCash);
     }
     else
       throw new IllegalAccessException(
@@ -163,7 +163,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.setIsTakeAway();
+      modelManager.setIsTakeAway();
     }
     else
       throw new IllegalAccessException(
@@ -175,7 +175,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.addItemToProductList(item);
+      modelManager.addItemToProductList(item);
     }
     else
       throw new IllegalAccessException(
@@ -187,7 +187,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.addAccessKey(accessKey);
+      modelManager.addAccessKey(accessKey);
     }
     else
       throw new IllegalAccessException("Only admins can add a new access key.");
@@ -198,7 +198,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.removeItemFromProductList(item);
+      modelManager.removeItemFromProductList(item);
     }
     else
       throw new IllegalAccessException(
@@ -211,7 +211,7 @@ public class UserProxy implements Model
     if (userType.equals(BARISTA) || userType.equals(DISPLAY) || userType.equals(
         CASHIER))
     {
-      return model.getAllPendingOrders();
+      return modelManager.getAllPendingOrders();
     }
     else
       throw new IllegalAccessException(
@@ -224,7 +224,7 @@ public class UserProxy implements Model
 
     if (userType.equals(CASHIER))
     {
-      return model.getAllUnpaidOrders();
+      return modelManager.getAllUnpaidOrders();
     }
     else
       throw new IllegalAccessException(
@@ -236,7 +236,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(DISPLAY))
     {
-      return model.getAllCompletedOrders();
+      return modelManager.getAllCompletedOrders();
     }
     else
       throw new IllegalAccessException(
@@ -248,7 +248,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(BARISTA))
     {
-      model.completeOrder(order);
+      modelManager.completeOrder(order);
     }
     else
       throw new IllegalAccessException("Only barista can complete an order.");
@@ -258,7 +258,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CASHIER))
     {
-      model.acceptPayment(order);
+      modelManager.acceptPayment(order);
     }
     else
       throw new IllegalAccessException("Only cashier can accept a payment.");
@@ -269,7 +269,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CASHIER))
     {
-      model.editOrderCommentByCashier(order, comment);
+      modelManager.editOrderCommentByCashier(order, comment);
     }
     else
       throw new IllegalAccessException(
@@ -281,7 +281,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      model.editOrderCommentByCustomer(comment);
+      modelManager.editOrderCommentByCustomer(comment);
     }
     else
       throw new IllegalAccessException(
@@ -293,7 +293,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CASHIER))
     {
-      model.cancelUnpaidOrder(order);
+      modelManager.cancelUnpaidOrder(order);
     }
     else
       throw new IllegalAccessException(
@@ -304,7 +304,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      return model.getAllTypes();
+      return modelManager.getAllTypes();
     }
     else
       throw new IllegalAccessException(
@@ -316,7 +316,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(CUSTOMER))
     {
-      return model.getAllExtrasByType(type);
+      return modelManager.getAllExtrasByType(type);
     }
     else
       throw new IllegalAccessException(
@@ -328,7 +328,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      return model.getAllPermissions();
+      return modelManager.getAllPermissions();
     }
     else
       throw new IllegalAccessException(
@@ -339,7 +339,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      return model.getAllExtras();
+      return modelManager.getAllExtras();
     }
     else
       throw new IllegalAccessException(
@@ -351,7 +351,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.addExtraToExtraList(extra);
+      modelManager.addExtraToExtraList(extra);
     }
     else
       throw new IllegalAccessException(
@@ -363,7 +363,7 @@ public class UserProxy implements Model
   {
     if (userType.equals(ADMIN))
     {
-      model.removeExtraFromExtraList(extra);
+      modelManager.removeExtraFromExtraList(extra);
     }
     else
       throw new IllegalAccessException(
@@ -372,16 +372,16 @@ public class UserProxy implements Model
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    model.propertyChange(evt);
+    modelManager.propertyChange(evt);
   }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
-    model.addListener(listener);
+    modelManager.addListener(listener);
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
   {
-    model.removeListener(listener);
+    modelManager.removeListener(listener);
   }
 }

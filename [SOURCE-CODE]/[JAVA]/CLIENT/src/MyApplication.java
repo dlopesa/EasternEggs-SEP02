@@ -11,11 +11,10 @@ public class MyApplication extends Application
 {
   @Override public void start(Stage primaryStage) throws Exception
   {
-    Model model=null;
-    UserProxy proxy = null;
+    UserProxy proxy;
+    ModelManager modelManager=new ModelManager();
     try {
-      model= new ModelManager();
-      proxy = new UserProxy(model);
+      proxy = new UserProxy(modelManager);
       ViewModelFactory viewModelFactory=new ViewModelFactory(proxy);
       ViewCreator view=new ViewHandler(viewModelFactory);
       view.start(primaryStage);
