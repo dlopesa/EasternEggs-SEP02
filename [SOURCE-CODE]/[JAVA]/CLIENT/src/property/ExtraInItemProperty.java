@@ -6,12 +6,21 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
+/**
+ * A class that represents the property of the extras in items
+ */
 public class ExtraInItemProperty
 {
   private ItemProperty item;
   private IntegerProperty id;
   private StringProperty name;
   private ArrayList<ExtraProperty> extras;
+
+  /**
+   * A four arguments constructor
+   * @param item
+   * @param extras
+   */
 
   public ExtraInItemProperty(ItemProperty item, ArrayList<ExtraProperty> extras)
   {

@@ -6,6 +6,9 @@ import utility.Item;
 
 import java.util.ArrayList;
 
+/**
+ * A class that represents an item property
+ */
 public class ItemProperty
 {
   private IntegerProperty id;
@@ -16,6 +19,11 @@ public class ItemProperty
   private ArrayList<ExtraProperty> extras;
   private Item item;
 
+  /**
+   * A seven arguments constructor.
+   * for loop stores all the extras of an item into an array list.
+   * @param item
+   */
   public ItemProperty(Item item)
   {
     this.item = item;
@@ -31,6 +39,14 @@ public class ItemProperty
     }
   }
 
+  /**
+   * A overloaded constructor TODO Ask someone what is the difference between this two
+   * @param id
+   * @param name
+   * @param type
+   * @param price
+   * @param description
+   */
   public ItemProperty(IntegerProperty id, StringProperty name,
       StringProperty type, DoubleProperty price, StringProperty description)
   {

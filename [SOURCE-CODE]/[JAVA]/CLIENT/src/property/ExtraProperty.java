@@ -8,11 +8,19 @@ import utility.Extra;
 
 import java.io.Serializable;
 
+/**
+ * A class that represents an extra property.
+ */
 public class ExtraProperty implements Serializable
 {
   private StringProperty name;
   private ObservableList<StringProperty> typesAvailable;
 
+  /**
+   * A three arguments constructor.
+   * the for statement gets all the available types and stores it into an observable list
+   * @param extra
+   */
   public ExtraProperty(Extra extra)
   {
     name = new SimpleStringProperty(extra.getName());

@@ -25,6 +25,12 @@ public class ModelManager implements Model
   private ArrayList<String> permissions;
   private PropertyChangeSupport property;
 
+  /**
+   * A multi arguments constructor, that also create and adds to different Strings, +so they can be shown on the views
+   * @throws MalformedURLException
+   * @throws NotBoundException
+   * @throws RemoteException
+   */
   public ModelManager() throws MalformedURLException, NotBoundException, RemoteException
   {
     client = new RemoteClient();
@@ -43,7 +49,7 @@ public class ModelManager implements Model
     property = new PropertyChangeSupport(this);
     order.addListener(this);
   }
-
+//TODO ?? does nothing
   @Override public void setUserType(String type)
   {
 
@@ -68,11 +74,20 @@ public class ModelManager implements Model
     return ak;
   }
 
+  /**
+   * Method that requests to the order to add an item
+   * @param item
+   */
   @Override public void addItemToOrder(Item item)
   {
     order.addItem(item);
   }
 
+  /**
+   * Method that requests to an order to be submitted
+   * @return
+   * @throws NullPointerException
+   */
   @Override public int submitOrder() throws NullPointerException
   {
     int tempId = -20;
@@ -92,16 +107,30 @@ public class ModelManager implements Model
     return tempId;
   }
 
+  /**
+   * Method that requests to an extra to be added intro an item
+   * @param extra
+   * @param item
+   */
   @Override public void addExtraToItem(Extra extra, Item item)
   {
     item.addExtra(extra);
   }
 
+  /**
+   * Method that requests to an extra to be removed from an item
+   * @param extra
+   * @param item
+   */
   @Override public void removeExtraFromItem(Extra extra, Item item)
   {
     item.removeExtra(extra);
   }
 
+  /**
+   * Method that requests to an item to be removed from an order
+   * @param item
+   */
   @Override public void removeItemFromOrder(Item item)
   {
     order.removeItem(item);
@@ -112,10 +141,17 @@ public class ModelManager implements Model
     return order;
   }
 
+  /**
+   * Method that gets all the existing items
+   * @return
+   * @throws RemoteException
+   * @throws SQLException
+   */
   @Override public ItemList getAllExistingItems() throws RemoteException, SQLException
   {
     return client.getAllItems();
   }
+
 
   @Override public ArrayList<AccessKey> getAllAccessKey()
   {
@@ -129,12 +165,15 @@ public class ModelManager implements Model
     }
     return null;
   }
-
+ //TODO Does nothing?
   @Override public void setComment(String comment)
   {
 
   }
 
+  /**
+   * Method that quits and cancel an order
+   */
   @Override public void quitAndCancelOrder()
   {
     order = new Order(false);
@@ -142,6 +181,11 @@ public class ModelManager implements Model
     property.firePropertyChange("cancel", order.getPrice(), null);
   }
 
+  /**
+   * Method that requests to an order be marked as paid, if cash mark as unpaid
+   * @param isCash
+   * @return
+   */
   @Override public int payForOrder(boolean isCash)
   {
     if (isCash)
@@ -151,11 +195,18 @@ public class ModelManager implements Model
     return submitOrder();
   }
 
+  /**
+   * Method that sets an order to be marked as take away
+   */
   @Override public void setIsTakeAway()
   {
     order.setIsTakeAway();
   }
 
+  /**
+   * Requests to an item to be added to an product list
+   * @param item
+   */
   @Override public void addItemToProductList(Item item)
   {
     try
@@ -168,12 +219,22 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method that requests to an access key to be created
+   * @param accessKey
+   * @throws SQLException
+   * @throws RemoteException
+   */
   @Override public void addAccessKey(AccessKey accessKey)
       throws SQLException, RemoteException
   {
     client.addAccessKey(accessKey);
   }
 
+  /**
+   * A method that requests to an item to e removed from an item list
+   * @param item
+   */
   @Override public void removeItemFromProductList(Item item)
   {
     try
@@ -186,6 +247,10 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method thar requests to an access key to be removed
+   * @param accessKey
+   */
   @Override public void removeAccessKey(AccessKey accessKey)
   {
     try
@@ -199,6 +264,10 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method that gets all the pending orders
+   * @returns all pending orders
+   */
   @Override public ArrayList<Order> getAllPendingOrders()
   {
     try
@@ -213,6 +282,10 @@ public class ModelManager implements Model
 
   }
 
+  /**
+   * A method that gets all unpaid orders
+   * @returns all unpaid orders
+   */
   @Override public ArrayList<Order> getAllUnpaidOrders()
   {
     try
@@ -226,6 +299,10 @@ public class ModelManager implements Model
     return new ArrayList<>();
   }
 
+  /**
+   * Method that gets all completed orders
+   * @returns all completed orders
+   */
   public ArrayList<Order> getAllCompletedOrders()
   {
     try
@@ -239,11 +316,20 @@ public class ModelManager implements Model
     return new ArrayList<>();
   }
 
+  /**
+   * Method that requests an order to be completed
+   * @param order
+   * @throws RemoteException
+   */
   @Override public void completeOrder(Order order) throws RemoteException
   {
     client.completeOrder(order);
   }
 
+  /**
+   * Method that accepts a payment
+   * @param order
+   */
   @Override public void acceptPayment(Order order)
   {
     try
@@ -256,6 +342,11 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * Method that makes possible to a cashier to edit an order's comment
+   * @param order
+   * @param comment
+   */
   @Override public void editOrderCommentByCashier(Order order, String comment)
   {
     try
@@ -268,11 +359,19 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method that makes possible to a costumer edt his own order
+   * @param comment
+   */
   @Override public void editOrderCommentByCustomer(String comment)
   {
     order.setComment(comment);
   }
 
+  /**
+   * A method that cancels an unpaid order
+   * @param order
+   */
   @Override public void cancelUnpaidOrder(Order order)
   {
     try
@@ -285,11 +384,20 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method that gets all the types
+   * @returns an array list with all the types
+   */
   @Override public ArrayList<String> getAllTypes()
   {
     return types;
   }
 
+  /**
+   * A method that gets all the extras by type
+   * @param type
+   * @return
+   */
   @Override public ArrayList<Extra> getAllExtrasByType(String type)
   {
 
@@ -304,11 +412,20 @@ public class ModelManager implements Model
     return null;
   }
 
+  /**
+   * Gets all the type of permissions
+   * @returns an arraylist with all the type of permissions
+   */
+
   @Override public ArrayList<String> getAllPermissions()
   {
     return permissions;
   }
 
+  /**
+   * A method that gets all the extras
+   * @returns an array list with all the extras
+   */
   @Override public ArrayList<Extra> getAllExtras()
   {
     try
@@ -322,6 +439,10 @@ public class ModelManager implements Model
     return null;
   }
 
+  /**
+   * A method that adds an extra to an extra list
+   * @param extra
+   */
   @Override public void addExtraToExtraList(Extra extra)
   {
     try
@@ -334,6 +455,10 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * A method that removes an extra from an extra list
+   * @param extra
+   */
   @Override public void removeExtraFromExtraList(Extra extra)
   {
     try
@@ -346,16 +471,28 @@ public class ModelManager implements Model
     }
   }
 
+  /**
+   * Fires an listener
+   * @param evt
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     property.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
   }
 
+  /**
+   * A method that adds an listener
+   * @param listener
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
 
+  /**
+   * A method removes that removes a listener
+   * @param listener
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);

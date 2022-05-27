@@ -4,14 +4,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import utility.AccessKey;
 
-
+/**
+ * A class that represents an access key property
+ */
 public class AccessKeyProperty
 {
   private StringProperty accessKeyS;
   private StringProperty permissionKey;
 
   /**
-   *
+   * A two arguments constructor with an access key as a parameter
    * @param accessKey
    */
   public AccessKeyProperty(AccessKey accessKey)
@@ -20,6 +22,11 @@ public class AccessKeyProperty
     permissionKey = new SimpleStringProperty(accessKey.getPermissionKey());
   }
 
+  /**
+   * Overloaded constructor with two arguments
+   * @param accessKeyS
+   * @param permissionKey
+   */
   public AccessKeyProperty(StringProperty accessKeyS, StringProperty permissionKey)
   {
     this.accessKeyS = accessKeyS;

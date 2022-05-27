@@ -11,6 +11,9 @@ import utility.Order;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * A class that represents an order property
+ */
 public class OrderProperty
 {
   private IntegerProperty id;
@@ -21,11 +24,17 @@ public class OrderProperty
   private ObservableList<ItemProperty> itemList;
   private StringProperty time;
 
+
   public StringProperty timeProperty()
   {
     return time;
   }
 
+  /**
+   * A method that check if an object is equal to an order property
+   * @param o
+   * @return
+   */
   @Override public boolean equals(Object o)
   {
     if (this == o)
@@ -38,12 +47,17 @@ public class OrderProperty
         that.price) && Objects.equals(status, that.status) && Objects.equals(
         itemList, that.itemList) && Objects.equals(time, that.time);
   }
-
+//TODO Idk what to say bout hashcodes
   @Override public int hashCode()
   {
     return Objects.hash(id, comment, dateTime, price, status, itemList, time);
   }
 
+  /**
+   * A six arguments constructor.
+   * The for gets every item to an list
+   * @param order
+   */
   public OrderProperty(Order order)
   {
     this.id = new SimpleIntegerProperty(order.getId());
