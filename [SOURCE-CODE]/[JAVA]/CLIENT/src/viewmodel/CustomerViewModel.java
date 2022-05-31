@@ -14,9 +14,8 @@ public class CustomerViewModel
 {
   private Model model;
   private StringProperty error;
-  private ArrayList<ItemProperty> items;//TODO change to ObservableList, ask Steffen, also VC
+  private ArrayList<ItemProperty> items;
   private CustomerHandler handler;
-  //private ArrayList<String> types
 
   public CustomerViewModel(Model model, CustomerHandler handler)
   {
@@ -31,7 +30,6 @@ public class CustomerViewModel
     items.clear();
     try
     {
-      //todo enhanced
       for (Item item: model.getAllExistingItems().getAllItems())
       {
         items.add(new ItemProperty(item));
