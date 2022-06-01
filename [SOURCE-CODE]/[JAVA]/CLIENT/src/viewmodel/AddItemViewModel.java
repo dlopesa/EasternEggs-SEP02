@@ -38,12 +38,6 @@ public class AddItemViewModel
     chosen = new SimpleStringProperty();
   }
 
-
-  /**
-   * A void method setting the name, price, error and description StringProperties to an empty String.
-   */
-  public void clear()
-
   public void reset()
 
   {
