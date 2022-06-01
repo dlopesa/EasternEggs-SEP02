@@ -1,13 +1,8 @@
 package viewmodel;
 
-import com.sun.javafx.collections.ImmutableObservableList;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.util.StringConverter;
 import model.Model;
 import property.ItemProperty;
-import utility.Item;
 
 import java.util.ArrayList;
 
@@ -41,15 +36,25 @@ public class AddItemViewModel
     error = new SimpleStringProperty();
     description = new SimpleStringProperty();
     chosen = new SimpleStringProperty();
-    types = model.getAllTypes();
-    clear();
   }
+
 
   /**
    * A void method setting the name, price, error and description StringProperties to an empty String.
    */
   public void clear()
+
+  public void reset()
+
   {
+    try
+    {
+      types = model.getAllTypes();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
     name.set("");
     price.set("");
     error.set("");
@@ -128,7 +133,7 @@ public class AddItemViewModel
       ItemProperty item = new ItemProperty(new SimpleIntegerProperty(-1), name,
           chosen, priceProperty, description);
       model.addItemToProductList(item.getItem());
-      clear();
+      reset();
     }
     catch (NumberFormatException e)
     {
@@ -137,6 +142,10 @@ public class AddItemViewModel
     catch (IllegalArgumentException e)
     {
       error.set("The fields cannot be empty.");
+    }
+    catch (IllegalAccessException e)
+    {
+      error.set("Access denied.");
     }
 
   }

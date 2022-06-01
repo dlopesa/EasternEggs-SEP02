@@ -23,14 +23,34 @@ public class CheckoutViewModel implements PropertyChangeListener
     this.model = model;
     model.addListener(this);
     totalPrice = new SimpleStringProperty();
-    double tempPrice = model.getOrder().getPrice();
-    totalPrice.set(String.valueOf(tempPrice));
     error = new SimpleStringProperty("");
     items = FXCollections.observableArrayList();
-    populatingItemsFromOrder();
   }
 
-  private void populatingItemsFromOrder()
+  public void reset() {
+
+    double tempPrice = 0;
+    try
+    {
+      tempPrice = model.getOrder().getPrice();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+    totalPrice.set(String.valueOf(tempPrice));
+
+    try
+    {
+      populatingItemsFromOrder();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  private void populatingItemsFromOrder() throws IllegalAccessException
   {
     items.clear();
     for (int i = 0;
@@ -59,17 +79,39 @@ public class CheckoutViewModel implements PropertyChangeListener
 
   public void removeFromOrder(ItemProperty item)
   {
-    model.removeItemFromOrder(item.getItem());
+    try
+    {
+      model.removeItemFromOrder(item.getItem());
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void quit()
   {
-    model.quitAndCancelOrder();
+    try
+    {
+      model.quitAndCancelOrder();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public int submit()
   {
-    return model.submitOrder();
+    try
+    {
+      return model.submitOrder();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+    return -100;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -77,7 +119,14 @@ public class CheckoutViewModel implements PropertyChangeListener
     Platform.runLater(() -> {
       if (!evt.getPropertyName().equals("change"))
       {
-        populatingItemsFromOrder();
+        try
+        {
+          populatingItemsFromOrder();
+        }
+        catch (IllegalAccessException e)
+        {
+          e.printStackTrace();
+        }
         double tempPrice = (double) evt.getOldValue();
         totalPrice.set(String.valueOf(tempPrice));
       }

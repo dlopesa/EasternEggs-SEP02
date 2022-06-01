@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class LoginViewModel
 {
   private StringProperty accessKeyProperty;
+  private StringProperty errorProperty;
   private Model model;
 
   public LoginViewModel(Model model)
@@ -18,18 +19,23 @@ public class LoginViewModel
     accessKeyProperty=new SimpleStringProperty();
   }
 
+  public void reset() {
 
+  }
 
   public StringProperty getAccessKeyProperty()
   {
     return accessKeyProperty;
   }
 
+  public void setUserType(String type) {
+    model.setUserType(type);
+  }
+
   public String getUserType()
   {
-    String pwd = accessKeyProperty.get();
-    String ak = model.getUserType(pwd);
-    return ak;
+    String pwd = getAccessKeyProperty().get();
+    return model.getUserType(pwd);
   }
 
 

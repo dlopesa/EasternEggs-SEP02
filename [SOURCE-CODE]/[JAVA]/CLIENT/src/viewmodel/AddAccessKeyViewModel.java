@@ -36,14 +36,27 @@ public class AddAccessKeyViewModel
     this.model = model;
     accessKeyS = new SimpleStringProperty();
     chosen = new SimpleStringProperty();
-    permission = model.getAllPermissions();
     error = new SimpleStringProperty();
     clear();
   }
 
+
   /**
    * A void method for setting the accessKey and error StringProperties to an empty String.
    */
+
+  public void reset() {
+    try
+    {
+      permission = model.getAllPermissions();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+
   public void clear()
   {
     accessKeyS.set("");
@@ -125,6 +138,10 @@ public class AddAccessKeyViewModel
     catch (SQLException | RemoteException throwables)
     {
       throwables.printStackTrace();
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
     }
   }
 }

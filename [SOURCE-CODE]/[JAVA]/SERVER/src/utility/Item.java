@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Item implements Serializable
 {
   private int id;
+  private int item_in_order_id;
   private String name;
   private String type;
   private double price;
@@ -26,6 +27,7 @@ public class Item implements Serializable
     this.price = price;
     this.description = description;
     this.extras = new ArrayList<>();
+    this.item_in_order_id=-1;
   }
 
   public Item(String name, String type, double price, String description)
@@ -36,6 +38,7 @@ public class Item implements Serializable
     this.price = price;
     this.description = description;
     this.extras = new ArrayList<>();
+    this.item_in_order_id=-1;
   }
 
   public Item(int id, String name, String type, double price)
@@ -46,6 +49,7 @@ public class Item implements Serializable
     this.price = price;
     this.description = "";
     this.extras = new ArrayList<>();
+    this.item_in_order_id=-1;
   }
 
 
@@ -58,6 +62,16 @@ public class Item implements Serializable
   public void setId(int id)
   {
     this.id = id;
+  }
+
+  public int getItem_in_order_id()
+  {
+    return item_in_order_id;
+  }
+
+  public void setItem_in_order_id(int id)
+  {
+    this.item_in_order_id=id;
   }
 
   public void addExtra(Extra extra)

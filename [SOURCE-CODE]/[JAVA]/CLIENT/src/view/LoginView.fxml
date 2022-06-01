@@ -38,7 +38,7 @@ userData="Login">
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                     <children>
-                        <Label fx:id="errorLabel" text="Acess Key Invaid"
+                        <Label fx:id="errorLabel" text="Access Key Invalid"
                                textFill="RED" visible="false"/>
                         <PasswordField fx:id="passwordField" onAction="#onEnter"
                                        maxWidth="-Infinity" prefHeight="25.0"

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class ItemProperty
 {
   private IntegerProperty id;
+  private IntegerProperty item_in_order_id;
   private StringProperty name;
   private StringProperty type;
   private DoubleProperty price;
@@ -25,6 +26,7 @@ public class ItemProperty
     price = new SimpleDoubleProperty(item.getPrice());
     description = new SimpleStringProperty(item.getDescription());
     extras = new ArrayList<>();
+    item_in_order_id = new SimpleIntegerProperty(item.getItem_in_order_id());
     for (Extra extra : item.getExtras())
     {
       extras.add(new ExtraProperty(extra));
@@ -72,6 +74,12 @@ public class ItemProperty
   {
     return extras;
   }
+
+  public IntegerProperty getItem_in_order_id()
+  {
+    return item_in_order_id;
+  }
+
 
   public Item getItem()
   {

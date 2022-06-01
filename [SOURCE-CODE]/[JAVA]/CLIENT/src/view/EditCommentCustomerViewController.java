@@ -17,6 +17,10 @@ public class EditCommentCustomerViewController extends ViewController
         .bindBidirectional(viewModel.getCommentArea());
   }
 
+  public void reset() {
+    viewModel.reset();
+  }
+
   @FXML private void cancelPressed()
   {
     getViewHandler().openView("CheckoutView.fxml");

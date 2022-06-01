@@ -26,7 +26,6 @@ public class ExtraDatabaseViewController extends ViewController
     extraCol.setCellValueFactory(new PropertyValueFactory<ExtraProperty, StringProperty>("name"));
     availableCol.setCellValueFactory(new PropertyValueFactory<ExtraProperty, String>("Types"));
     selectionModel = extraTable.getSelectionModel();
-  reset();
   }
 
   public void reset() {

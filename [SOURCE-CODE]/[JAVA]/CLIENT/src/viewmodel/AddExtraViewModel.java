@@ -107,7 +107,14 @@ public class AddExtraViewModel
     {
       extra.addAvailableType("smoothie");
     }
-    model.addExtraToExtraList(extra);
+    try
+    {
+      model.addExtraToExtraList(extra);
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
   }
 
 }

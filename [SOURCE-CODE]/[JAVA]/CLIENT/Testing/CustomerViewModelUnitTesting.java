@@ -74,7 +74,14 @@ class CustomerViewModelUnitTesting
 
   @Test void submitOrder_O()
   {
-    model.addItemToOrder(item);
+    try
+    {
+      model.addItemToOrder(item);
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
     assertDoesNotThrow(() -> model.submitOrder());
   }
 

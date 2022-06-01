@@ -15,6 +15,7 @@ public class BaristaViewModel implements PropertyChangeListener
   private Model model;
   private ObservableList<OrderProperty> orders;
   private BaristaHandler handler;
+  private boolean open;
 
   public BaristaViewModel(Model model, BaristaHandler handler)
   {
@@ -22,18 +23,33 @@ public class BaristaViewModel implements PropertyChangeListener
     model.addListener(this);
     this.handler = handler;
     this.orders = FXCollections.observableArrayList();
-    reset();
+    this.open = false;
+  }
+
+  public void open() {
+    this.open = true;
+  }
+
+  public void close() {
+    this.open = false;
   }
 
   public void reset()
   {
     orders.clear();
-    if (model.getAllPendingOrders() != null)
+    try
     {
-      for (Order order : model.getAllPendingOrders())
+      if (model.getAllPendingOrders() != null)
       {
-        orders.add(new OrderProperty(order));
+        for (Order order : model.getAllPendingOrders())
+        {
+          orders.add(new OrderProperty(order));
+        }
       }
+    }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
     }
   }
   public ObservableList<OrderProperty> getOrders()
@@ -51,7 +67,7 @@ public class BaristaViewModel implements PropertyChangeListener
   {
     Platform.runLater(()->
     {
-      if(evt.getPropertyName().equals("change"))
+      if(evt.getPropertyName().equals("change") && open)
       {
         reset();
       }

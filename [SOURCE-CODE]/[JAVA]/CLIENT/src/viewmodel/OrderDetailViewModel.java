@@ -27,7 +27,7 @@ public class OrderDetailViewModel
     {
       model.completeOrder(handler.getSelectedOrder().getOrder());
     }
-    catch (RemoteException e)
+    catch (RemoteException | IllegalAccessException e)
     {
       e.printStackTrace();
     }
@@ -44,6 +44,7 @@ public class OrderDetailViewModel
         extrasInItems.add(new ExtraInItemProperty(item, item.getExtras()));
       }
     }
+    //TODO new method inside DAO will be probably needed to get the item_in_order_id with the proper extras
   }
 
   public ObservableList<ExtraInItemProperty> getExtrasInItems()
