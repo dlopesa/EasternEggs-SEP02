@@ -10,6 +10,12 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * ViewModel class for the AddAccessKeyViewController.
+ *
+ * @author Group 1
+ * @version 1 - May 2022
+ */
 public class AddAccessKeyViewModel
 {
   private Model model;
@@ -18,6 +24,13 @@ public class AddAccessKeyViewModel
   private StringProperty chosen;
   private StringProperty error;
 
+  /**
+   * One-argument constructor taking the model initializing the StringProperties and calling the method clear(),
+   * which sets the accessKey and error StringProperties to an empty String.
+   *
+   * @param model the model
+   *
+   */
   public AddAccessKeyViewModel(Model model)
   {
     this.model = model;
@@ -26,6 +39,11 @@ public class AddAccessKeyViewModel
     error = new SimpleStringProperty();
     clear();
   }
+
+
+  /**
+   * A void method for setting the accessKey and error StringProperties to an empty String.
+   */
 
   public void reset() {
     try
@@ -38,32 +56,57 @@ public class AddAccessKeyViewModel
     }
   }
 
+
   public void clear()
   {
     accessKeyS.set("");
     error.set("");
   }
 
+  /**
+   * A getter method for the accessKeyProperty.
+   * @return the accessKey as a StringProperty.
+   */
   public StringProperty accessKeyProperty()
   {
     return accessKeyS;
   }
 
+  /**
+   * A getter method for the chosen access category.
+   * @return the chosen permission category as a StringProperty.
+   */
   public StringProperty chosenProperty()
   {
     return chosen;
   }
 
+  /**
+   * A getter method for the permission.
+   * @return the user's permission as a StringProperty.
+   */
   public ArrayList<String> getPermission()
   {
     return permission;
   }
 
+  /**
+   * A getter method for the error message.
+   * @return the error message as a StringProperty
+   */
   public StringProperty errorProperty()
   {
     return error;
   }
 
+  /**
+   * A void method for submitting a new accessKey.
+   * @throws IllegalArgumentException if the accessKey is an empty String, or if
+   * no permission category has been chosen.
+   * @throws IllegalStateException if the accessKey is not unique.
+   * A new access key is created and passed on to the model to be stored, then the view is cleared
+   * by the method clear().
+   */
   public void submit()
   {
     try
