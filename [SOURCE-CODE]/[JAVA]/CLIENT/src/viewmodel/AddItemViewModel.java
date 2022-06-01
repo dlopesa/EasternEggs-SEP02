@@ -43,6 +43,13 @@ public class AddItemViewModel
    * A void method setting the name, price, error and description StringProperties to an empty String.
    */
   public void clear()
+  {
+    name.set("");
+    price.set("");
+    description.set("");
+    error.set("");
+    chosen.set("");
+  }
 
   public void reset()
 
