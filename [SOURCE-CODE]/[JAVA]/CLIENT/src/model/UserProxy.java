@@ -12,11 +12,11 @@ public class UserProxy implements Model
 {
   private ModelManager modelManager;
   private String userType;
-  public static String CUSTOMER = "customer";
-  public static String ADMIN = "admin";
-  public static String BARISTA = "barista";
-  public static String CASHIER = "cashier";
-  public static String DISPLAY = "display";
+  public static final String CUSTOMER = "customer";
+  public static final String ADMIN = "admin";
+  public static final String BARISTA = "barista";
+  public static final String CASHIER = "cashier";
+  public static final String DISPLAY = "display";
 
   public UserProxy(ModelManager modelManager)
   {
