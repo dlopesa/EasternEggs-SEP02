@@ -1,8 +1,7 @@
 import mediator.RemoteServer;
-import mediator.RemoteServerClient;
+import utility.Item;
 
 import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -12,13 +11,12 @@ public class RMITest
   {
     try
     {
-      RemoteServerClient server = new RemoteServerClient();
+      RemoteServer server = new RemoteServer();
+      server.addItemToProductList(new Item("drink","coffee", 15, "mmmm"));
     }
-    catch (RemoteException | MalformedURLException e)
+    catch (RemoteException | SQLException | MalformedURLException e)
     {
       e.printStackTrace();
-    } catch (NotBoundException e) {
-      throw new RuntimeException(e);
     }
   }
 }

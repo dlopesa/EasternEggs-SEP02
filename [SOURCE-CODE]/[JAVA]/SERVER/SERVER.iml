@@ -27,7 +27,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="MyObserver-1.4" level="application" />
     <orderEntry type="library" name="postgresql-42.3.4" level="project" />
     <orderEntry type="library" name="MyObserver-1.4" level="project" />
     <orderEntry type="module-library" scope="TEST">
@@ -46,5 +45,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="MyObserver-1.4" level="application" />
   </component>
 </module>

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CLIENT/CLIENT.iml" filepath="$PROJECT_DIR$/CLIENT/CLIENT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DB SERVER/DB SERVER.iml" filepath="$PROJECT_DIR$/DB SERVER/DB SERVER.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SEP2EasternEggs.iml" filepath="$PROJECT_DIR$/.idea/SEP2EasternEggs.iml" />
       <module fileurl="file://$PROJECT_DIR$/SERVER/SERVER.iml" filepath="$PROJECT_DIR$/SERVER/SERVER.iml" />
     </modules>
