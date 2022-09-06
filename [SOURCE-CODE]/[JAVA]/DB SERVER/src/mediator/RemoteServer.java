@@ -40,7 +40,7 @@ public class RemoteServer implements RemoteCafeServer
   {
     try
     {
-      Registry reg = LocateRegistry.createRegistry( 1199);
+      Registry reg = LocateRegistry.createRegistry( 1888);
       System.out.println("Registry started...");
     }
     catch (java.rmi.server.ExportException e)

@@ -29,7 +29,7 @@ public class RemoteServerClient implements RemoteCafeServer, RemoteListener<Stri
         public RemoteServerClient()
                 throws MalformedURLException, NotBoundException, RemoteException
         {
-            server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1199/CafeDAO");
+            server = (RemoteCafeServer) Naming.lookup("rmi://localhost:1888/CafeDAO");
             UnicastRemoteObject.exportObject(this, 0);
             server.addListener(this);
             property= new PropertyChangeSupport(this);
