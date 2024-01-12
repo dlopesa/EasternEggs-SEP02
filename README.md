@@ -18,7 +18,7 @@ This project utilizes a wide range of technologies, including:
 
 ## Installation Guide
 
-For instructions on how to install and run this project, please refer to the [Installation Guide.pdf](Installation Guide.pdf).
+For instructions on how to install and run this project, please refer to the [Installation Guide.pdf](https://github.com/dlopesa/EasternEggs-SEP02/files/13078704/Installation.Guide.pdf).
 
 ## Contributors
 
